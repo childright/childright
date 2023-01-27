@@ -87,6 +87,18 @@ const t = initTRPC.context<typeof createTRPCContext>().create({
  */
 export const createTRPCRouter = t.router;
 
+const updateLastSeen = t.middleware(({ ctx, next }) => {
+  if (ctx.session?.user) {
+    void ctx.prisma.user
+      .update({
+        where: { id: ctx.session.user.id },
+        data: { lastSeen: new Date() },
+      })
+      .then(() => console.log("finished"));
+  }
+  return next();
+});
+
 /**
  * Public (unauthed) procedure
  *
@@ -94,7 +106,7 @@ export const createTRPCRouter = t.router;
  * tRPC API. It does not guarantee that a user querying is authorized, but you
  * can still access user session data if they are logged in
  */
-export const publicProcedure = t.procedure;
+export const publicProcedure = t.procedure.use(updateLastSeen);
 
 /**
  * Reusable middleware that enforces users are logged in before running the
@@ -121,4 +133,6 @@ const enforceUserIsAuthed = t.middleware(({ ctx, next }) => {
  *
  * @see https://trpc.io/docs/procedures
  */
-export const protectedProcedure = t.procedure.use(enforceUserIsAuthed);
+export const protectedProcedure = t.procedure
+  .use(enforceUserIsAuthed)
+  .use(updateLastSeen);
