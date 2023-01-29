@@ -56,6 +56,8 @@ model User {
     lastSeen      DateTime  @default(now())
     accounts      Account[]
     sessions      Session[]
+
+    step1Data Step1Data?
 }
 
 model VerificationToken {
@@ -64,4 +66,13 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+model Step1Data {
+    id     String @id @default(cuid())
+    user   User   @relation(fields: [userId], references: [id])
+    userId String @unique
+
+    isParent  Boolean
+    birthDate DateTime?
 }
