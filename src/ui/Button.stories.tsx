@@ -10,6 +10,10 @@ export default {
       type: "boolean",
       content: "Button",
     },
+    fullHeight: {
+      type: "boolean",
+      content: "Button",
+    },
   },
 } as ComponentMeta<typeof Button>;
 
@@ -30,4 +34,9 @@ Secondary.args = {
 export const Danger = Template.bind({});
 Danger.args = {
   intent: "danger",
+};
+
+export const Warning = Template.bind({});
+Warning.args = {
+  intent: "warning",
 };

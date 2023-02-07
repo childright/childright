@@ -6,7 +6,7 @@ import { api } from "../utils/api";
 import { RadioGroup } from "@headlessui/react";
 import { useState } from "react";
 import DatePicker from "react-date-picker/dist/entry.nostyle";
-import { boolean } from "zod";
+import Button from "../ui/Button";
 
 const Step1Page: NextPage = () => {
   const user = api.user.me.useQuery();
@@ -51,8 +51,8 @@ const Step1Page: NextPage = () => {
         </div>
       )}
 
-      <button
-        className="m-3 rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
+      <Button
+        intent="secondary"
         disabled={
           isParent === undefined ||
           (isParent === false && birthDate === undefined)
@@ -65,7 +65,7 @@ const Step1Page: NextPage = () => {
         }
       >
         Weiter
-      </button>
+      </Button>
     </main>
   );
 };
