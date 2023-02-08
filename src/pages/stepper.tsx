@@ -1,12 +1,10 @@
 import { type NextPage } from "next";
 
 import { api } from "../utils/api";
-import { RadioGroup } from "@headlessui/react";
-import { FC, useState } from "react";
-import DatePicker from "react-date-picker/dist/entry.nostyle";
-import Button from "../ui/Button";
+import type { FC } from "react";
 import CalculatorStep from "../components/steps/CalculatorStep";
 import StepperLayout from "../ui/StepperLayout";
+import Spinner from "../ui/Spinner";
 
 const StepperPage: NextPage = () => (
   <StepperLayout>
@@ -18,7 +16,7 @@ const Content: FC = () => {
 
   switch (currentStep.status) {
     case "loading":
-      return <p>loading...</p>;
+      return <Spinner />;
     case "error":
       return <p>error</p>;
     case "success":
