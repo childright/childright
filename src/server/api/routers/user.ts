@@ -19,4 +19,15 @@ export const userRouter = createTRPCRouter({
         where: { id: input.id },
       });
     }),
+
+  getCurrentStep: protectedProcedure.query(async ({ ctx }) => {
+    const step1Data = await ctx.prisma.step1Data.findUnique({
+      where: {
+        userId: ctx.session.user.id,
+      },
+    });
+
+    if (!step1Data) return "step1";
+    return "step2";
+  }),
 });

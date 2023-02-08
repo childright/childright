@@ -1,16 +1,18 @@
-import { type NextPage } from "next";
-import Head from "next/head";
-import { signIn, signOut, useSession } from "next-auth/react";
-
-import { api } from "../utils/api";
+import { api } from "../../utils/api";
 import { RadioGroup } from "@headlessui/react";
+import type { FC } from "react";
 import { useState } from "react";
 import DatePicker from "react-date-picker/dist/entry.nostyle";
-import Button from "../ui/Button";
+import Button from "../../ui/Button";
 
-const Step1Page: NextPage = () => {
+const StepperPage: FC = () => {
   const user = api.user.me.useQuery();
-  const saveMutation = api.step1.save.useMutation();
+
+  const utils = api.useContext();
+
+  const saveMutation = api.step1.save.useMutation({
+    onSuccess: () => utils.user.getCurrentStep.invalidate(),
+  });
 
   const [isParent, setIsParent] = useState<boolean | undefined>(undefined);
   const [birthDate, setBirthDate] = useState<Date | undefined>(undefined);
@@ -22,12 +24,8 @@ const Step1Page: NextPage = () => {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
-      <RadioGroup
-        value={isParent}
-        onChange={setIsParent}
-        className=" text-white"
-      >
+    <div className="h-full w-full border-8">
+      <RadioGroup value={isParent} onChange={setIsParent}>
         <RadioGroup.Option value={true}>
           {({ checked }) => (
             <div>
@@ -66,8 +64,8 @@ const Step1Page: NextPage = () => {
       >
         Weiter
       </Button>
-    </main>
+    </div>
   );
 };
 
-export default Step1Page;
+export default StepperPage;
