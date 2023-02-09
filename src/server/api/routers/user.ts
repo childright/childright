@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import { createTRPCRouter, protectedProcedure } from "../trpc";
+import type { CalculatorStepData } from "@prisma/client";
 
 export const userRouter = createTRPCRouter({
   me: protectedProcedure.query(({ ctx }) => {
@@ -21,13 +22,14 @@ export const userRouter = createTRPCRouter({
     }),
 
   getCurrentStep: protectedProcedure.query(async ({ ctx }) => {
-    const step1Data = await ctx.prisma.step1Data.findUnique({
+    const calculatorStepData = await ctx.prisma.calculatorStepData.findFirst({
       where: {
-        userId: ctx.session.user.id,
+        userId: ctx.session?.user?.id,
       },
     });
 
-    if (!step1Data) return "step1";
-    return "step2";
+    if (calculatorStepData === null) {
+      return "calculator";
+    }
   }),
 });
