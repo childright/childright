@@ -53,7 +53,6 @@ model User {
     email         String?   @unique
     emailVerified DateTime?
     image         String?
-    lastSeen      DateTime  @default(now())
     accounts      Account[]
     sessions      Session[]
 
