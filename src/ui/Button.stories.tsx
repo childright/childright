@@ -8,11 +8,11 @@ export default {
   argTypes: {
     fullWidth: {
       type: "boolean",
-      content: "Button",
+      defaultValue: false,
     },
     fullHeight: {
       type: "boolean",
-      content: "Button",
+      defaultValue: false,
     },
   },
 } as ComponentMeta<typeof Button>;

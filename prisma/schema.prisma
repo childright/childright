@@ -75,7 +75,7 @@ model CalculatorStepData {
     parentsNetIncome  Float
     kreditRates       Float
     children0to5      Int
-    children5to13     Int
+    children6to13     Int
     children14to17    Int
     childrenAbove18   Int
     claimAmountResult Float //calculated
