@@ -46,7 +46,6 @@ const CalculatePage: NextPage = () => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={async (values) => {
-          console.log(values);
           await saveMutation.mutateAsync(values as Required<FormData>);
           void router.push("/profile");
         }}

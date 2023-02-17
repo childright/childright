@@ -26,13 +26,14 @@ export default {
 } as ComponentMeta<typeof NumberInputField>;
 
 const Template: ComponentStory<typeof NumberInputField> = (args) => (
-  <NumberInputField {...args} name="amount" />
+  <NumberInputField {...args} />
 );
 
 export const Default = Template.bind({});
 Default.args = {
+  name: "amount",
   label: "Amount",
-  hint: "This is a hint",
   min: 0,
   max: 100,
+  placeholder: "Amount",
 };

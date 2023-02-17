@@ -14,7 +14,6 @@ module.exports = {
       },
     },
     "@bbbtech/storybook-formik/register",
-    "@chakra-ui/storybook-addon",
   ],
   features: {
     emotionAlias: false,
