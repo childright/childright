@@ -7,6 +7,7 @@ import * as Yup from "yup";
 import calculatorStepResult from "../shared/calculatorStepResult";
 import { api } from "../utils/api";
 import { useRouter } from "next/router";
+import { Button, Text } from "@mantine/core";
 
 type FormData = {
   parentsNetIncome?: number;
@@ -51,42 +52,40 @@ const CalculatePage: NextPage = () => {
         }}
       >
         {({ values }) => (
-          <Form className="h-full">
-            <div className="grid grid-cols-2">
-              <NumberInputField
-                name="parentsNetIncome"
-                label="monatliches Nettoeinkommen der Eltern (in Euro)"
-                min={0}
-              />
-              <NumberInputField
-                name="kreditRates"
-                label="Kreditraten (in Euro)"
-                min={0}
-              />
-              <NumberInputField
-                name="children0to5"
-                label="Kinder 0 bis 5 Jahre"
-                min={0}
-              />
-              <NumberInputField
-                name="children6to13"
-                label="Kinder 6 bis 13 Jahre"
-                min={0}
-              />
-              <NumberInputField
-                name="children14to17"
-                label="Kinder 14 bis 17 Jahre"
-                min={0}
-              />
-              <NumberInputField
-                name="childrenAbove18"
-                label="Kinder über 18 Jahre"
-                min={0}
-              />
-            </div>
+          <Form>
+            <NumberInputField
+              name="parentsNetIncome"
+              label="monatliches Nettoeinkommen der Eltern (in Euro)"
+              min={0}
+            />
+            <NumberInputField
+              name="kreditRates"
+              label="Kreditraten (in Euro)"
+              min={0}
+            />
+            <NumberInputField
+              name="children0to5"
+              label="Kinder 0 bis 5 Jahre"
+              min={0}
+            />
+            <NumberInputField
+              name="children6to13"
+              label="Kinder 6 bis 13 Jahre"
+              min={0}
+            />
+            <NumberInputField
+              name="children14to17"
+              label="Kinder 14 bis 17 Jahre"
+              min={0}
+            />
+            <NumberInputField
+              name="childrenAbove18"
+              label="Kinder über 18 Jahre"
+              min={0}
+            />
 
-            <p>Ergebnis: {calculatorStepResult(values)}</p>
-            <button type="submit">Submit</button>
+            <Text>Ergebnis: {calculatorStepResult(values)}</Text>
+            <Button type="submit">Submit</Button>
           </Form>
         )}
       </Formik>

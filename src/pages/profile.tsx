@@ -13,7 +13,7 @@ type FormData = {};
 const CalculatePage: NextPage = () => {
   return (
     <StepperLayout>
-      <h1 className="mb-4">Unterhaltsrechner</h1>
+      <h1 className="mb-4">Create your Profile</h1>
     </StepperLayout>
   );
 };
