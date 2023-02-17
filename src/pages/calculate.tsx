@@ -3,10 +3,21 @@ import { Formik, Form } from "formik";
 
 import StepperLayout from "../ui/StepperLayout";
 import NumberInputField from "../ui/NumberInputField";
-import type { CalculatorStepData } from "@prisma/client";
 import * as Yup from "yup";
+import calculatorStepResult from "../shared/calculatorStepResult";
+import { api } from "../utils/api";
+import { useRouter } from "next/router";
 
-const initialValues: Omit<Partial<CalculatorStepData>, "userId"> = {};
+type FormData = {
+  parentsNetIncome?: number;
+  kreditRates?: number;
+  children0to5?: number;
+  children6to13?: number;
+  children14to17?: number;
+  childrenAbove18?: number;
+};
+
+const initialValues: FormData = {};
 
 const validationSchema = Yup.object().shape({
   parentsNetIncome: Yup.number()
@@ -15,29 +26,29 @@ const validationSchema = Yup.object().shape({
       "more-than-1000",
       "Nettoeinkommen muss über 1000€ liegen",
       (value) => value > 1000
-    ),
+    )
+    .required(),
   kreditRates: Yup.number().required(),
   children0to5: Yup.number().required(),
   children6to13: Yup.number().required(),
   children14to17: Yup.number().required(),
   childrenAbove18: Yup.number().required(),
 });
-const calculateResult = (values: typeof initialValues) =>
-  Object.values(values).reduce(
-    //TODO: Add real formula
-    (acc, val) => acc + (typeof val == "number" ? val : 0),
-    0
-  );
 
 const CalculatePage: NextPage = () => {
+  const saveMutation = api.steps.calculator.save.useMutation();
+  const router = useRouter();
+
   return (
     <StepperLayout>
       <h1 className="mb-4">Unterhaltsrechner</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={(values) => {
-          alert(JSON.stringify(values));
+        onSubmit={async (values) => {
+          console.log(values);
+          await saveMutation.mutateAsync(values as Required<FormData>);
+          void router.push("/profile");
         }}
       >
         {({ values }) => (
@@ -73,19 +84,9 @@ const CalculatePage: NextPage = () => {
                 label="Kinder über 18 Jahre"
                 min={0}
               />
-
-              <NumberInputField
-                name="children14to17"
-                label="Kinder 14 bis 17 Jahre"
-                min={0}
-              />
-              <NumberInputField
-                name="childrenAbove18"
-                label="Kinder über 18 Jahre"
-                min={0}
-              />
             </div>
-            <p>Ergebnis: {calculateResult(values)}</p>
+
+            <p>Ergebnis: {calculatorStepResult(values)}</p>
             <button type="submit">Submit</button>
           </Form>
         )}
