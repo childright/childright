@@ -1,5 +1,5 @@
 import { type NextPage } from "next";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form } from "formik";
 
 import StepperLayout from "../ui/StepperLayout";
 import * as Yup from "yup";
@@ -17,6 +17,7 @@ import { Select } from "formik-mantine";
 import NumberInputField from "../ui/NumberInputField";
 import DatePickerField from "../ui/DatePickerField";
 import { Button } from "@mantine/core";
+import { api } from "../utils/api";
 
 type FormData = Partial<Omit<ProfileStepData, "user" | "userId">>;
 
@@ -43,16 +44,17 @@ const validationSchema = Yup.object().shape({
 });
 
 const CalculatePage: NextPage = () => {
+  const saveMutation = api.steps.profile.save.useMutation();
   const router = useRouter();
+
   return (
     <StepperLayout>
       <h1 className="mb-4">Erstelle dein Profil</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={(values) => {
-          console.log("AAA");
-          alert(JSON.stringify(values, null, 2));
+        onSubmit={async (values) => {
+          await saveMutation.mutateAsync(values as Required<FormData>);
           void router.push("/mother");
         }}
       >
