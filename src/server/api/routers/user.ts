@@ -1,7 +1,6 @@
 import { z } from "zod";
 
 import { createTRPCRouter, protectedProcedure } from "../trpc";
-import type { CalculatorStepData } from "@prisma/client";
 
 export const userRouter = createTRPCRouter({
   me: protectedProcedure.query(({ ctx }) => {

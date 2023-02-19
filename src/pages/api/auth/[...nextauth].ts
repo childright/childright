@@ -8,6 +8,7 @@ import { env } from "../../../env/server.mjs";
 import { prisma } from "../../../server/db";
 
 export const authOptions: NextAuthOptions = {
+  secret: process.env.NEXTAUTH_SECRET,
   // Include user.id on session
   callbacks: {
     session({ session, user }) {
