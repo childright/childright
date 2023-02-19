@@ -7,7 +7,7 @@ const AuthButton = () => {
 
   return (
     <Button onClick={session ? () => void signOut() : () => void signIn()}>
-      {session ? "Sign out" : "Sign in"}
+      {session ? "Ausloggen" : "Einloggen"}
     </Button>
   );
 };

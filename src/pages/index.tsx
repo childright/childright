@@ -13,7 +13,7 @@ const Home: NextPage = () => {
       <h1>ChildRight</h1>
       <div>
         <Text>
-          {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
+          {sessionData && <span>Hallo {sessionData.user?.name}</span>}
         </Text>
         {sessionData?.user ? (
           <Button component={NextLink} href="/calculate" legacyBehavior>
