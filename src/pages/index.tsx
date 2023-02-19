@@ -3,29 +3,28 @@ import { useSession } from "next-auth/react";
 
 import { Button, Text } from "@mantine/core";
 import { NextLink } from "@mantine/next";
+import AuthButton from "../ui/AuthButton";
 
 const Home: NextPage = () => {
+  const { data: sessionData } = useSession();
+
   return (
     <>
       <h1>ChildRight</h1>
-      <AuthShowcase />
+      <div>
+        <Text>
+          {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
+        </Text>
+        {sessionData?.user ? (
+          <Button component={NextLink} href="/calculate" legacyBehavior>
+            Start
+          </Button>
+        ) : (
+          <AuthButton />
+        )}
+      </div>
     </>
   );
 };
 
 export default Home;
-
-const AuthShowcase: React.FC = () => {
-  const { data: sessionData } = useSession();
-
-  return (
-    <div>
-      <Text>
-        {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
-      </Text>
-      <Button component={NextLink} href="/calculate" legacyBehavior>
-        Start
-      </Button>
-    </div>
-  );
-};
