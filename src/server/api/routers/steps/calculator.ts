@@ -6,12 +6,12 @@ export const calculatorRouter = createTRPCRouter({
   save: protectedProcedure
     .input(
       z.object({
-        parentsNetIncome: z.number().positive().int(),
-        kreditRates: z.number().positive().int(),
-        children0to5: z.number().positive().int(),
-        children6to13: z.number().positive().int(),
-        children14to17: z.number().positive().int(),
-        childrenAbove18: z.number().positive().int(),
+        parentsNetIncome: z.number().int(),
+        kreditRates: z.number().int(),
+        children0to5: z.number().int(),
+        children6to13: z.number().int(),
+        children14to17: z.number().int(),
+        childrenAbove18: z.number().int(),
       })
     )
     .mutation(async ({ input, ctx: { session, prisma } }) => {
