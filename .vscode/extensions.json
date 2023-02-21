@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "prisma.prisma",
+    "dsznajder.es7-react-js-snippets",
+    "mikestead.dotenv",
+    "mhutchie.git-graph",
+    "eamodio.gitlens",
+    "esbenp.prettier-vscode",
+    "bradlc.vscode-tailwindcss"
+  ]
+}
