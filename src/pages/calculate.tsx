@@ -21,14 +21,7 @@ type FormData = {
 const initialValues: FormData = {};
 
 const validationSchema = Yup.object().shape({
-  parentsNetIncome: Yup.number()
-    .required()
-    .test(
-      "more-than-1000",
-      "Nettoeinkommen muss über 1000€ liegen",
-      (value) => value > 1000
-    )
-    .required(),
+  parentsNetIncome: Yup.number().required(),
   kreditRates: Yup.number().required(),
   children0to5: Yup.number().required(),
   children6to13: Yup.number().required(),
