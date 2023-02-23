@@ -39,12 +39,13 @@ const CalculatePage: NextPage = () => {
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
+        validateOnMount
         onSubmit={async (values) => {
           await saveMutation.mutateAsync(values as Required<FormData>);
           void router.push("/profile");
         }}
       >
-        {({ values }) => (
+        {({ values, isValid }) => (
           <Form>
             <NumberInputField
               name="parentsNetIncome"
@@ -78,7 +79,9 @@ const CalculatePage: NextPage = () => {
             />
 
             <Text>Ergebnis: {calculatorStepResult(values)}</Text>
-            <Button type="submit">Submit</Button>
+            <Button type="submit" disabled={!isValid}>
+              Submit
+            </Button>
           </Form>
         )}
       </Formik>

@@ -9,24 +9,20 @@ dayjs.extend(customParseFormat);
 
 export type DatePickerProps = { name: string } & Omit<Props, "error" | "value">;
 
-export function DatePickerField({ name, onFocus, ...rest }: DatePickerProps) {
-  const [{ value }, {}, { setValue, setTouched }] = useField<Date | undefined>(
-    name
-  );
+export function DatePickerField({ name, ...rest }: DatePickerProps) {
+  const [field, meta, helpers] = useField<Date | undefined>(name);
   return (
     <Component
       {...rest}
+      {...field}
       locale="de"
       inputFormat="DD.MM.YYYY"
       allowFreeInput
-      value={value}
-      onFocus={(e) => {
-        setTouched(true, true);
-        onFocus && onFocus(e);
-      }}
       onChange={(v) => {
-        setValue(v ? v : undefined);
+        helpers.setValue(v ? v : undefined, true);
       }}
+      error={meta.touched && meta.error}
+      onBlur={() => helpers.setTouched(true, true)}
     />
   );
 }

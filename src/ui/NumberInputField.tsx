@@ -10,23 +10,17 @@ export type NumberInputProps = { name: string } & Omit<
 export const NumberInputField = ({
   name,
   onChange,
-  onFocus,
   ...rest
 }: NumberInputProps) => {
-  const [{ value }, { error, touched }, { setValue, setTouched }] = useField<
-    number | undefined
-  >(name);
+  const [field, meta, helpers] = useField<number | undefined>(name);
+
   return (
     <Component
       {...rest}
-      error={touched && error}
-      onFocus={(e) => {
-        setTouched(true, true);
-        onFocus && onFocus(e);
-      }}
-      value={value}
+      {...field}
+      error={meta.touched && meta.error}
       onChange={(v) => {
-        setValue(v);
+        helpers.setValue(v);
         onChange && onChange(v);
       }}
     />

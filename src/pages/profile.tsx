@@ -13,15 +13,25 @@ import {
   LivingSituation,
 } from "@prisma/client";
 import type { ProfileStepData } from "@prisma/client";
-import { Select } from "formik-mantine";
 import NumberInputField from "../ui/NumberInputField";
 import DatePickerField from "../ui/DatePickerField";
 import { Button } from "@mantine/core";
 import { api } from "../utils/api";
+import SelectField from "../ui/SelectField";
 
 type FormData = Partial<Omit<ProfileStepData, "user" | "userId">>;
 
 const initialValues: FormData = {
+  name: "",
+  username: "",
+  birthDate: undefined,
+  address: "",
+  education: undefined,
+  livingSituation: undefined,
+  familyState: undefined,
+  degree: undefined,
+  ownIncome: undefined,
+  ownIncomeAmount: undefined,
   avatarSeed: "TODO: AVATAR",
   coachAvatarSeed: "TODO: COACH AVATAR",
 };
@@ -53,76 +63,83 @@ const CalculatePage: NextPage = () => {
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
+        validateOnMount
         onSubmit={async (values) => {
           await saveMutation.mutateAsync(values as Required<FormData>);
           void router.push("/mother");
         }}
       >
-        <Form>
-          <TextInputField name="name" label="Dein Name" />
-          <TextInputField name="username" label="Dein Username" />
-          <DatePickerField name="birthDate" label="Geburtsdatum" />
-          <TextInputField name="address" label="Deine Adresse" />
-          <Select
-            name="education"
-            label="Aktuelle Bildungssituation"
-            data={[
-              { value: "searching", label: "auf der Suche" },
-              { value: "studying", label: "Studium" },
-              { value: "formation", label: "Ausbildung" },
-              { value: "none", label: "nichts der genannten" },
-            ]}
-          />
-          <Select
-            name="livingSituation"
-            label="Aktuelle Wohnsituation"
-            data={[
-              { value: "alone", label: "alleine" },
-              { value: "withPartner", label: "mit Partner" },
-              { value: "withChildren", label: "mit Kindern" },
-              { value: "withParents", label: "mit Eltern" },
-              { value: "withOther", label: "andere" },
-            ]}
-          />
-          <Select
-            name="familyState"
-            label="Familienstand"
-            data={[
-              { value: "single", label: "ledig" },
-              { value: "married", label: "verheiratet" },
-              { value: "divorced", label: "geschieden" },
-              { value: "widowed", label: "verwitwet" },
-            ]}
-          />
-          <Select
-            name="degree"
-            label="Höchster Bildungsabschluss"
-            data={[
-              { value: "none", label: "kein Abschluss" },
-              { value: "hauptschule", label: "Hauptschulabschluss" },
-              { value: "realschule", label: "Realschulabschluss" },
-              { value: "abitur", label: "Abitur" },
-              { value: "studying", label: "im Studium" },
-              { value: "bachelor", label: "Bachelor" },
-              { value: "master", label: "Master" },
-            ]}
-          />
-          <Select
-            name="ownIncome"
-            label="Eigene Einkünfte"
-            data={[
-              { value: "none", label: "keine" },
-              { value: "work", label: "Arbeit" },
-              { value: "other", label: "anderes" },
-            ]}
-          />
-          <NumberInputField
-            name="ownIncomeAmount"
-            label="Summe der (monatlichen) Einkünfte"
-          />
+        {({ isValid }) => {
+          return (
+            <Form>
+              <TextInputField name="name" label="Dein Name" />
+              <TextInputField name="username" label="Dein Username" />
+              <DatePickerField name="birthDate" label="Geburtsdatum" />
+              <TextInputField name="address" label="Deine Adresse" />
+              <SelectField
+                name="education"
+                label="Aktuelle Bildungssituation"
+                data={[
+                  { value: "searching", label: "auf der Suche" },
+                  { value: "studying", label: "Studium" },
+                  { value: "formation", label: "Ausbildung" },
+                  { value: "none", label: "nichts der genannten" },
+                ]}
+              />
+              <SelectField
+                name="livingSituation"
+                label="Aktuelle Wohnsituation"
+                data={[
+                  { value: "alone", label: "alleine" },
+                  { value: "withPartner", label: "mit Partner" },
+                  { value: "withChildren", label: "mit Kindern" },
+                  { value: "withParents", label: "mit Eltern" },
+                  { value: "withOther", label: "andere" },
+                ]}
+              />
+              <SelectField
+                name="familyState"
+                label="Familienstand"
+                data={[
+                  { value: "single", label: "ledig" },
+                  { value: "married", label: "verheiratet" },
+                  { value: "divorced", label: "geschieden" },
+                  { value: "widowed", label: "verwitwet" },
+                ]}
+              />
+              <SelectField
+                name="degree"
+                label="Höchster Bildungsabschluss"
+                data={[
+                  { value: "none", label: "kein Abschluss" },
+                  { value: "hauptschule", label: "Hauptschulabschluss" },
+                  { value: "realschule", label: "Realschulabschluss" },
+                  { value: "abitur", label: "Abitur" },
+                  { value: "studying", label: "im Studium" },
+                  { value: "bachelor", label: "Bachelor" },
+                  { value: "master", label: "Master" },
+                ]}
+              />
+              <SelectField
+                name="ownIncome"
+                label="Eigene Einkünfte"
+                data={[
+                  { value: "none", label: "keine" },
+                  { value: "work", label: "Arbeit" },
+                  { value: "other", label: "anderes" },
+                ]}
+              />
+              <NumberInputField
+                name="ownIncomeAmount"
+                label="Summe der (monatlichen) Einkünfte"
+              />
 
-          <Button type="submit">Weiter</Button>
-        </Form>
+              <Button disabled={!isValid} type="submit">
+                Weiter
+              </Button>
+            </Form>
+          );
+        }}
       </Formik>
     </StepperLayout>
   );
