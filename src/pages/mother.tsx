@@ -74,6 +74,16 @@ const MotherPage: NextPage = () => {
                 { label: "Andere", value: LivingSituation.OTHER },
               ]}
             />
+            <Select
+              name="familyState"
+              label="Familienstand der Mutter"
+              data={[
+                { label: "Verheiratet", value: FamilyState.MARRIED },
+                { label: "Geschieden", value: FamilyState.DIVORCED },
+                { label: "Verwitwet", value: FamilyState.WIDOWED },
+                { label: "Andere", value: FamilyState.OTHER },
+              ]}
+            />
             <Button disabled={!formikProps.isValid} type="submit">
               Weiter
             </Button>
