@@ -18,6 +18,7 @@ import DatePickerField from "../ui/DatePickerField";
 import { Button } from "@mantine/core";
 import { api } from "../utils/api";
 import SelectField from "../ui/SelectField";
+import { withFormikDevtools } from "formik-devtools-extension";
 
 type FormData = Partial<Omit<ProfileStepData, "user" | "userId">>;
 
@@ -69,7 +70,9 @@ const CalculatePage: NextPage = () => {
           void router.push("/mother");
         }}
       >
-        {({ isValid }) => {
+        {(formikProps) => {
+          withFormikDevtools(formikProps);
+
           return (
             <Form>
               <TextInputField name="name" label="Dein Name" />
@@ -134,7 +137,7 @@ const CalculatePage: NextPage = () => {
                 label="Summe der (monatlichen) Einkünfte"
               />
 
-              <Button disabled={!isValid} type="submit">
+              <Button disabled={!formikProps.isValid} type="submit">
                 Weiter
               </Button>
             </Form>
