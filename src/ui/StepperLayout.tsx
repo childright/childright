@@ -6,7 +6,7 @@ type Props = {
 };
 
 const StepperLayout = ({ children }: Props) => {
-  return <div>{children}</div>;
+  return <div className="mx-auto md:w-3/4 lg:w-1/2">{children}</div>;
 };
 
 export default StepperLayout;
