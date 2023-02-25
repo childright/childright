@@ -1,13 +1,7 @@
-import React, { PureComponent } from "react";
-
-type Props = {};
-
-class wizardComment extends PureComponent<Props> {
-  render() {
-    return <div>wizardComment</div>;
-  }
+export function WizardComment() {
+  return <p>Wizard Comment</p>;
 }
 
-export default wizardComment;
+export default WizardComment;
 
 //temporary content. will be changed.

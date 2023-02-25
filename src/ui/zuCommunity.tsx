@@ -1,13 +1,7 @@
-import React, { PureComponent } from "react";
-
-type Props = {};
-
-class zuCommunity extends PureComponent<Props> {
-  render() {
-    return <div>zuCommunity</div>;
-  }
+export function ZuCommunity() {
+  return <p>Zu Community</p>;
 }
 
-export default zuCommunity;
+export default ZuCommunity;
 
 //temporary content. will be changed.
