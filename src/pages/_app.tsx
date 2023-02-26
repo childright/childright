@@ -18,6 +18,7 @@ import Head from "next/head";
 import AuthButton from "../ui/AuthButton";
 import { NotificationsProvider } from "@mantine/notifications";
 import { ChatBubbleLeftIcon } from "@heroicons/react/24/outline";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -33,6 +34,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
         />
       </Head>
       <SessionProvider session={session}>
+        <ReactQueryDevtools />
         <MantineProvider withGlobalStyles withNormalizeCSS>
           <NotificationsProvider>
             <AppShell
