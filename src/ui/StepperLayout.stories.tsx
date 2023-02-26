@@ -8,7 +8,9 @@ export default {
 } as ComponentMeta<typeof StepperLayout>;
 
 const Template: ComponentStory<typeof StepperLayout> = (args) => (
-  <StepperLayout {...args} />
+  <div className="h-screen border-2 border-solid border-sky-500">
+    <StepperLayout {...args} />
+  </div>
 );
 
 export const Primary = Template.bind({});
