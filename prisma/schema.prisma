@@ -63,6 +63,8 @@ model User {
 
     ResultsData ResultsData[]
 
+    forumComments ForumComment[]
+
     @@index([fatherId])
     @@index([motherId])
 }
@@ -193,4 +195,23 @@ model SiblingAmount {
 
     ResultsData       ResultsData @relation(fields: [resultsDataUserId], references: [userId])
     resultsDataUserId String      @unique
+}
+
+model ForumComment {
+    id      String @id @default(cuid())
+    message String
+    upvotes Int    @default(0)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId String
+
+    parent   ForumComment?  @relation("ParentChild", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+    parentId String?
+    children ForumComment[] @relation("ParentChild")
+
+    @@index([userId])
+    @@index([parentId])
 }
