@@ -42,29 +42,29 @@ const validationSchema = Yup.object().shape({
   avatarSeed: Yup.string().required(),
 });
 
-const MotherPage: NextPage = () => {
-  const saveMutation = api.steps.mother.save.useMutation();
+const FatherPage: NextPage = () => {
+  const saveMutation = api.steps.father.save.useMutation();
   const router = useRouter();
 
   return (
     <StepperLayout>
-      <h1 className="mb-4">Mutter Profil erstellen</h1>
+      <h1 className="mb-4">Vater Profil erstellen</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         validateOnMount
         onSubmit={async (values) => {
           await saveMutation.mutateAsync(values as Required<FormData>);
-          void router.push("/father");
+          void router.push("/siblings");
         }}
       >
         {(formikProps) => {
           withFormikDevtools(formikProps);
           return (
             <Form>
-              <TextInputField name="name" label="Name der Mutter" />
+              <TextInputField name="name" label="Name des Vaters" />
               <DatePickerField name="birthDate" label="Geburtsdatum" />
-              <TextInputField name="address" label="Adresse der Mutter" />
+              <TextInputField name="address" label="Adresse des Vaters" />
               <SelectField
                 name="livingSituation"
                 label="Aktuelle Wohnsituation"
@@ -78,7 +78,7 @@ const MotherPage: NextPage = () => {
               />
               <SelectField
                 name="familyState"
-                label="Familienstand der Mutter"
+                label="Familienstand des Vaters"
                 data={[
                   { label: "Ledig", value: "single" },
                   { label: "Verheiratet", value: "married" },
@@ -101,7 +101,7 @@ const MotherPage: NextPage = () => {
               />
               <SelectField
                 name="income"
-                label="Einkommen der Mutter"
+                label="Einkommen des Vaters"
                 data={[
                   { label: "Kein Einkommen", value: "none" },
                   { label: "Arbeit", value: "work" },
@@ -110,7 +110,7 @@ const MotherPage: NextPage = () => {
               />
               <NumberInputField // TODO: Specify Brutto or Netto income?
                 name="incomeAmount"
-                label="Summe der (monatlichen) Einkünfte der Mutter"
+                label="Summe der (monatlichen) Einkünfte des Vaters"
               />
               <Button disabled={!formikProps.isValid} type="submit">
                 Weiter
@@ -123,4 +123,4 @@ const MotherPage: NextPage = () => {
   );
 };
 
-export default MotherPage;
+export default FatherPage;

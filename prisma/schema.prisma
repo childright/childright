@@ -53,10 +53,18 @@ model User {
     calculatorStep CalculatorStepData?
     profileStep    ProfileStepData?
 
-    parents  ParentData[]
+    mother   ParentData? @relation("Mother", fields: [motherId], references: [id])
+    motherId String?
+
+    father   ParentData? @relation("Father", fields: [fatherId], references: [id])
+    fatherId String?
+
     siblings SiblingData[]
 
     ResultsData ResultsData[]
+
+    @@index([fatherId])
+    @@index([motherId])
 }
 
 model VerificationToken {
@@ -150,8 +158,8 @@ model ParentData {
     incomeAmount    Float
     avatarSeed      String
 
-    User   User   @relation(fields: [userId], references: [id])
-    userId String @unique
+    motherOf User[] @relation("Mother")
+    fatherOf User[] @relation("Father")
 }
 
 model SiblingData {
