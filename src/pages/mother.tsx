@@ -5,20 +5,13 @@ import StepperLayout from "../ui/StepperLayout";
 import * as Yup from "yup";
 import { useRouter } from "next/router";
 import TextInputField from "../ui/TextInputField";
-import {
-  Degree,
-  EducationSituation,
-  FamilyState,
-  Income,
-  LivingSituation,
-  ParentData,
-} from "@prisma/client";
-import type { ProfileStepData } from "@prisma/client";
-import { Select } from "formik-mantine";
+import { Degree, FamilyState, Income, LivingSituation } from "@prisma/client";
+import type { ParentData } from "@prisma/client";
 import NumberInputField from "../ui/NumberInputField";
 import DatePickerField from "../ui/DatePickerField";
 import { Button } from "@mantine/core";
-import { api } from "../utils/api";
+import SelectField from "../ui/SelectField";
+import { withFormikDevtools } from "formik-devtools-extension";
 
 type FormData = Partial<Omit<ParentData, "id" | "userId">>;
 
@@ -46,49 +39,84 @@ const validationSchema = Yup.object().shape({
   ownIncome: Yup.string().oneOf(Object.values(Income)).required(),
   ownIncomeAmount: Yup.number().required(),
   avatarSeed: Yup.string().required(),
-  coachAvatarSeed: Yup.string().required(),
 });
 
 const MotherPage: NextPage = () => {
+  // const saveMutation = api.steps.mother.save.useMutation();
+  const router = useRouter();
+
   return (
     <StepperLayout>
       <h1 className="mb-4">Mutter Profil erstellen</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={async (values) => {
-          console.log(values);
+        onSubmit={() => {
+          //await saveMutation.mutateAsync(values as Required<FormData>);
+          void router.push("/father");
         }}
       >
-        {(formikProps) => (
-          <Form>
-            <TextInputField name="name" label="Name der Mutter" />
-            <DatePickerField name="birthDate" label="Geburtsdatum" />
-            <TextInputField name="address" label="Adresse der Mutter" />
-            <Select
-              name="livingSituation"
-              label="Wohnsituation der Mutter"
-              data={[
-                { label: "Wohnung", value: LivingSituation.APARTMENT },
-                { label: "Haus", value: LivingSituation.HOUSE },
-                { label: "Andere", value: LivingSituation.OTHER },
-              ]}
-            />
-            <Select
-              name="familyState"
-              label="Familienstand der Mutter"
-              data={[
-                { label: "Verheiratet", value: FamilyState.MARRIED },
-                { label: "Geschieden", value: FamilyState.DIVORCED },
-                { label: "Verwitwet", value: FamilyState.WIDOWED },
-                { label: "Andere", value: FamilyState.OTHER },
-              ]}
-            />
-            <Button disabled={!formikProps.isValid} type="submit">
-              Weiter
-            </Button>
-          </Form>
-        )}
+        {(formikProps) => {
+          withFormikDevtools(formikProps);
+          return (
+            <Form>
+              <TextInputField name="name" label="Name der Mutter" />
+              <DatePickerField name="birthDate" label="Geburtsdatum" />
+              <TextInputField name="address" label="Adresse der Mutter" />
+              <SelectField
+                name="livingSituation"
+                label="Aktuelle Wohnsituation"
+                data={[
+                  { value: "alone", label: "alleine" },
+                  { value: "withPartner", label: "mit Partner" },
+                  { value: "withChildren", label: "mit Kindern" },
+                  { value: "withParents", label: "mit Eltern" },
+                  { value: "withOther", label: "andere" },
+                ]}
+              />
+              <SelectField
+                name="familyState"
+                label="Familienstand der Mutter"
+                data={[
+                  { label: "Ledig", value: "single" },
+                  { label: "Verheiratet", value: "married" },
+                  { label: "Geschieden", value: "divorced" },
+                  { label: "Verwitwet", value: "widowed" },
+                ]}
+              />
+              <SelectField
+                name="degree"
+                label="Höchster Bildungsabschluss der Mutter"
+                data={[
+                  { label: "Kein Abschluss", value: "none" },
+                  { label: "Hauptschulabschluss", value: "hauptschule" },
+                  { label: "Realschulabschluss", value: "real" },
+                  { label: "Abitur", value: "abitur" },
+                  { label: "Fachhochschulreife", value: "fachhochschulreife" },
+                  //{ label: "Bachelor", value: Degree.BACHELOR },
+                  //{ label: "Master", value: Degree.MASTER }
+                  //{ label: "Andere", value: Degree.OTHER },
+                ]}
+              />
+              <SelectField
+                name="ownIncome"
+                label="Einkommen der Mutter"
+                data={[
+                  { label: "Kein Einkommen", value: "none" },
+                  { label: "Arbeit", value: "work" },
+                  { label: "Anderes", value: "other" },
+                ]}
+              />
+              <NumberInputField // TODO: Specify Brutto or Netto income?
+                name="ownIncomeAmount"
+                label="Summe der (monatlichen) Einkünfte der Mutter"
+              />
+              <Button disabled={!formikProps.isValid} type="submit">
+                Weiter
+              </Button>
+            </Form>
+          );
+        }}
       </Formik>
     </StepperLayout>
   );
