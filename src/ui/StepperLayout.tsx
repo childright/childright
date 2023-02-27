@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import React from "react";
-import { AbsoluteAnimatedCharacter } from "./animations/AnimatedCharacter";
 
 type Props = {
   children: ReactNode;
@@ -10,7 +9,7 @@ const StepperLayout = ({ children }: Props) => {
   return (
     <div className="mx-auto md:w-3/4 lg:w-1/2">
       {children}
-      <AbsoluteAnimatedCharacter />
+      {/*  <AbsoluteAnimatedCharacter /> */}
     </div>
   );
 };
