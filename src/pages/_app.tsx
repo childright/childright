@@ -1,5 +1,5 @@
 import { type AppType } from "next/app";
-import { type Session } from "next-auth";
+import { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { AppShell, Group, Header, MantineProvider } from "@mantine/core";
 
@@ -10,6 +10,7 @@ import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
 import Head from "next/head";
 import AuthButton from "../ui/AuthButton";
+import { NotificationsProvider } from "@mantine/notifications";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -26,17 +27,19 @@ const MyApp: AppType<{ session: Session | null }> = ({
       </Head>
       <SessionProvider session={session}>
         <MantineProvider withGlobalStyles withNormalizeCSS>
-          <AppShell
-            header={
-              <Header height={60}>
-                <Group>
-                  <AuthButton />
-                </Group>
-              </Header>
-            }
-          >
-            <Component {...pageProps} />
-          </AppShell>
+          <NotificationsProvider>
+            <AppShell
+              header={
+                <Header height={60}>
+                  <Group>
+                    <AuthButton />
+                  </Group>
+                </Header>
+              }
+            >
+              <Component {...pageProps} />
+            </AppShell>
+          </NotificationsProvider>
         </MantineProvider>
       </SessionProvider>
     </>

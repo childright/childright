@@ -1,4 +1,5 @@
 import { Button, Modal } from "@mantine/core";
+import { showNotification } from "@mantine/notifications";
 import React, { useState } from "react";
 
 type Props = {
@@ -9,6 +10,24 @@ type Props = {
 
 const MessageTemplateCard = ({ title, content, subtitle }: Props) => {
   const [modalOpen, setModalOpened] = useState(false);
+
+  const copyToClipboard = (content: string) => {
+    navigator.clipboard.writeText(content).then(
+      () => {
+        showNotification({
+          title: "Erfolg",
+          message: "Der Vorlagentext wurde in deine Zwischenablage kopiert",
+        });
+      },
+      () => {
+        showNotification({
+          title: "Fehler",
+          message:
+            "Der Vorlagentext konnte nicht kopiert werden. Bitte überprüfe deine Browser-Einstellungen.",
+        });
+      }
+    );
+  };
 
   return (
     <>
@@ -33,9 +52,7 @@ const MessageTemplateCard = ({ title, content, subtitle }: Props) => {
         title={title}
       >
         {content}
-        <Button onClick={() => void navigator.clipboard.writeText(content)}>
-          Kopieren
-        </Button>
+        <Button onClick={() => copyToClipboard(content)}>Kopieren</Button>
       </Modal>
     </>
   );
