@@ -17,7 +17,8 @@ export const siblingRouter = createTRPCRouter({
         education: z.nativeEnum(EducationSituation),
         livingSituation: z.nativeEnum(LivingSituation),
         degree: z.nativeEnum(Degree),
-        ownIncomeAmount: z.number().positive(),
+        income: z.nativeEnum(Income),
+        incomeAmount: z.number().positive(),
         avatarSeed: z.string(),
       })
     )

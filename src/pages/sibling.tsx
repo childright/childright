@@ -5,7 +5,7 @@ import StepperLayout from "../ui/StepperLayout";
 import * as Yup from "yup";
 import { useRouter } from "next/router";
 import TextInputField from "../ui/TextInputField";
-import { Degree, FamilyState, Income, LivingSituation } from "@prisma/client";
+import { Degree, LivingSituation } from "@prisma/client";
 import type { SiblingData } from "@prisma/client";
 import NumberInputField from "../ui/NumberInputField";
 import DatePickerField from "../ui/DatePickerField";
@@ -22,7 +22,9 @@ const initialValues: FormData = {
   address: "",
   livingSituation: undefined,
   degree: undefined,
-  ownIncomeAmount: undefined,
+  income: undefined,
+  incomeAmount: undefined,
+  education: undefined,
   avatarSeed: "TODO: AVATAR",
 };
 
@@ -95,8 +97,27 @@ const SiblingPage: NextPage = () => {
                   { value: "master", label: "Master" },
                 ]}
               />
+              <SelectField
+                name="education"
+                label="Aktuelle Bildungssituation"
+                data={[
+                  { value: "searching", label: "auf der Suche" },
+                  { value: "studying", label: "Studium" },
+                  { value: "formation", label: "Ausbildung" },
+                  { value: "none", label: "nichts der genannten" },
+                ]}
+              />
+              <SelectField
+                name="income"
+                label="Einkommen des Geschwisterkindes"
+                data={[
+                  { value: "none", label: "kein Einkommen" },
+                  { value: "work", label: "Arbeit" },
+                  { value: "other", label: "anderes Einkommen" },
+                ]}
+              />
               <NumberInputField // TODO: Specify Brutto or Netto income?
-                name="ownIncomeAmount"
+                name="incomeAmount"
                 label="Summe der (monatlichen) Einkünfte des Geschwisterkindes"
               />
               <Button disabled={!formikProps.isValid} type="submit">
