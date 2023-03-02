@@ -5,23 +5,8 @@ import * as Yup from "yup";
 import { useRouter } from "next/router";
 import WizardComment from "../ui/WizardComment";
 import ZuCommunity from "../ui/ZurCommunity";
-import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
-import {
-  Degree,
-  EducationSituation,
-  FamilyState,
-  Income,
-  LivingSituation,
-  ParentData,
-} from "@prisma/client";
-import type { ProfileStepData } from "@prisma/client";
-import { Select } from "formik-mantine";
-import NumberInputField from "../ui/NumberInputField";
-import DatePickerField from "../ui/DatePickerField";
 import { Button } from "@mantine/core";
-import { api } from "../utils/api";
 
-const exampleText = "Loaded from constant";
 
 const keinereaktion2: NextPage = () => {
   return (
