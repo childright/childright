@@ -12,7 +12,7 @@ const dashboard: NextPage = () => {
   return (
     <StepperLayout>
       <>
-        <h1 className="mb-4 text-center">Jugendamt - Anwalt Checkliste</h1>
+        <h1 className="mb-4 text-center">Dashboard</h1>
 
  
         <div className="grid grid-cols-2 gap-x-5">
