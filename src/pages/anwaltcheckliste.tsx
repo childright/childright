@@ -8,7 +8,7 @@ import ZuCommunity from "../ui/ZurCommunity";
 import { Button } from "@mantine/core";
 
 
-const keinereaktion2: NextPage = () => {
+const anwaltCheckliste: NextPage = () => {
   return (
     <StepperLayout>
       <>
@@ -50,4 +50,4 @@ const keinereaktion2: NextPage = () => {
   );
 };
 
-export default keinereaktion2;
+export default anwaltCheckliste;
