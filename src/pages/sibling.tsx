@@ -36,7 +36,7 @@ const validationSchema = Yup.object().shape({
     .oneOf(Object.values(LivingSituation))
     .required(),
   degree: Yup.string().oneOf(Object.values(Degree)).required(),
-  ownIncomeAmount: Yup.number().required(),
+  incomeAmount: Yup.number().required(),
   avatarSeed: Yup.string().required(),
 });
 
