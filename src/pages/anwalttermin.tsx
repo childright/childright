@@ -15,7 +15,7 @@ const anwaltTermin: NextPage = () => {
         <h1 className="mb-4 text-center">Jugendamt - Anwalt Termin</h1>
         <div className="grid grid-cols-2 gap-x-5">
           <div>
-            <h4>Jugentamt / Anwalt setzt ein Schreiben auf an Unterhaltspflichtigen, um zu zahlen.</h4>
+            <h4>Jugendamt / Anwalt setzt ein Schreiben auf an Unterhaltspflichtigen, um zu zahlen.</h4>
           </div>
         </div>
         <div className="mt-20 grid grid-cols-2 gap-10">
