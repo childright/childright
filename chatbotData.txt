@@ -1,0 +1,130 @@
+
+Abstract
+
+Childright ist eine App-Lösung für jeden, der Schwierigkeiten hat, seinen Unterhaltsanspruch zu managen und unterstützt dabei, nachhaltig und stabil mit seinem Vorhaben umzugehen und ein gesünderes Verhalten zum Unterhalsanspruch aufzubauen. Dafür kombiniert Childright Aufklärung, aktive emotionale Hilfe im Alltag und eine verhaltenswissenschaftliche Herangehensweise, um die Menschen langfristig bei ihren Zielen zu unterstützen. Die kostenlose App beinhaltet ein individuelles Eingabetool zur Ermittlung eines aktuellen und möglichen Unterhaltsanspruchs, ein rechtliches Wörterbuch mit 100 unterhalts-relevanten Themen und Tipps, die dabei helfen mit der Herausforderung umzugehen, Checkerlisten für die Vorbereitung der Ansprachen, Textvorlagen für unterschiedliche Ansprechpartner, die Möglichkeit die erfolgte Kommunikation zu hinterlegen, die Vermittlung der regionalen Ansprechpartner wie Jugendamt, Beistände, Beratungsstellen, FamilienrechtlerInnen und Gerichte. (stellt weitere Fördermöglichkeiten für junge Erwachsene vor: Wohngeld, Miet-Bafög etc.), 
+
+Ein digitaler Coach in der App hilft sich zu sortieren und den Prozess stufenweise anzugehen. Die KI-gestützte App bietet die Möglichkeit jederzeit, in kleinen Schritten, und in eigenem Tempo anzufangen Hierbei bauen die NutzerInnen ihren eigenen Avatar und gestalten ihren eigenen Coach. Beim Unterhaltsanspruch kommen großer emotionaler und finanzieller Stress zusammen. Der stufenweise und individualisierte Ansatz reduziert die Informationsflut, nimmt die Angst und reduziert den Stress. 
+
+Es gibt regelmäßige Aktionen, Erklärvideos zu rechtlichen Veränderungen und Challenges in der App zum Zwecke der Incentivierung von bestimmten Fortschritten, die der Zielerreichung dienen.
+Die Nutzerinnen können ihre Fortschritte dokumentieren und sie anderen Nutzern sichtbar machen. Sie können sichtbare Inhalte anderer NutzerInnen auf der App kommentieren und liken. Die Nutzerinnen können andere Personen wie Familienmitglieder zur Nutzung der App einladen oder bestimmte Inhalte (z. B. Aktionen) mit Dritten teilen.
+
+Jede Verhaltensänderung hat Tiefpunkte. Childright begleitet durch diese emotionalen Tiefen. Mit Hilfe der Community und den psychologischen Hilfeangeboten der Childright-App lernen die NutzerInnen, nicht den Mut zu verlieren und langfristig für seine Unterhaltsrechte einzustehen und ein gesundes Verhältnis zu Familienmitgliedern aufzubauen. 
+
+Familienrechtliche und finanzielle Themen sind in Schulen und in Familien oft nicht existent oder nicht ausreichend vermittelt. Das sorgt gerade bei jungen Menschen, Alleinerziehenden auch, wenn diese mit neuen PartnerInnen verheiratet oder verpartnert sind bzw. zusammen leben für Resignation. Es kostet viel Kraft und Zeit. Die Childright-App befähigt mit verständlich aufbereitetem Wissen, sich auf den Weg zu machen, um seine Ansprüche einzuholen. 
+
+Ausgangslage:
+
+Jedes Kind in Deutschland hat einen Anspruch auf Unterhalt. Bei der Trennung oder der Scheidung der Eltern, muss das Elternteil zahlen, das nicht mit dem minderjährigen Kind zusammenlebt. Bei erwachsenen Kindern in der Ausbildung und im Studium müssen beide Elternteile ihr Kind finanziell unterstützen. 
+
+Im Jahr 2021 wurden in Deutschland durch richterlichen Beschluss rund 142.800 Ehen geschieden. Etwas mehr als die Hälfte (51,5 %) der 2021 geschiedenen Ehepaare hatte minderjährige Kinder. Von diesen hatten wiederum 49,5 % ein Kind, 39,5 % zwei und 11,0 % drei oder mehr Kinder. Insgesamt waren im Jahr 2021 etwa 121.800 Minderjährige von der Scheidung ihrer Eltern betroffen.
+In rund 10 % der Familien mit Kindern leben die Eltern ohne Trauschein zusammen, Tendenz steigend.
+Die Anzahl der Trennungen von Paaren ohne Trauschein mit Kindern lässt sich schwierig ermitteln, daher können Zahlen zu Unterhaltsvorschüssen einer Studie des Statistischen Bundesamt Wiesbaden im Auftrag des Bundesministeriums für Familie, Senioren, Frauen und Jugend zur Bürokratiekostenmessung (DESTATIS)  ein wenig mehr Aufschluss geben. 
+„Gemäß der UVGGeschäftsstatistik des BMFSFJ bezogen 454.757 Kinder zum Stichtag 31.12.2014 Unterhaltsvorschuss. …. Zum 31.12.2014 befanden sich 454.757 Fälle im UV Leistungsbezug und 659.545 Fälle im Rückgriff ohne Leistungsbezug, sodass sich in den UVStellen in Summe 1.114.302 Fälle in Bearbeitung befanden.“ Die Überlastung der Jugendämter wurde in der niedrigen Rückgriffrate zwischen 9 und 11 Prozent sehr deutlich. Auch wenn es eine hohe Überschneidung der SGB II und Unterhaltsvorschuss gibt, kann davon ausgegangen werden, dass die nicht zahlenden Elternteile ihrer Pflicht nicht nachkommen, weil es aufgrund der Überlastung der Ämter keine Kapazitäten für den Durchgriff gibt.
+Der NDR schätzte Montag, 08. Oktober 2018, „Rund 700.000 Väter (und in einigen Ausnahmefällen Mütter) sind es derzeit, die ihrer Unterhaltspflicht nicht nachkommen. Damit die Kinder dennoch finanziell versorgt sind, springt der Steuerzahler ein und zahlt den sogenannten Unterhaltsvorschuss: derzeit rund 1,5 Milliarden Euro pro Jahr.“  . Die Düsseldorfer Tabelle , das Unterhaltsvorschussgesetz und die Unterhaltsansprüche junger Erwachsener sind vielen Bezugsberechtigten unbekannt.
+Im Jahr 2019 haben Bund und Länder insgesamt 2,18 Milliarden Euro an Alleinerziehende überwiesen, die keinen Unterhalt für das gemeinsame Kind erhalten haben.     Die Rückzahlung, die sogenannte Rückgriffsquote, lag 2019 bei rund 17 Prozent. Das entspricht 360 Millionen Euro. 2018 lag sie mit 270 Millionen zurückgezahlten Euro noch bei 13 Prozent.   
+Die laufende Erhöhung der Unterhaltszahlung, ist den Eltern zunächst selbst überlassen. Alleinerziehende müssten sich selbst über Veränderungen der Düsseldorfer Tabelle informieren, andere Elternteile auffordern und eine Anpassung erwirken. Um mit möglichem Widerstand umzugehen, müssten sie sich an Jugendamt, Familienrechtler und Gerichte wenden.
+
+Die Dunkelziffer der Betroffenen, die sich aufgrund der Bürokratie, potenzieller Kosten und emotionaler Befangenheit, nicht mit dem Unterhalt beschäftigen bzw. resignieren ist nicht schätzbar. 
+
+Psychologischer Hintergrund
+Die Trennung der Eltern ist ein Stressfaktor, mit Finanzen beschäftigen sich Kinder und Jugendliche nicht. Alleinerziehende sind in der Situation mit Kindern, Job und Trennung zeitlich ausgelastet. Sie verlassen sich auf zahlende Ex-PartnerInnen und auf die Summen, die diese Personen freiwillig und im Zweifel „entbehren“ können und begnügen sich jahrelang damit. 
+Wenn die Eltern ihren Kindern, Sorgeberechtigten und jungen Erwachsenen nichts oder unverhältnismäßig wenig zahlen, kommt Scham auf, der eine Barriere für eine pragmatische Herangehensweise darstellt. 
+Durch das Childright-Angebot, sich mit anderen Betroffenen in der Community digital auszutauschen, vermindert sich die gefühlte gesellschaftliche Ausgrenzung und die Scham. 
+Der Wissenstransfer der App soll im Idealfall die Menschen befähigen, eigenständig die Durchsetzung des Unterhaltsanspruches herbeizuführen. Wenn die Betroffenen einen hinreichenden Überblick über die finanziellen Verhältnisse haben und eine einvernehmliche Lösung mit dem anderen Elternteil bzw. der Eltern möglich ist. 
+Sie soll die Bezugsberechtigten stufenweise dazu befähigen und motivieren, Beistände zu nutzen und sich familienrechtlich unterstützen zu lassen. Sie soll sie motivieren und finanziell befähigen mit der Verfahrenskostenhilfe und den Unterhaltsvorschüssen rechtlich gegen die nicht zahlenden Elternteile vorzugehen. Die KI-gestützte App stellt durch sogenannte Coaches Lotsen in dem Prozess dar.
+
+Familienrechtler, die sich in der App als Ansprechpartner präsentieren, treffen auf gut vorbereitete und sortierte potenzielle Mandanten. Dies beschleunigt die Vorbereitung rechtlicher Schritte. Die daraus resultierende Zeitersparnis in der Beratung, muss sich in deren Abrechnung widerspiegeln, sollte es zu einer außergerichtlichen Einigung kommen. Sollte es zu Prozessen vor dem Familiengericht kommen, sollten Familienrechtlicher darauf drängen, die Verfahrenskosten den nicht-oder zu wenig zahlenden Elternteilen in Rechnung stellen.
+
+
+
+Fazit
+
+UNICEF forderte am Freitag, 8. Juli 2022 um 15:29 Uhr: Die Bundesregierung muss die international verbrieften Rechte der Kinder umfassend verwirklichen.So muss zum Beispiel der Kampf gegen Kinderarmut in Deutschland Priorität in Bund, Ländern und Gemeinden haben. Die Kinderrechte müssen explizit im Grundgesetz verankert und unabhängige Ombuds und Beschwerdestellen für Kinder eingerichtet werden, wie sie in über 70 Ländern bereits selbstverständlich sind.
+
+Die verfügbaren Internetseiten der aktuellen Anlaufstellen wie Familieportal.de  und veralteten Informationen und Merkblätter der Jugendämter (siehe exemplarisches Beispiel des Jugendamt Charlottenburg in der Fußnote)  oder auch die neue Online-Plattform „STARK“ soll Familien bei Streit und Trennung seit dem 09. November 2022 unterstützen . Sie meint von sich passgenaue Informations- und Beratungsangebote für von Streit und Trennung betroffene Familien zu liefern. Das Angebot beantwortet viele Fragen – z.T. psychologischer, finanzieller oder juristischer Natur, aber dann ist es auch zu Ende. 
+
+Fazit: Die genannten Angebote sind zu schwierig zu finden, sie wirken bürokratisch und man erlebt keine vollständige „costumer journey“ und der Medienbruch befähigt die Anspruchsgruppe nicht sich vorzubereiten, zu sortieren und aufzustellen. Kurzum. Diese Angebote ermutigen und befähigen nicht, sich auf den Weg zu machen.  
+
+
+Finanzielle Umsetzung:
+Die Childright-App wird von einer gUG „gemeinnützige Unternehmergesellschaft aufgesetzt und betrieben
+
+Eine Childright-App für Deutschlands Bezugsberechtigte von Unterhaltleistungen kann mit Förderung des Bundeministeriums für Jugend Familie und Senioren erfolgen. Siehe dazu: 
+„Bekanntmachung der Förderrichtlinie zur Stärkung der Nutzung von Daten und Technologien unter Anwendung „Künstlicher Intelligenz“ für das Gemeinwohl“ Diese sieht eine Förderung bis zu drei Jahre mit max. 300.000 Euro pro Jahr vor
+(https://www.bmfsfj.de/resource/blob/198170/b4a3491f37da01b505acbebecee9bdae/bekanntmachung-foerderrichtlinie-data.pdf)
+Bundesministerium für Familie, Senioren, Frauen und Jugend https://www.bmfsfj.de
+https://www.bmfsfj.de/resource/blob/141684/b61d5374c572b7159e267ac4ddfaa431/familienfoerderrichtlinie-des-bundes-data.pdf
+
+Die technische Umsetzung der App könnte in Kooperation mit der Code University, Berlin erfolgen. Im Rahmen des Studiums müssen die StudentInnen u.a. eine „App bauen“. Aufgrund der technischen Pionierstellung der Hochschule, deren Agilität und Tempo ist eine erste Umsetzung innerhalb von sechs Monaten denkbar. 
+
+Aufgrund der potenziellen Förderung durch das Bundesministeriums wäre der Zugang für die Zusammenarbeit mit Jugendämtern und Beiständen kostenneutral ermöglicht.
+
+Die laufende Finanzierung der App könnte
+
+über Bildungsgutscheine der NutzerInnen erfolgen
+Werbeplätze in der App für Rechtsanwälte und Notare 
+andere Werbetreibende wie: digitale Angebote von Fotobücher, Hard-und Software-Anbieter, Modehäuser 
+
+Marketing, Kommunikation und Kooperation
+
+Ein umfangreiches cross-chanel Marketing und Kommunikationsarbeit soll auf die Existenz der App aufmerksam machen. 
+
+Hierbei stellt die Föderbedingung des Bundesministeriums die Grundlage für eine „win-win Situation“
+„Während und nach der Durchführung einer geförderten Maßnahme ist die Informations- und Kommunikations- arbeit zum Zwecke der öffentlichen Darstellung zur Aktivierung der Community der Projektergebnisse zu unterstützen. Dazu gehört insbesondere die Aufbereitung eigener Best Practices beziehungsweise Leuchtturmprojekte und die Mitwirkung bei der Presse- und Öffentlichkeitsarbeit des BMFSFJ sowie bei Veranstaltungen, Veröffentlichungen oder Ähnlichem in geeigneter Weise auf die Förderung des Vorhabens durch das BMFSFJ hinzuweisen. Die zuwendungsempfangenden Organisationen verpflichten sich zur Teilnahme an den Maßnahmen des in diesem Punkt beschriebenen Begleitprogramms zur Unterstützung und Vernetzung sowie aktiv an Vernetzungsformaten zum Fachaustausch und Wissenstransfer mitzuwirken.“ 
+Marketingmaßnahmen an physischen Orten, in denen die Zielgruppe sich aufhält:
+Schulen
+Kitas
+ÖPNV
+Jugendämter
+Anlauf-Beratungsstellen
+Stiftungen und Kirchen
+Digitale Marketing-Maßnahmen:
+Google-Ads-Kampagnen, 
+Influencer-Kampagnen Insta und Youtube
+
+Kooperationen und potenzielle Förderungen
+Umfangreiche Kooperationen erweitern den Kommunikationsrahmen.
+
+Code University https://code.berlin/de/
+
+https://www.etl-rechtsanwaelte.de
+
+Stiftungen: 
+Bundesverband Deutscher Stiftungen https://www.stiftungen.org/startseite.html 
+Robert Bosch Stiftung GmbH
+VolkswagenStiftung
+
+
+
+Childright-App-Tools
+
+Profilerstellung Avatar und Coach
+
+Individueller Unterhalts-Check für unterschiedliche Bezugsberechtigte
+Alleinerziehende mit Minderjährigen
+Teenager, die ihre Eltern technisch unterstützen
+Junge Erwachsene in Ausbildung und Studium
+
+Das Ergebnis des Checks leitet zum nächsten Prozessschritt
+Szenario: Der Unterhaltsanspruch wird aktuell erfüllt 
+Szenario: Der Unterhaltsanspruch wird nicht erfüllt
+Szenario: Der Unterhaltsanspruch wird unzureichend erfüllt
+
+(Inhatliche Orientierung an kurzen und verständlich aufbereiteten Inhalten der australischen Behörde „Child Support Agency“)
+
+Je nach Szenario werden diverse Kommunikationsmaßnahmen stufenweise vorgeschlagen
+
+Szenario: Nächster Check-Termin zur Wiedervorlage
+Szenario: Stufenweise Ansprache: - Bereitstellung von Briefvorlagen für die Ansprache der Unterhaltspflichtigen(Zahlungsaufforderung, wenn mögliche Unterhaltshöhen bekannt sind, Terminsetzung, Offenlegung der finanziellen Verhältnisse, falls diese unklar sind,  etc.)- Suchfunktion von Unterhaltsvorschuss-Stellen- Checklisten für die Terminvorbereitung bei Unterhaltsvorschusskassen
+Szenario: - Bereitstellung von Briefvorlagen für die Ansprache der Unterhaltspflichtigen (Erinnerung an Anpassung)
+
+Ergebnistool zum Eintragen und IncentivierungDie erfolgte Reaktion wird eingetragen, gespeichert und führt zur Incentivierung und zu Vorschlägen weiterer Schritte
+
+Community: Erfolgte Reaktionen können in der Community geteilt werden
+
+Vermittlung von Beiständen und FamilienrechtlerInnen
+
+Checklisten zur Vorbereitung der Ansprache. Unterlagenzusammenstellung
+Prüfung der Verfahrenskostenhilfe
+Ansprache über PLZ und Schwerpunkte
+Community-Einbindung zu Bewertungen der genutzten Familienrechtlerinnen
