@@ -6,20 +6,16 @@ import { OpenAIEmbeddings } from "langchain/embeddings";
 
 import { HNSWLib } from "langchain/vectorstores";
 
-import type { NextApiRequest, NextApiResponse } from "next";
 import { readFile } from "fs/promises";
+import { createTRPCRouter, protectedProcedure } from "../trpc";
+import { z } from "zod";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  const input = req.query.q;
-
-  const model = new OpenAI();
+async function respond(question: string) {
+  const model = new OpenAI({ temperature: 0 });
   /* Load in the file we want to do question answering over */
   const text = await readFile("./chatbotData.txt", "utf8");
   /* Split the text into chunks */
-  const textSplitter = new RecursiveCharacterTextSplitter({ chunkSize: 1000 });
+  const textSplitter = new RecursiveCharacterTextSplitter({ chunkSize: 2000 });
   const docs = await textSplitter.createDocuments([text]);
   /* Create the vectorstore */
   const vectorStore = await HNSWLib.fromDocuments(docs, new OpenAIEmbeddings());
@@ -28,11 +24,23 @@ export default async function handler(
   /* Ask it a question */
 
   try {
-    const answer = await chain.call({ question: input, chat_history: [] });
-    res.status(200).json({ answer });
+    const answer = await chain.call({ question, chat_history: [] });
+    return answer.text as string;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
-    console.log(e.response.data.error);
-    res.status(500).json({ error: "Internal Server Error" });
+    console.error("ERROR IN CHATBOT");
+    console.error(e);
+    console.error(e.response.data.error);
+    throw e;
   }
 }
+
+export const chatbotRouter = createTRPCRouter({
+  respond: protectedProcedure
+    .input(
+      z.object({
+        question: z.string(),
+      })
+    )
+    .query((req) => respond(req.input.question)),
+});
