@@ -1,9 +1,10 @@
-import { Button } from "@mantine/core";
+import { Button, Modal } from "@mantine/core";
 import { NextLink } from "@mantine/next";
 import { type NextPage } from "next";
 
 import StepperLayout from "../ui/StepperLayout";
 import MessageTemplateCard from "../components/MessageTemplateCard";
+import { useDisclosure } from "@mantine/hooks";
 
 const sampleData = [
   {
@@ -36,22 +37,35 @@ const sampleData = [
 ];
 
 const TemplatesPage: NextPage = () => {
+  const [opened, { open, close }] = useDisclosure(false);
+
   return (
-    <StepperLayout>
-      <div className="grid grid-cols-1 place-items-center gap-4 lg:grid-cols-2">
-        {sampleData.map((data) => (
-          <MessageTemplateCard key={data.title} {...data} />
-        ))}
-      </div>
-      <Button
-        component={NextLink}
-        href="/resultTemplates"
-        legacyBehavior
-        className="mt-2"
-      >
-        Weiter
-      </Button>
-    </StepperLayout>
+    <>
+      <StepperLayout>
+        <div className="grid grid-cols-1 place-items-center gap-4 lg:grid-cols-2">
+          {sampleData.map((data) => (
+            <MessageTemplateCard key={data.title} {...data} />
+          ))}
+        </div>
+        <Button className="mt-2" onClick={open}>
+          Weiter
+        </Button>
+      </StepperLayout>
+
+      <Modal opened={opened} onClose={close} title="Authentication" centered>
+        <div className="flex flex-col gap-2">
+          <Button component={NextLink} href="/keinereaktion" legacyBehavior>
+            Keine Reaktion
+          </Button>
+          <Button component={NextLink} href="" legacyBehavior>
+            Positive Reaktion
+          </Button>
+          <Button component={NextLink} href="" legacyBehavior>
+            Negative Reaktion
+          </Button>
+        </div>
+      </Modal>
+    </>
   );
 };
 
