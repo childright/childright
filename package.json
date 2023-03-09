@@ -20,6 +20,7 @@
     "@heroicons/react": "^2.0.16",
     "@mantine/core": "^5.10.4",
     "@mantine/dates": "^5.10.4",
+    "@mantine/dropzone": "^6.0.1",
     "@mantine/hooks": "^5.10.4",
     "@mantine/next": "^5.10.4",
     "@mantine/notifications": "^5.10.5",
