@@ -28,26 +28,29 @@ const DocumentUploadSection = () => {
       <h1 className="mb-4 text-center">Auskunft Positiv</h1>
       <h3>Schritt 1 Entnahme des Haushaltsnettoeinkommen:</h3>
       <h5>Einkommensnachweise hochladen + Betrag eingeben</h5>
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <h4>
+      <div className="align-center flex justify-between">
+        <div className="w-1/2 flex-auto">
+          <p>
             Dokumente hochladen{" "}
             <QuestionMarkCircleIcon className="h-6 w-6 cursor-pointer" />
-            <FileButton onChange={setFile} accept="image/png,image/jpeg">
-              {(props) => (
-                <Button
-                  variant="gradient"
-                  gradient={{ from: "indigo", to: "cyan" }}
-                  leftIcon={<ArrowUpIcon stroke="black" width={20} />}
-                  {...props}
-                >
-                  Upload
-                </Button>
-              )}
-            </FileButton>
-          </h4>
+          </p>
+          <FileButton onChange={setFile} accept="image/pdf,image/jpeg">
+            {(props) => (
+              <Button
+                variant="gradient"
+                gradient={{ from: "indigo", to: "cyan" }}
+                leftIcon={<ArrowUpIcon stroke="black" width={20} />}
+                {...props}
+              >
+                Upload
+              </Button>
+            )}
+          </FileButton>
         </div>
-        <div></div>
+        <div className="w-1/2 flex-auto">
+          <h3>Schritt 2 Kalkulation:</h3>
+          {/* TODO: Add dynamic data from calculate to dislpay Result */}
+        </div>
       </div>
       <div className="mt-20 grid grid-cols-2 gap-10">
         {" "}
