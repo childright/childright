@@ -26,10 +26,10 @@ const DocumentUploadSection = () => {
   return (
     <>
       <h1 className="mb-4 text-center">Auskunft Positiv</h1>
-      <h3>Schritt 1 Entnahme des Haushaltsnettoeinkommen:</h3>
+      <h3 className="">Schritt 1 Entnahme des Haushaltsnettoeinkommen:</h3>
       <h5>Einkommensnachweise hochladen + Betrag eingeben</h5>
-      <div className="align-center flex justify-between">
-        <div className="w-1/2 flex-auto">
+      <div className="grid grid-cols-2 gap-10">
+        <div className="relative inset-x-0 top-0 h-16 justify-start">
           <p>
             Dokumente hochladen{" "}
             <QuestionMarkCircleIcon className="h-6 w-6 cursor-pointer" />
@@ -47,7 +47,7 @@ const DocumentUploadSection = () => {
             )}
           </FileButton>
         </div>
-        <div className="w-1/2 flex-auto">
+        <div className="w-1/2 flex-auto justify-end">
           <h3>Schritt 2 Kalkulation:</h3>
           {/* TODO: Add dynamic data from calculate to dislpay Result */}
         </div>
@@ -55,7 +55,7 @@ const DocumentUploadSection = () => {
       <div className="mt-20 grid grid-cols-2 gap-10">
         {" "}
         <ZuCommunity />
-        <WizardComment />
+        <WizardComment text="Positiv" />
       </div>
     </>
   );
