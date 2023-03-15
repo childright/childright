@@ -1,27 +1,9 @@
 import { type NextPage } from "next";
-import { Formik, Form } from "formik";
 import StepperLayout from "../ui/StepperLayout";
-import * as Yup from "yup";
-import { useRouter } from "next/router";
 import WizardComment from "../ui/WizardComment";
 import ZuCommunity from "../ui/ZurCommunity";
 import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
-import {
-  Degree,
-  EducationSituation,
-  FamilyState,
-  Income,
-  LivingSituation,
-  ParentData,
-} from "@prisma/client";
-import type { ProfileStepData } from "@prisma/client";
-import { Select } from "formik-mantine";
-import NumberInputField from "../ui/NumberInputField";
-import DatePickerField from "../ui/DatePickerField";
-import { Button } from "@mantine/core";
-import { api } from "../utils/api";
-
-const exampleText = "Loaded from constant";
+import Map from "../ui/Map";
 
 const keinereaktion: NextPage = () => {
   return (
@@ -36,7 +18,6 @@ const keinereaktion: NextPage = () => {
               Hilfe vom Jugendam{" "}
               <QuestionMarkCircleIcon className="h-6 w-6 cursor-pointer" />
             </h4>
-            <p>{exampleText}</p>
           </div>
 
           <div>
@@ -44,28 +25,25 @@ const keinereaktion: NextPage = () => {
               Empfohlene Anwälte{" "}
               <QuestionMarkCircleIcon className="h-6 w-6 cursor-pointer" />
             </h4>
-            <p>{exampleText}</p>
           </div>
           <div>
             <h4>
               Psychologen{" "}
               <QuestionMarkCircleIcon className=" h-6 w-6 cursor-pointer" />
             </h4>
-            <p>{exampleText}</p>
           </div>
           <div className="">
             <div className="inline-flex">
               <h4>
                 Familien- Beratungsstellen{" "}
                 <QuestionMarkCircleIcon className="h-6 w-6 cursor-pointer" />
-              </h4>{" "}
+              </h4>
             </div>
-
-            <p>{exampleText}</p>
           </div>
         </div>
+        <Map />
+
         <div className="mt-20 grid grid-cols-2 gap-10">
-          {" "}
           <ZuCommunity />
           <WizardComment />
         </div>

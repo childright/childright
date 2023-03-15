@@ -15,19 +15,17 @@ const stepsToProgress = {
   "/sibling": 50,
   "/resultAmount": 60,
   "/resultTemplates": 70,
+  "/keinereaktion": 80,
 };
 
 const StepperLayout = ({ children }: Props) => {
   const { pathname } = useRouter();
 
   return (
-    <div className="flex h-full flex-col">
-      <div className="mx-auto md:w-3/4 lg:w-1/2">
-        {children}
-        {/*  <AbsoluteAnimatedCharacter /> */}
-      </div>
+    <div>
+      <div className="mx-auto p-4 md:w-3/4 lg:w-1/2">{children}</div>
       <Progress
-        className="mt-auto mb-2"
+        className="fixed bottom-0 left-0 right-0"
         value={stepsToProgress[pathname as keyof typeof stepsToProgress]}
       />
     </div>
