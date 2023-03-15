@@ -6,6 +6,7 @@ type Props = {
   title: string;
   subtitle: string;
   content: string;
+  footer?: string;
 };
 
 const MessageTemplateCard = ({ title, content, subtitle }: Props) => {
