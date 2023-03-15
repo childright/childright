@@ -1,16 +1,19 @@
 import { Button } from "@mantine/core";
+import { useRouter } from "next/router";
+import { FC } from "react";
 
-export function WizardComment() {
+interface Props {
+  text: string;
+}
+
+const WizardComment: FC<Props> = ({ text }) => {
   return (
     <div className="">
-      <p>
-        “Keine Sorge, es stehen dir viele Möglichkeiten noch offen - kein Grund
-        aufzugeben!”
-      </p>
+      <p>{text}</p>
       <Button>Weiter</Button>
     </div>
   );
-}
+};
 
 export default WizardComment;
 
