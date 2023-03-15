@@ -198,9 +198,10 @@ model SiblingAmount {
 }
 
 model ForumComment {
-    id      String @id @default(cuid())
+    id      String  @id @default(cuid())
+    title   String?
     message String
-    upvotes Int    @default(0)
+    upvotes Int     @default(0)
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
