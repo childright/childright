@@ -30,8 +30,8 @@ export const forumRouter = createTRPCRouter({
     create: protectedProcedure
       .input(
         z.object({
-          title: z.string().optional(),
-          message: z.string(),
+          title: z.string().min(1).optional(),
+          message: z.string().min(1),
           parentId: z.string().optional(),
         })
       )
