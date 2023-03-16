@@ -1,6 +1,5 @@
 import { type NextPage } from "next";
 import StepperLayout from "../ui/StepperLayout";
-import { Button } from "@mantine/core";
 import MessageTemplateCard from "../components/MessageTemplateCard";
 import { useDisclosure } from "@mantine/hooks";
 import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
@@ -27,7 +26,7 @@ const PositiveReactionPage: NextPage = () => {
           {sampleData.map((data) => (
             <MessageTemplateCard key={data.title} {...data} />
           ))}
-          <QuestionMarkCircleIcon className="h-6 w-6" />
+          <QuestionMarkCircleIcon className="h-6 w-6 cursor-pointer" />
           {""}
         </div>
         <div className="mt-20 grid grid-cols-2 gap-10">

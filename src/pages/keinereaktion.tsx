@@ -35,7 +35,7 @@ const keinereaktion: NextPage = () => {
           <div className="">
             <div className="inline-flex">
               <h4>
-                Familien- Beratungsstellen{" "}
+                Familien - Beratungsstellen{" "}
                 <QuestionMarkCircleIcon className="h-6 w-6 cursor-pointer" />
               </h4>
             </div>
@@ -45,7 +45,7 @@ const keinereaktion: NextPage = () => {
 
         <div className="mt-20 grid grid-cols-2 gap-10">
           <ZuCommunity />
-          <WizardComment />
+          <WizardComment text="Keine Sorge, es stehen dir noch viele weiter Möglichkeiten zur Verfügung - kein Grund aufzugeben!" />
         </div>
       </>
     </StepperLayout>
