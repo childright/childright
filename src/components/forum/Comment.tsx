@@ -5,11 +5,16 @@ import {
   ChatBubbleLeftRightIcon,
   ChevronDoubleDownIcon,
   ChevronDoubleUpIcon,
+  FlagIcon,
+  PhotoIcon,
+  TrashIcon,
 } from "@heroicons/react/24/outline";
 import CommentChildrenList from "./CommentChildrenList";
 import AddCommentForm from "./AddCommentForm";
+import { useSession } from "next-auth/react";
 
 const Comment = ({ id }: { id: string }) => {
+  const session = useSession();
   const getQuery = api.forum.comments.get.useQuery({ id });
 
   const [showCommentForm, setShowCommentForm] = useState(false);
@@ -57,6 +62,14 @@ const Comment = ({ id }: { id: string }) => {
               )}
             </ActionIcon>
           )}
+          <ActionIcon>
+            {getQuery.data.userId === session.data?.user?.id ? (
+              <TrashIcon />
+            ) : (
+              <FlagIcon />
+            )}
+          </ActionIcon>
+          <ActionIcon></ActionIcon>
         </Group>
       </Paper>
 
