@@ -34,17 +34,8 @@ export const ForumCommentPage: NextPage = () => {
   return <Comment id={id} />;
 };
 
-const Comment = ({
-  id,
-  initialData,
-}: {
-  id: string;
-  initialData?: ForumComment;
-}) => {
-  const getQuery = api.forum.comments.get.useQuery(
-    { id },
-    { placeholderData: initialData, enabled: !initialData }
-  );
+const Comment = ({ id }: { id: string }) => {
+  const getQuery = api.forum.comments.get.useQuery({ id });
 
   const [showCommentForm, setShowCommentForm] = useState(false);
   const [showSubComments, setShowSubComments] = useState(false);
@@ -82,7 +73,7 @@ const Comment = ({
           <ActionIcon onClick={() => setShowCommentForm((v) => !v)}>
             <ChatBubbleLeftRightIcon />
           </ActionIcon>
-          {getQuery.data._count && (
+          {getQuery.data._count.children > 0 && (
             <ActionIcon onClick={() => setShowSubComments((v) => !v)}>
               {showSubComments ? (
                 <ChevronDoubleUpIcon />
@@ -126,7 +117,7 @@ const CommentChildrenList = ({ id }: { id: string }) => {
     <ul>
       {getChildrenQuery.data?.pages.map((page) =>
         page.items.map((comment) => (
-          <Comment key={comment.id} id={comment.id} initialData={comment} />
+          <Comment key={comment.id} id={comment.id} />
         ))
       )}
       {getChildrenQuery.isFetchingNextPage && <Loader />}
@@ -154,11 +145,13 @@ const AddCommentForm: FC<AddCommentProps> = ({ parentId, onClose }) => {
   const utils = api.useContext();
 
   const postComment = api.forum.comments.create.useMutation({
-    onSuccess: () =>
+    onSuccess: () => {
+      utils.forum.comments.get.invalidate({ id: parentId });
       utils.forum.comments.getChildrenBatch.invalidate({
         parentId,
         limit: 5,
-      }),
+      });
+    },
   });
 
   const submit = async () => {
