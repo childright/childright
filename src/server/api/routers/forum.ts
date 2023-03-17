@@ -10,7 +10,6 @@ export const forumRouter = createTRPCRouter({
         const result = await ctx.prisma.forumComment.findUnique({
           where: { id: input.id },
           include: {
-            children: true,
             user: {
               select: {
                 id: true,
@@ -20,6 +19,11 @@ export const forumRouter = createTRPCRouter({
                     avatarSeed: true,
                   },
                 },
+              },
+            },
+            _count: {
+              select: {
+                children: true,
               },
             },
           },

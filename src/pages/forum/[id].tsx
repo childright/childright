@@ -19,6 +19,7 @@ import { useRouter } from "next/router";
 import {
   ChatBubbleLeftRightIcon,
   ChevronDoubleDownIcon,
+  ChevronDoubleUpIcon,
   PaperAirplaneIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
@@ -78,16 +79,18 @@ const Comment = ({
           </div>
         </div>
         <Group>
-          <ActionIcon>
-            <ChatBubbleLeftRightIcon
-              onClick={() => setShowCommentForm((v) => !v)}
-            />
+          <ActionIcon onClick={() => setShowCommentForm((v) => !v)}>
+            <ChatBubbleLeftRightIcon />
           </ActionIcon>
-          <ActionIcon>
-            <ChevronDoubleDownIcon
-              onClick={() => setShowSubComments((v) => !v)}
-            />
-          </ActionIcon>
+          {getQuery.data._count && (
+            <ActionIcon onClick={() => setShowSubComments((v) => !v)}>
+              {showSubComments ? (
+                <ChevronDoubleUpIcon />
+              ) : (
+                <ChevronDoubleDownIcon />
+              )}
+            </ActionIcon>
+          )}
         </Group>
       </Paper>
 
