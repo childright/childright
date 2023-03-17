@@ -23,11 +23,13 @@ const ForumIndexPage: NextPage = () => {
       <Button component={NextLink} href="/forum/new" legacyBehavior>
         Add Post
       </Button>
-      {getQuery.data.map((comment) => (
-        <Link href={`/forum/${comment.id}`} key={comment.id}>
-          {comment.title}
-        </Link>
-      ))}
+      <ul>
+        {getQuery.data.map((comment) => (
+          <li key={comment.id}>
+            <Link href={`/forum/${comment.id}`}>{comment.title}</Link>
+          </li>
+        ))}
+      </ul>
     </>
   );
 };
