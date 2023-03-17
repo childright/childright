@@ -5,6 +5,15 @@ on:
 
 jobs:
   test:
+    env:
+      DATABASE_URL: http://localhost:3000
+      NEXTAUTH_URL: http://localhost:3000
+      NEXTAUTH_SECRET: secret
+      DISCORD_CLIENT_ID: "123"
+      DISCORD_CLIENT_SECRET: "123"
+      NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: "123"
+      GITHUB_ID: "123"
+      GITHUB_SECRET: "123"
     name: Tests
     runs-on: ubuntu-22.04
     strategy:
