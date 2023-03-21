@@ -1,7 +1,14 @@
 import { appRouter } from "../../../root";
-import { expect, test } from "vitest";
-import { prisma } from "../../../../db";
+import { beforeEach, expect, test } from "vitest";
 import type { Session } from "next-auth";
+import type { PrismaClient } from "@prisma/client";
+import { mockDeep, mockReset } from "vitest-mock-extended";
+
+const prismaMock = mockDeep<PrismaClient>();
+
+beforeEach(() => {
+  mockReset(prismaMock);
+});
 
 test("calculator step validation", async () => {
   const mockSession: Session = {
@@ -11,7 +18,7 @@ test("calculator step validation", async () => {
 
   const caller = appRouter.createCaller({
     session: mockSession,
-    prisma: prisma,
+    prisma: prismaMock,
   });
 
   const promise = caller.steps.calculator.save({
@@ -20,8 +27,8 @@ test("calculator step validation", async () => {
     children0to5: 1,
     children6to13: 1,
     children14to17: 1,
-    childrenAbove18: 1.5,
+    childrenAbove18: 1.6,
   });
 
-  expect(promise).rejects.toThrow();
+  await expect(promise).rejects.toThrowError(/invalid_type/);
 });
