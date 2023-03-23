@@ -10,6 +10,7 @@ beforeEach(() => {
   mockReset(prismaMock);
 });
 
+// Arrange
 test("calculator step validation", async () => {
   const mockSession: Session = {
     expires: new Date().toISOString(),
@@ -21,6 +22,7 @@ test("calculator step validation", async () => {
     prisma: prismaMock,
   });
 
+  // Act
   const promise = caller.steps.calculator.save({
     parentsNetIncome: 1,
     kreditRates: 1,
