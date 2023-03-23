@@ -7,7 +7,6 @@ import WizardComment from "../ui/WizardComment";
 import ZuCommunity from "../ui/ZurCommunity";
 import { Button } from "@mantine/core";
 
-
 const rechtsweg: NextPage = () => {
   return (
     <StepperLayout>
@@ -22,7 +21,7 @@ const rechtsweg: NextPage = () => {
         <div className="mt-20 grid grid-cols-2 gap-10">
           {" "}
           <ZuCommunity />
-          <WizardComment />
+          <WizardComment text="placeholder" />
         </div>
       </>
     </StepperLayout>

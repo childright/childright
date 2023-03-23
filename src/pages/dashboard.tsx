@@ -45,7 +45,7 @@ const dashboard: NextPage = () => {
           </div>
         </div>
         <div className="mt-20 grid grid-cols-2 gap-10">
-          <WizardComment />
+          <WizardComment text="placeholder" />
         </div>
       </>
     </StepperLayout>

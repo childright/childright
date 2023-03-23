@@ -24,7 +24,7 @@ const ergebnisseDerKlage: NextPage = () => {
         </div>
         <div className="mt-20 grid grid-cols-2 gap-10">
           <ZuCommunity />
-          <WizardComment />
+          <WizardComment text="placeholder" />
           {/* add prop to wizard component - no message on this page */}
         </div>
       </>
