@@ -222,6 +222,9 @@ model CalculatorStepEmail {
     id String @id @default(cuid())
     to String
 
+    sendDate DateTime
+    sent     Boolean  @default(false)
+
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
