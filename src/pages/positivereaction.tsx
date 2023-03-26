@@ -6,10 +6,11 @@ import {
   ArrowUpIcon,
   QuestionMarkCircleIcon,
 } from "@heroicons/react/24/outline";
-import { Dropzone } from "@mantine/dropzone";
-import { Button, FileButton } from "@mantine/core";
+
+import { api } from "../utils/api";
+import axios from "axios";
 import { useState } from "react";
-import { NextLink } from "@mantine/next";
+import { Button, FileButton, Group } from "@mantine/core";
 
 const PositiveReaction: NextPage = () => {
   return (
@@ -23,6 +24,37 @@ export default PositiveReaction;
 
 const DocumentUploadSection = () => {
   const [file, setFile] = useState<File | null>(null);
+  const resetRef = useRef<() => void>(null);
+
+  const [presignedUrl, setPresignedUrl] = useState<string | null>(null);
+  const [submitDisabled, setSubmitDisabled] = useState(true);
+  const { mutateAsync: fetchPresignedUrls } =
+    api.s3.getStandardUploadPresignedUrl.useMutation();
+  const apiUtils = api.useContext();
+  const [uploadFinished, setUploadFinished] = useState(false);
+
+  const clearFile = () => {
+    setFile(null);
+    resetRef.current?.();
+    setSubmitDisabled(true);
+  };
+
+  const handleSubmit = useCallback(async () => {
+    if (!!file && presignedUrl !== null) {
+      await axios
+        .put(presignedUrl, file, {
+          headers: { "Content-Type": file.type },
+        })
+        .then((response) => {
+          console.log(response);
+          console.log("Successfully uploaded ", file.name);
+          setUploadFinished(true);
+        })
+        .catch((err) => console.error(err));
+
+      await apiUtils.s3.getObjects.invalidate();
+    }
+  }, [file, apiUtils.s3.getObjects, presignedUrl]);
 
   return (
     <>
@@ -35,18 +67,49 @@ const DocumentUploadSection = () => {
             Dokumente hochladen{" "}
             <QuestionMarkCircleIcon className="h-6 w-6 cursor-pointer" />
           </p>
-          <FileButton onChange={setFile} accept="image/pdf,image/jpeg">
-            {(props) => (
-              <Button
-                variant="gradient"
-                gradient={{ from: "indigo", to: "cyan" }}
-                leftIcon={<ArrowUpIcon stroke="black" width={20} />}
-                {...props}
+
+          {uploadFinished ? (
+            <p className="text-green-500">Upload erfolgreich</p>
+          ) : (
+            <Group position="center">
+              <FileButton
+                resetRef={resetRef}
+                onChange={async (newFile) => {
+                  if (!newFile) return;
+                  const url = await fetchPresignedUrls({
+                    key: newFile.name,
+                  });
+                  setFile(newFile);
+                  setPresignedUrl(url);
+                  setSubmitDisabled(false);
+                }}
+                accept="application/pdf"
               >
+                {(props) => (
+                  <Button
+                    variant="gradient"
+                    gradient={{ from: "indigo", to: "cyan" }}
+                    leftIcon={<ArrowUpIcon stroke="black" width={20} />}
+                    {...props}
+                  >
+                    Choose File
+                  </Button>
+                )}
+              </FileButton>
+              <Button disabled={!file} color="red" onClick={clearFile}>
+                Reset
+              </Button>
+              <Button disabled={submitDisabled} onClick={handleSubmit}>
                 Upload
               </Button>
-            )}
-          </FileButton>
+            </Group>
+          )}
+
+          {file && (
+            <Text size="sm" align="center" mt="sm">
+              Picked file: {file.name}
+            </Text>
+          )}
         </div>
         <div className="w-1/2 flex-auto justify-end">
           <h3>Schritt 2 Kalkulation:</h3>
