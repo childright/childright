@@ -10,7 +10,7 @@ import { Dropzone } from "@mantine/dropzone";
 import { Button, FileButton } from "@mantine/core";
 import { useState } from "react";
 
-const positivereaktion: NextPage = () => {
+const PositiveReaction: NextPage = () => {
   return (
     <StepperLayout>
       <DocumentUploadSection />
@@ -18,7 +18,7 @@ const positivereaktion: NextPage = () => {
   );
 };
 
-export default positivereaktion;
+export default PositiveReaction;
 
 const DocumentUploadSection = () => {
   const [file, setFile] = useState<File | null>(null);

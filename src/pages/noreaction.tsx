@@ -5,7 +5,7 @@ import ZuCommunity from "../ui/ZurCommunity";
 import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
 import Map from "../ui/Map";
 
-const keinereaktion: NextPage = () => {
+const NoReaction: NextPage = () => {
   return (
     <StepperLayout>
       <>
@@ -52,4 +52,4 @@ const keinereaktion: NextPage = () => {
   );
 };
 
-export default keinereaktion;
+export default NoReaction;
