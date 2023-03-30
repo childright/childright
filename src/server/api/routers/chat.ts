@@ -1,7 +1,12 @@
 import type { ChatMessage } from "@prisma/client";
 import { z } from "zod";
+import { pusherServerClient } from "../../pusher";
 
 import { createTRPCRouter, protectedProcedure } from "../trpc";
+import superjson from "superjson";
+
+const channel = (fromId: string, toId: string) =>
+  `chat-from-${fromId}-to-${toId}`;
 
 export const chatRouter = createTRPCRouter({
   getMessagesWithUser: protectedProcedure
@@ -45,4 +50,20 @@ export const chatRouter = createTRPCRouter({
 
     return chats as (ChatMessage & { fromName: string; toName: string })[];
   }),
+  sendMessage: protectedProcedure
+    .input(z.object({ toId: z.string(), content: z.string().min(1) }))
+    .mutation(async ({ ctx, input }) => {
+      const message = await ctx.prisma.chatMessage.create({
+        data: {
+          fromId: ctx.session.user.id,
+          toId: input.toId,
+          content: input.content,
+        },
+      });
+
+      const stringified = superjson.stringify(message);
+      console.log(stringified);
+
+      pusherServerClient.sendToUser(input.toId, "newMessage", stringified);
+    }),
 });

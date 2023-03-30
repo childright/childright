@@ -1,11 +1,11 @@
 import { type NextPage } from "next";
-import { api } from "../utils/api";
-import Message from "../components/Message";
+import { api } from "../../utils/api";
 import { useSession } from "next-auth/react";
-import { inferRouterOutputs } from "@trpc/server";
-import { AppRouter } from "../server/api/root";
+import type { inferRouterOutputs } from "@trpc/server";
+import type { AppRouter } from "../../server/api/root";
+import { NextLink } from "@mantine/next";
 
-const ChatPage: NextPage = () => {
+const ChatIndexPage: NextPage = () => {
   const getChatsQuery = api.chat.getChats.useQuery();
   return (
     <div>
@@ -26,7 +26,14 @@ const ChatPreview = ({ chat }: Props) => {
   return (
     <div key={chat.id}>
       <h3>
-        {chat.fromId === session.data?.user?.id ? chat.toName : chat.fromName}
+        <NextLink
+          legacyBehavior
+          href={`/chat/${
+            chat.fromId === session.data?.user?.id ? chat.toId : chat.fromId
+          }`}
+        >
+          {chat.fromId === session.data?.user?.id ? chat.toName : chat.fromName}
+        </NextLink>
       </h3>
       <span>
         {chat.fromId === session.data?.user?.id ? "You" : chat.fromName} wrote
@@ -39,4 +46,4 @@ const ChatPreview = ({ chat }: Props) => {
   );
 };
 
-export default ChatPage;
+export default ChatIndexPage;
