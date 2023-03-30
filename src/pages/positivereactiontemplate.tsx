@@ -5,6 +5,8 @@ import { useDisclosure } from "@mantine/hooks";
 import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
 import ZuCommunity from "../ui/ZurCommunity";
 import WizardComment from "../ui/WizardComment";
+import { Button } from "@mantine/core";
+import { NextLink } from "@mantine/next";
 
 const sampleData = [
   {
@@ -22,6 +24,7 @@ const PositiveReactionPage: NextPage = () => {
   return (
     <>
       <StepperLayout>
+        <h1 className="mb-4 text-center">Langzeit Bindung nach Erfolg</h1>
         <div className="flex flex-1 justify-center">
           {sampleData.map((data) => (
             <MessageTemplateCard key={data.title} {...data} />
@@ -32,10 +35,20 @@ const PositiveReactionPage: NextPage = () => {
         <div className="mt-20 grid grid-cols-2 gap-10">
           {" "}
           <ZuCommunity />
-          <WizardComment text="Positiv" />
+          <WizardComment text="Schreibe eine Nachricht um deinen theoretischen Anpsruch einzuholen" />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            alignContent: "flex-end",
+          }}
+        >
+          <Button component={NextLink} href="/longTermBinding" legacyBehavior>
+            Weiter
+          </Button>
         </div>
       </StepperLayout>
-      ;
     </>
   );
 };

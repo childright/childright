@@ -9,6 +9,7 @@ import {
 import { Dropzone } from "@mantine/dropzone";
 import { Button, FileButton } from "@mantine/core";
 import { useState } from "react";
+import { NextLink } from "@mantine/next";
 
 const PositiveReaction: NextPage = () => {
   return (
@@ -55,7 +56,22 @@ const DocumentUploadSection = () => {
       <div className="mt-20 grid grid-cols-2 gap-10">
         {" "}
         <ZuCommunity />
-        <WizardComment text="Positiv" />
+        <WizardComment text="Super, du hast die Auskunft von deinen Eltern bekommen, jetzt kommt der nächste Schritt!" />
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          alignContent: "flex-end",
+        }}
+      >
+        <Button
+          component={NextLink}
+          href="/positiveReactionTemplate"
+          legacyBehavior
+        >
+          Weiter
+        </Button>
       </div>
     </>
   );

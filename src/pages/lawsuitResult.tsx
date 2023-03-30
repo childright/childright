@@ -6,29 +6,36 @@ import { useRouter } from "next/router";
 import WizardComment from "../ui/WizardComment";
 import ZuCommunity from "../ui/ZurCommunity";
 import { Button } from "@mantine/core";
+import { NextLink } from "@mantine/next";
 
-const unterhaltEinklagen: NextPage = () => {
+const LawsuitResult: NextPage = () => {
   return (
     <StepperLayout>
       <>
         <h1 className="mb-4 text-center">
-          Geld vorhanden für einen eigenen Anwalt - Unterhalt einklagen
+          Ergebnisse der Klage (Ratgeber, Infos)
         </h1>
         <div className="grid grid-cols-2 gap-x-5">
           <div>
-            <h4>Option 1: Jugentamt stellt Anwalt</h4>
-            <h4>Option 2: Selbst Anwalt wählen</h4>
+            <h4>
+              Dokumente hochladen -{">"} Ergebnis (Der Titel des Gerichts kann
+              in eigene Library hochgeladen werden)
+            </h4>
           </div>
         </div>
         <div className="mt-20 grid grid-cols-2 gap-10">
-          {" "}
           <ZuCommunity />
           <WizardComment text="placeholder" />
-          {/* wizard comment here is different - add prop to component to show specific message */}
+          {/* add prop to wizard component - no message on this page */}
+        </div>
+        <div className="mt-5 flex justify-end">
+          <Button component={NextLink} href="/dashboard" legacyBehavior>
+            Weiter
+          </Button>
         </div>
       </>
     </StepperLayout>
   );
 };
 
-export default unterhaltEinklagen;
+export default LawsuitResult;

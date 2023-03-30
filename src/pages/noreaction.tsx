@@ -4,6 +4,8 @@ import WizardComment from "../ui/WizardComment";
 import ZuCommunity from "../ui/ZurCommunity";
 import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
 import Map from "../ui/Map";
+import { Button } from "@mantine/core";
+import { NextLink } from "@mantine/next";
 
 const NoReaction: NextPage = () => {
   return (
@@ -46,6 +48,17 @@ const NoReaction: NextPage = () => {
         <div className="mt-20 grid grid-cols-2 gap-10">
           <ZuCommunity />
           <WizardComment text="Keine Sorge, es stehen dir noch viele weiter Möglichkeiten zur Verfügung - kein Grund aufzugeben!" />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            alignContent: "flex-end",
+          }}
+        >
+          <Button component={NextLink} href="/lawyerList" legacyBehavior>
+            Weiter
+          </Button>
         </div>
       </>
     </StepperLayout>

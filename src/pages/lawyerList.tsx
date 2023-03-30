@@ -3,8 +3,9 @@ import StepperLayout from "../ui/StepperLayout";
 import ZuCommunity from "../ui/ZurCommunity";
 import { Button } from "@mantine/core";
 import WizardComment from "../ui/WizardComment";
+import { NextLink } from "@mantine/next";
 
-const anwaltCheckliste: NextPage = () => {
+const lawyerList: NextPage = () => {
   return (
     <StepperLayout>
       <>
@@ -40,7 +41,9 @@ const anwaltCheckliste: NextPage = () => {
 
           <div className="m-auto text-center">
             <h4>Vorlagen, um fehlende Dokumente zu beantragen.</h4>
-            <Button>Weiter</Button>
+            <Button component={NextLink} href="/lawyerSchedule" legacyBehavior>
+              Weiter
+            </Button>
           </div>
         </div>
         <div className="mt-20 grid grid-cols-2 gap-10">
@@ -53,4 +56,4 @@ const anwaltCheckliste: NextPage = () => {
   );
 };
 
-export default anwaltCheckliste;
+export default lawyerList;

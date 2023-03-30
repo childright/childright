@@ -9,13 +9,12 @@ type Props = {
 
 const stepsToProgress = {
   "/calculate": 5,
-  "/profile": 20,
+  "/profile": 15,
   "/mother": 30,
-  "/father": 40,
-  "/sibling": 50,
-  "/resultAmount": 60,
-  "/resultTemplates": 70,
-  "/keinereaktion": 80,
+  "/father": 45,
+  "/sibling": 60,
+  "/resultAmount": 75,
+  "/resultTemplates": 100,
 };
 
 const StepperLayout = ({ children }: Props) => {

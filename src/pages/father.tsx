@@ -55,7 +55,7 @@ const FatherPage: NextPage = () => {
         validateOnMount
         onSubmit={async (values) => {
           await saveMutation.mutateAsync(values as Required<FormData>);
-          void router.push("/siblings");
+          void router.push("/sibling");
         }}
       >
         {(formikProps) => {

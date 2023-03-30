@@ -6,8 +6,9 @@ import { useRouter } from "next/router";
 import WizardComment from "../ui/WizardComment";
 import ZuCommunity from "../ui/ZurCommunity";
 import { Button } from "@mantine/core";
+import { NextLink } from "@mantine/next";
 
-const anwaltTermin: NextPage = () => {
+const lawyerSchedule: NextPage = () => {
   return (
     <StepperLayout>
       <>
@@ -25,9 +26,20 @@ const anwaltTermin: NextPage = () => {
           <ZuCommunity />
           <WizardComment text="Placeholder" />
         </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            marginTop: "20px",
+          }}
+        >
+          <Button component={NextLink} href="/legalProcess" legacyBehavior>
+            Weiter
+          </Button>
+        </div>
       </>
     </StepperLayout>
   );
 };
 
-export default anwaltTermin;
+export default lawyerSchedule;

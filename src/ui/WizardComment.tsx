@@ -10,7 +10,6 @@ const WizardComment: FC<Props> = ({ text }) => {
   return (
     <div className="">
       <p>{text}</p>
-      <Button>Weiter</Button>
     </div>
   );
 };

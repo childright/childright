@@ -6,8 +6,9 @@ import { useRouter } from "next/router";
 import WizardComment from "../ui/WizardComment";
 import ZuCommunity from "../ui/ZurCommunity";
 import { Button } from "@mantine/core";
+import { NextLink } from "@mantine/next";
 
-const rechtsweg: NextPage = () => {
+const LegalProcess: NextPage = () => {
   return (
     <StepperLayout>
       <>
@@ -21,11 +22,22 @@ const rechtsweg: NextPage = () => {
         <div className="mt-20 grid grid-cols-2 gap-10">
           {" "}
           <ZuCommunity />
-          <WizardComment text="placeholder" />
+          <WizardComment text="Keine Sorge, es stehen dir viele Möglichkeiten noch offen - kein Grund aufzugeben!" />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            marginTop: "20px",
+          }}
+        >
+          <Button component={NextLink} href="/legalActions" legacyBehavior>
+            Weiter
+          </Button>
         </div>
       </>
     </StepperLayout>
   );
 };
 
-export default rechtsweg;
+export default LegalProcess;

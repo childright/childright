@@ -13,6 +13,7 @@ import { Button } from "@mantine/core";
 import SelectField from "../ui/SelectField";
 import { withFormikDevtools } from "formik-devtools-extension";
 import { api } from "../utils/api";
+import { NextLink } from "@mantine/next";
 
 type FormData = Partial<Omit<SiblingData, "id" | "userId">>;
 
@@ -120,7 +121,13 @@ const SiblingPage: NextPage = () => {
                 name="incomeAmount"
                 label="Summe der (monatlichen) Einkünfte des Geschwisterkindes"
               />
-              <Button disabled={!formikProps.isValid} type="submit">
+              <Button
+                disabled={!formikProps.isValid}
+                type="submit"
+                component={NextLink}
+                href="/resultAmount"
+                legacyBehavior
+              >
                 Weiter
               </Button>
             </Form>

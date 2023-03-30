@@ -54,13 +54,13 @@ const TemplatesPage: NextPage = () => {
 
       <Modal opened={opened} onClose={close} title="Authentication" centered>
         <div className="flex flex-col gap-2">
-          <Button component={NextLink} href="/keinereaktion" legacyBehavior>
+          <Button component={NextLink} href="/noReaction" legacyBehavior>
             Keine Reaktion
           </Button>
-          <Button component={NextLink} href="" legacyBehavior>
+          <Button component={NextLink} href="/positiveReaction" legacyBehavior>
             Positive Reaktion
           </Button>
-          <Button component={NextLink} href="" legacyBehavior>
+          <Button component={NextLink} href="/negativereaction" legacyBehavior>
             Negative Reaktion
           </Button>
         </div>

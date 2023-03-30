@@ -5,6 +5,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
 import ZuCommunity from "../ui/ZurCommunity";
 import WizardComment from "../ui/WizardComment";
+import { Button } from "@mantine/core";
 
 const sampleData = [
   {
@@ -15,7 +16,7 @@ const sampleData = [
   },
 ];
 
-const LongTerm: NextPage = () => {
+const LongTermBinding: NextPage = () => {
   const [opened, { open, close }] = useDisclosure(false);
 
   return (
@@ -59,9 +60,20 @@ const LongTerm: NextPage = () => {
           <ZuCommunity />
           <WizardComment text="Bleibe auf dem laufenden und schaue regelmäßig in dein E-Mail Postfach!" />
         </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            alignContent: "flex-end",
+          }}
+        >
+          <Button>
+            <a href="mailto:markwittauto@childrigh.eu">Send Email</a>
+          </Button>
+        </div>
       </StepperLayout>
     </>
   );
 };
 
-export default LongTerm;
+export default LongTermBinding;

@@ -9,6 +9,7 @@ import { api } from "../utils/api";
 import { useRouter } from "next/router";
 import { Button, Text } from "@mantine/core";
 import { withFormikDevtools } from "formik-devtools-extension";
+import { NextLink } from "@mantine/next";
 
 type FormData = {
   parentsNetIncome?: number;
@@ -83,7 +84,13 @@ const CalculatePage: NextPage = () => {
               />
 
               <Text>Ergebnis: {calculatorStepResult(formikProps.values)}</Text>
-              <Button type="submit" disabled={!formikProps.isValid}>
+              <Button
+                type="submit"
+                disabled={!formikProps.isValid}
+                component={NextLink}
+                href="/profile"
+                legacyBehavior
+              >
                 Submit
               </Button>
             </Form>
