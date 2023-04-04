@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import Message from "../../components/Message";
 import ChatBox from "../../components/ChatBox";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { pusherClient } from "../../utils/pusher";
 import type { ChatMessage } from "@prisma/client";
 import superjson from "superjson";

@@ -5,9 +5,6 @@ import { pusherServerClient } from "../../pusher";
 import { createTRPCRouter, protectedProcedure } from "../trpc";
 import superjson from "superjson";
 
-const channel = (fromId: string, toId: string) =>
-  `chat-from-${fromId}-to-${toId}`;
-
 export const chatRouter = createTRPCRouter({
   getMessagesWithUser: protectedProcedure
     .input(z.object({ userId: z.string() }))

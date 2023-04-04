@@ -22,6 +22,10 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   useEffect(() => {
     pusherClient.signin();
+
+    return () => {
+      pusherClient.disconnect();
+    };
   });
 
   return (
