@@ -20,6 +20,8 @@ import { api } from "../utils/api";
 import SelectField from "../ui/SelectField";
 import { withFormikDevtools } from "formik-devtools-extension";
 import useRedirectUnauthenticated from "../hooks/useAuth";
+import { NextLink } from "@mantine/next";
+import AnimatedFormik from "../utils/AnimatedFormik";
 
 type FormData = Partial<Omit<ProfileStepData, "user" | "userId">>;
 
@@ -63,7 +65,7 @@ const CalculatePage: NextPage = () => {
   return (
     <StepperLayout>
       <h1 className="mb-4">Erstelle dein Profil</h1>
-      <Formik
+      <AnimatedFormik
         initialValues={initialValues}
         validationSchema={validationSchema}
         validateOnMount
@@ -145,7 +147,7 @@ const CalculatePage: NextPage = () => {
             </Form>
           );
         }}
-      </Formik>
+      </AnimatedFormik>
     </StepperLayout>
   );
 };

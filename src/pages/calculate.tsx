@@ -9,6 +9,11 @@ import { api } from "../utils/api";
 import { useRouter } from "next/router";
 import { Button, Text } from "@mantine/core";
 import { withFormikDevtools } from "formik-devtools-extension";
+import AnimatedFormik from "../utils/AnimatedFormik";
+import { useContext } from "react";
+import RiveContext from "../utils/AnimationContext";
+import { useStateMachineInput } from "@rive-app/react-canvas";
+import { DEFAULT_STATE_MACHINE } from "../utils/constants";
 
 type FormData = {
   parentsNetIncome?: number;
@@ -32,6 +37,14 @@ const CalculatePage: NextPage = () => {
   const saveMutation = api.steps.calculator.save.useMutation();
   const router = useRouter();
 
+  const { rive } = useContext(RiveContext);
+
+  const validationSuccessInput = useStateMachineInput(
+    rive,
+    DEFAULT_STATE_MACHINE,
+    "validation success"
+  );
+
   const getQuery = api.steps.calculator.get.useQuery();
 
   if (getQuery.isLoading) {
@@ -45,11 +58,12 @@ const CalculatePage: NextPage = () => {
   return (
     <StepperLayout>
       <h1 className="mb-4">Unterhaltsrechner</h1>
-      <Formik
+      <AnimatedFormik
         initialValues={getQuery.data ?? {}}
         validationSchema={validationSchema}
         validateOnMount
         onSubmit={async (values) => {
+          validationSuccessInput?.fire();
           await saveMutation.mutateAsync(values as Required<FormData>);
           void router.push("/profile");
         }}
@@ -100,7 +114,7 @@ const CalculatePage: NextPage = () => {
             </Form>
           );
         }}
-      </Formik>
+      </AnimatedFormik>
     </StepperLayout>
   );
 };

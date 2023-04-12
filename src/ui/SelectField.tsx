@@ -1,6 +1,7 @@
 import type { SelectProps as Props } from "@mantine/core";
 import { Select as Component } from "@mantine/core";
 import { useField } from "formik";
+import useRiveStateInput from "../hooks/useRiveStateInput";
 
 export type NumberInputProps = { name: string } & Omit<
   Props,
@@ -9,6 +10,8 @@ export type NumberInputProps = { name: string } & Omit<
 
 export const SelectField = ({ name, ...rest }: NumberInputProps) => {
   const [field, meta, helpers] = useField<string | undefined>(name);
+
+  const riveTyping = useRiveStateInput("typing");
 
   return (
     <Component
@@ -19,8 +22,13 @@ export const SelectField = ({ name, ...rest }: NumberInputProps) => {
       onChange={(val) => {
         val && helpers.setValue(val);
       }}
-      onBlur={() => {
+      onFocus={() => {
+        riveTyping && (riveTyping.value = true);
+      }}
+      onBlur={(e) => {
         helpers.setTouched(true);
+        riveTyping && (riveTyping.value = false);
+        field.onBlur(e);
       }}
     />
   );

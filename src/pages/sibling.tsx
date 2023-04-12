@@ -14,6 +14,8 @@ import SelectField from "../ui/SelectField";
 import { withFormikDevtools } from "formik-devtools-extension";
 import { api } from "../utils/api";
 import useRedirectUnauthenticated from "../hooks/useAuth";
+import { NextLink } from "@mantine/next";
+import AnimatedFormik from "../utils/AnimatedFormik";
 
 type FormData = Partial<Omit<SiblingData, "id" | "userId">>;
 
@@ -50,7 +52,7 @@ const SiblingPage: NextPage = () => {
   return (
     <StepperLayout>
       <h1 className="mb-4">Profil erstellen des Geschwisterkindes</h1>
-      <Formik
+      <AnimatedFormik
         initialValues={initialValues}
         validationSchema={validationSchema}
         validateOnMount
@@ -129,7 +131,7 @@ const SiblingPage: NextPage = () => {
             </Form>
           );
         }}
-      </Formik>
+      </AnimatedFormik>
     </StepperLayout>
   );
 };

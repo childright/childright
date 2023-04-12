@@ -14,6 +14,7 @@ import SelectField from "../ui/SelectField";
 import { withFormikDevtools } from "formik-devtools-extension";
 import { api } from "../utils/api";
 import useRedirectUnauthenticated from "../hooks/useAuth";
+import AnimatedFormik from "../utils/AnimatedFormik";
 
 type FormData = Partial<Omit<ParentData, "id" | "userId">>;
 
@@ -51,7 +52,7 @@ const FatherPage: NextPage = () => {
   return (
     <StepperLayout>
       <h1 className="mb-4">Vater Profil erstellen</h1>
-      <Formik
+      <AnimatedFormik
         initialValues={initialValues}
         validationSchema={validationSchema}
         validateOnMount
@@ -120,7 +121,7 @@ const FatherPage: NextPage = () => {
             </Form>
           );
         }}
-      </Formik>
+      </AnimatedFormik>
     </StepperLayout>
   );
 };

@@ -1,7 +1,7 @@
 import { type AppType } from "next/app";
 import type { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
-import { AppShell, MantineProvider } from "@mantine/core";
+import { AppShell, Button, MantineProvider } from "@mantine/core";
 
 import { api } from "../utils/api";
 
@@ -14,6 +14,10 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ResponsiveHeader } from "../ui/ResponsiveHeader";
 import { useEffect } from "react";
 import { pusherClient } from "../utils/pusher";
+import RiveContext from "../utils/AnimationContext";
+import { DEFAULT_STATE_MACHINE } from "../utils/constants";
+import { useRive } from "@rive-app/react-canvas";
+import { ChatBubbleLeftIcon } from "@heroicons/react/24/outline";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -25,6 +29,12 @@ const MyApp: AppType<{ session: Session | null }> = ({
     return () => {
       pusherClient.disconnect();
     };
+  }, []);
+
+  const { rive, RiveComponent, canvas } = useRive({
+    src: "/animatedcharacter.riv",
+    autoplay: true,
+    stateMachines: DEFAULT_STATE_MACHINE,
   });
 
   return (
@@ -36,19 +46,19 @@ const MyApp: AppType<{ session: Session | null }> = ({
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
       </Head>
+
       <SessionProvider session={session}>
         <ReactQueryDevtools />
         <MantineProvider withGlobalStyles withNormalizeCSS>
           <NotificationsProvider>
-            <AppShell
-              header={<ResponsiveHeader />}
-              /*  className=" bg-white sm:bg-yellow-300 md:bg-blue-300 lg:bg-green-300 xl:bg-red-300" */
-            >
-              <Component {...pageProps} />
-            </AppShell>
-            {/*          <Button className="absolute right-0 bottom-0">
-              <ChatBubbleLeftIcon fill="white" width={20} height={20} />
-            </Button> */}
+            <RiveContext.Provider value={{ rive, RiveComponent, canvas }}>
+              <AppShell header={<ResponsiveHeader />}>
+                <Component {...pageProps} />
+              </AppShell>
+              <Button className="absolute right-0 bottom-0">
+                <ChatBubbleLeftIcon fill="white" width={20} height={20} />
+              </Button>
+            </RiveContext.Provider>
           </NotificationsProvider>
         </MantineProvider>
       </SessionProvider>

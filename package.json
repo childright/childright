@@ -64,7 +64,8 @@
     "react-date-picker": "^9.2.0",
     "react-dom": "18.2.0",
     "superjson": "1.9.1",
-    "zod": "^3.20.2"
+    "zod": "^3.20.2",
+    "zustand": "^4.3.7"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
