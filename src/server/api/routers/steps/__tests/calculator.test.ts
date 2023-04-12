@@ -32,5 +32,6 @@ test("calculator step validation", async () => {
     childrenAbove18: 1.6,
   });
 
+  // Assert
   await expect(promise).rejects.toThrowError(/invalid_type/);
 });
