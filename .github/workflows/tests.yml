@@ -13,6 +13,10 @@ jobs:
       NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: "123"
       GITHUB_ID: "123"
       GITHUB_SECRET: "123"
+      AWS_S3_BUCKET: childright-documents
+      AWS_REGION: eu-west-1
+      AWS_ACCESS_KEY_ID: "not needed"
+      AWS_SECRET_ACCESS_KEY: "not needed"
     name: Tests
     runs-on: ubuntu-22.04
     strategy:
