@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 
 const ratelimit = new Ratelimit({
   redis: Redis.fromEnv(),
-  limiter: Ratelimit.cachedFixedWindow(10, "10s"),
+  limiter: Ratelimit.cachedFixedWindow(30, "10s"),
 });
 
 export default async function middleware(
