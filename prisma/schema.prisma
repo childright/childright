@@ -63,7 +63,8 @@ model User {
 
     ResultsData ResultsData[]
 
-    forumComments ForumComment[]
+    forumComments       ForumComment[]
+    CalculatorStepEmail CalculatorStepEmail[]
 
     @@index([fatherId])
     @@index([motherId])
@@ -215,4 +216,20 @@ model ForumComment {
 
     @@index([userId])
     @@index([parentId])
+}
+
+model CalculatorStepEmail {
+    id String @id @default(cuid())
+    to String
+
+    sendDate DateTime
+    sent     Boolean  @default(false)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    User   User   @relation(fields: [userId], references: [id])
+    userId String
+
+    @@index([userId])
 }
