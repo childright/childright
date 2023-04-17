@@ -1,0 +1,36 @@
+# github action that sends an email when the main branch was updated
+
+name: Send email
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  EMAIL_USERNAME: ${{ secrets.EMAIL_USERNAME }}
+  EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+
+jobs:
+  send-email:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: mail.privateemail.com
+          server_port: 587
+          username: ${{ env.EMAIL_USERNAME }}
+          password: ${{ env.EMAIL_PASSWORD }}
+          subject: "New commit on main branch"
+          secure: false
+          body: >-
+            New commit on main branch. This will trigger a new build. 
+            Commit hash: ${{ github.sha }}
+            Commit message: ${{ github.event.head_commit.message }}
+            Commit author: ${{ github.event.head_commit.author.name }}
+            Commit url: ${{ github.event.head_commit.url }}
+            Commit timestamp: ${{ github.event.head_commit.timestamp }}
+            This email was sent by a GitHub actions job ${{ github.job }}
+          to: mark.witt@code.berlin,ignazio.balisteri@code.berlin
+          from: markwittauto@childright.eu
