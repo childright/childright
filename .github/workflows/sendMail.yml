@@ -1,6 +1,4 @@
-# github action that sends an email when the main branch was updated
-
-name: Send email
+name: Send email and audit packages
 
 on:
   push:
@@ -15,7 +13,18 @@ jobs:
   send-email:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+      - run: npm ci
+      - name: Set number of high Security vunerabilites
+        id: audit
+        run: |
+          high=$(npm audit --json | jq '.metadata.vulnerabilities.high')
+          if [ "$high" -gt 0 ]; then
+            echo "::set-output name=audit_result::$high HIGH VULNERABILITIES FOUND. PLEASE CHECK NPM AUDIT"
+          fi
       - name: Send email
+        if: steps.audit.outputs.audit_result
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: mail.privateemail.com
@@ -24,6 +33,8 @@ jobs:
           password: ${{ env.EMAIL_PASSWORD }}
           subject: "New commit on main branch"
           secure: false
+          to: mark.witt@code.berlin,ignazio.balisteri@code.berlin
+          from: markwittauto@childright.eu
           body: >-
             New commit on main branch. This will trigger a new build. 
             Commit hash: ${{ github.sha }}
@@ -32,5 +43,4 @@ jobs:
             Commit url: ${{ github.event.head_commit.url }}
             Commit timestamp: ${{ github.event.head_commit.timestamp }}
             This email was sent by a GitHub actions job ${{ github.job }}
-          to: mark.witt@code.berlin,ignazio.balisteri@code.berlin
-          from: markwittauto@childright.eu
+            ${{ steps.audit.outputs.audit_result }}
