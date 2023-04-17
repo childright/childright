@@ -19,6 +19,7 @@ import AuthButton from "../ui/AuthButton";
 import { NotificationsProvider } from "@mantine/notifications";
 import { ChatBubbleLeftIcon } from "@heroicons/react/24/outline";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ResponsiveHeader } from "../ui/ResponsiveHeader";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -38,13 +39,8 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <MantineProvider withGlobalStyles withNormalizeCSS>
           <NotificationsProvider>
             <AppShell
-              header={
-                <Header height={60}>
-                  <Group>
-                    <AuthButton />
-                  </Group>
-                </Header>
-              }
+              header={<ResponsiveHeader />}
+              /*  className=" bg-white sm:bg-yellow-300 md:bg-blue-300 lg:bg-green-300 xl:bg-red-300" */
             >
               <Component {...pageProps} />
             </AppShell>
