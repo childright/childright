@@ -3,6 +3,7 @@ import { beforeEach, expect, test } from "vitest";
 import type { Session } from "next-auth";
 import type { PrismaClient } from "@prisma/client";
 import { mockDeep, mockReset } from "vitest-mock-extended";
+import { LivingSituation, FamilyState, Degree, Income } from "@prisma/client";
 
 const prismaMock = mockDeep<PrismaClient>();
 
@@ -11,7 +12,7 @@ beforeEach(() => {
 });
 
 // Arrange
-test("calculator step validation", async () => {
+test("Mother step validation", async () => {
   const mockSession: Session = {
     expires: new Date().toISOString(),
     user: { id: "test-user-id", name: "Test User" },
@@ -23,15 +24,18 @@ test("calculator step validation", async () => {
   });
 
   // Act
-  const promise = caller.steps.calculator.save({
-    parentsNetIncome: 1,
-    kreditRates: 1,
-    children0to5: 1,
-    children6to13: 1,
-    children14to17: 1,
-    childrenAbove18: 1.6,
+  const promise = caller.steps.mother.save({
+    name: "Test User",
+    birthDate: new Date(),
+    address: "Test Address",
+    livingSituation: LivingSituation.withPartner,
+    familyState: FamilyState.single,
+    degree: Degree.hauptschule,
+    income: Income.work,
+    incomeAmount: -1,
+    avatarSeed: "Test Avatar Seed",
   });
 
   // Assert
-  await expect(promise).rejects.toThrowError(/invalid_type/);
+  await expect(promise).rejects.toThrowError(/too_small/);
 });
