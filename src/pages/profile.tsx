@@ -138,13 +138,7 @@ const CalculatePage: NextPage = () => {
                 label="Summe der (monatlichen) Einkünfte"
               />
 
-              <Button
-                disabled={!formikProps.isValid}
-                type="submit"
-                component={NextLink}
-                href="/mother"
-                legacyBehavior
-              >
+              <Button disabled={!formikProps.isValid} type="submit">
                 Weiter
               </Button>
             </Form>

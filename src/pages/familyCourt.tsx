@@ -36,7 +36,7 @@ const FamilyCourt: NextPage = () => {
             marginTop: "20px",
           }}
         >
-          <Button component={NextLink} href="/" legacyBehavior>
+          <Button component={NextLink} href="/lawsuitResult" legacyBehavior>
             Weiter
           </Button>
         </div>

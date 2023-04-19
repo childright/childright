@@ -42,6 +42,7 @@ const TemplatesPage: NextPage = () => {
   return (
     <>
       <StepperLayout>
+        <h1 className="text-2xl font-bold">Nutze diese Vorlagen als Hilfe!</h1>
         <div className="grid grid-cols-1 place-items-center gap-4 lg:grid-cols-2">
           {sampleData.map((data) => (
             <MessageTemplateCard key={data.title} {...data} />
@@ -60,7 +61,7 @@ const TemplatesPage: NextPage = () => {
           <Button component={NextLink} href="/positiveReaction" legacyBehavior>
             Positive Reaktion
           </Button>
-          <Button component={NextLink} href="/negativereaction" legacyBehavior>
+          <Button component={NextLink} href="/negativeReaction" legacyBehavior>
             Negative Reaktion
           </Button>
         </div>

@@ -84,13 +84,7 @@ const CalculatePage: NextPage = () => {
               />
 
               <Text>Ergebnis: {calculatorStepResult(formikProps.values)}</Text>
-              <Button
-                type="submit"
-                disabled={!formikProps.isValid}
-                component={NextLink}
-                href="/profile"
-                legacyBehavior
-              >
+              <Button type="submit" disabled={!formikProps.isValid}>
                 Submit
               </Button>
             </Form>

@@ -121,13 +121,7 @@ const SiblingPage: NextPage = () => {
                 name="incomeAmount"
                 label="Summe der (monatlichen) Einkünfte des Geschwisterkindes"
               />
-              <Button
-                disabled={!formikProps.isValid}
-                type="submit"
-                component={NextLink}
-                href="/resultAmount"
-                legacyBehavior
-              >
+              <Button disabled={!formikProps.isValid} type="submit">
                 Weiter
               </Button>
             </Form>
