@@ -66,6 +66,9 @@ model User {
     forumComments       ForumComment[]
     CalculatorStepEmail CalculatorStepEmail[]
 
+    chatMessagesSent     ChatMessage[] @relation("fromUser")
+    chatMessagesReceived ChatMessage[] @relation("toUser")
+
     @@index([fatherId])
     @@index([motherId])
 }
@@ -232,4 +235,20 @@ model CalculatorStepEmail {
     userId String
 
     @@index([userId])
+}
+
+model ChatMessage {
+    id        String   @id @default(cuid())
+    content   String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    from   User   @relation("fromUser", fields: [fromId], references: [id], onDelete: Cascade)
+    fromId String
+
+    to   User   @relation("toUser", fields: [toId], references: [id], onDelete: Cascade)
+    toId String
+
+    @@index([fromId])
+    @@index([toId])
 }

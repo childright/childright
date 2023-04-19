@@ -1,13 +1,7 @@
 import { type AppType } from "next/app";
 import type { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
-import {
-  AppShell,
-  Button,
-  Group,
-  Header,
-  MantineProvider,
-} from "@mantine/core";
+import { AppShell, Group, Header, MantineProvider } from "@mantine/core";
 
 import { api } from "../utils/api";
 
@@ -17,14 +11,23 @@ import "react-calendar/dist/Calendar.css";
 import Head from "next/head";
 import AuthButton from "../ui/AuthButton";
 import { NotificationsProvider } from "@mantine/notifications";
-import { ChatBubbleLeftIcon } from "@heroicons/react/24/outline";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ResponsiveHeader } from "../ui/ResponsiveHeader";
+import { useEffect } from "react";
+import { pusherClient } from "../utils/pusher";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
   pageProps: { session, ...pageProps },
 }) => {
+  useEffect(() => {
+    pusherClient.signin();
+
+    return () => {
+      pusherClient.disconnect();
+    };
+  });
+
   return (
     <>
       <Head>
@@ -44,9 +47,9 @@ const MyApp: AppType<{ session: Session | null }> = ({
             >
               <Component {...pageProps} />
             </AppShell>
-            <Button className="absolute right-0 bottom-0">
+            {/*          <Button className="absolute right-0 bottom-0">
               <ChatBubbleLeftIcon fill="white" width={20} height={20} />
-            </Button>
+            </Button> */}
           </NotificationsProvider>
         </MantineProvider>
       </SessionProvider>
