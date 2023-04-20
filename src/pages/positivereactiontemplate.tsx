@@ -24,7 +24,9 @@ const PositiveReactionPage: NextPage = () => {
   return (
     <>
       <StepperLayout>
-        <h1 className="mb-4 text-center">Langzeit Bindung nach Erfolg</h1>
+        <h1 className="mb-4 text-center">
+          Nutze diese Vorlage um deinen Anspruch einzufordern!
+        </h1>
         <div className="flex flex-1 justify-center">
           {sampleData.map((data) => (
             <MessageTemplateCard key={data.title} {...data} />

@@ -19,6 +19,7 @@ const possessive = (name: string) => name + (name.endsWith("s") ? "'" : "s");
 const AmountPage: NextPage = () => {
   return (
     <StepperLayout>
+      <h1>Deine Ergebnisse sind da!</h1>
       <Text>
         <b>Dein exakter Unterhaltsanspruch: </b> {sampleData.yourClaim}
       </Text>

@@ -22,6 +22,7 @@ const LongTermBinding: NextPage = () => {
   return (
     <>
       <StepperLayout>
+        <h1 className="mb-4 text-center">Langzeit Bindung nach Erfolg</h1>
         <div className="grid grid-flow-col grid-cols-2 grid-rows-4">
           <div className="">
             <h4>
