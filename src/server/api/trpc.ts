@@ -22,9 +22,23 @@ import { type Session } from "next-auth";
 import { getServerAuthSession } from "../auth";
 import { prisma } from "../db";
 
+import { initTRPC, TRPCError } from "@trpc/server";
+import superjson from "superjson";
+import { s3 } from "../s3";
+import LoggerPublisher from "../../utils/logging/LoggerPublisher";
+import ConsoleLogAdapter from "../../utils/logging/ConsoleLogAdapter";
+import LogflareLoggerAdapter from "../../utils/logging/LogflareLoggerAdapter";
+import FileLogAdapter from "../../utils/logging/FileLogAdapter";
+
 type CreateContextOptions = {
   session: Session | null;
 };
+
+const loggerPublisher = new LoggerPublisher([
+  new ConsoleLogAdapter(),
+  new LogflareLoggerAdapter(),
+  new FileLogAdapter("./serverLogs.log"),
+]);
 
 /**
  * This helper generates the "internals" for a tRPC context. If you need to use
@@ -40,6 +54,7 @@ const createInnerTRPCContext = (opts: CreateContextOptions) => {
     session: opts.session,
     prisma,
     s3,
+    loggerPublisher,
   };
 };
 
@@ -65,9 +80,6 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
  * This is where the trpc api is initialized, connecting the context and
  * transformer
  */
-import { initTRPC, TRPCError } from "@trpc/server";
-import superjson from "superjson";
-import { s3 } from "../s3";
 
 const t = initTRPC.context<typeof createTRPCContext>().create({
   transformer: superjson,
@@ -90,6 +102,22 @@ const t = initTRPC.context<typeof createTRPCContext>().create({
  */
 export const createTRPCRouter = t.router;
 
+const requestLoggerMiddleware = t.middleware(
+  async ({ path, ctx, type, next }) => {
+    const result = await next();
+    loggerPublisher.log({
+      message: `Called trpc procedure ${path} ${
+        result.ok ? "successfully" : "with error"
+      }`,
+      path,
+      type,
+      userId: ctx.session?.user?.id,
+    });
+
+    return result;
+  }
+);
+
 /**
  * Public (unauthed) procedure
  *
@@ -97,8 +125,7 @@ export const createTRPCRouter = t.router;
  * tRPC API. It does not guarantee that a user querying is authorized, but you
  * can still access user session data if they are logged in
  */
-export const publicProcedure = t.procedure;
-
+export const publicProcedure = t.procedure.use(requestLoggerMiddleware);
 /**
  * Reusable middleware that enforces users are logged in before running the
  * procedure
@@ -124,4 +151,4 @@ const enforceUserIsAuthed = t.middleware(({ ctx, next }) => {
  *
  * @see https://trpc.io/docs/procedures
  */
-export const protectedProcedure = t.procedure.use(enforceUserIsAuthed);
+export const protectedProcedure = publicProcedure.use(enforceUserIsAuthed);

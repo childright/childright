@@ -31,6 +31,8 @@ export const serverSchema = z.object({
   PUSHER_KEY: z.string(),
   PUSHER_SECRET: z.string(),
   PUSHER_CLUSTER: z.string(),
+  LOGFLARE_API_KEY: z.string(),
+  LOGFLARE_SOURCE_TOKEN: z.string(),
 });
 
 /**
@@ -55,6 +57,8 @@ export const serverEnv = {
   PUSHER_KEY: process.env.PUSHER_KEY,
   PUSHER_SECRET: process.env.PUSHER_SECRET,
   PUSHER_CLUSTER: process.env.PUSHER_CLUSTER,
+  LOGFLARE_API_KEY: process.env.LOGFLARE_API_KEY,
+  LOGFLARE_SOURCE_TOKEN: process.env.LOGFLARE_SOURCE_TOKEN,
 };
 
 /**
