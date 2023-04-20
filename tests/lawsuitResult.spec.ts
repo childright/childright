@@ -1,15 +1,26 @@
 import { test, expect } from "@playwright/test";
 
-test("Application flow testing lawsuitResult to dashboard", async ({
+test("Application flow testing familyCourt to lawsuitResult", async ({
   page,
 }) => {
-  await page.goto("lawsuitResult");
+  await page.goto("http://localhost:3000/familyCourt");
   await page.getByRole("heading", {
-    name: "Ergebnisse der Klage (Ratgeber, Infos)",
+    name: "Vorbereitung der Klage (Ratgeber, Infos)",
   });
-  await page.waitForSelector("a[data-button='true'][href='/dashboard']", {
+  await page.getByRole("heading", {
+    name: "Ratgeber Infos: Was passiert vor dem Familiengericht (Weiterführende Links)",
+  });
+  await page.waitForSelector("a[data-button='true'][href='/lawsuitResult']", {
     timeout: 3000,
   });
+  console.log("Clicking button...");
   await page.getByRole("link", { name: "Weiter" }).click();
-  await expect(page).toHaveURL(/dashboard/);
+  console.log("Button clicked");
+  await page.waitForSelector("h1");
+  await page.waitForFunction(() => {
+    const h1 = document.querySelector("h1");
+    return h1 && h1.innerText === "Ergebnisse der Klage (Ratgeber, Infos)";
+  });
+  await page.waitForURL("http://localhost:3000/lawsuitResult");
+  await expect(page).toHaveURL("http://localhost:3000/lawsuitResult");
 });

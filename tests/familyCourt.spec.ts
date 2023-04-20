@@ -1,18 +1,23 @@
 import { test, expect } from "@playwright/test";
 
-test("Application flow testing familyCourt to lawsuitResult", async ({
+test("Application flow testing legalActions to familyCourt", async ({
   page,
 }) => {
-  await page.goto("/familyCourt");
+  await page.goto("http://localhost:3000/legalActions");
   await page.getByRole("heading", {
-    name: "Vorbereitung der Klage (Ratgeber, Infos)",
+    name: "Geld vorhanden für einen eigenen Anwalt - Unterhalt einklagen",
   });
-  await page.getByRole("heading", {
-    name: "Ratgeber Infos: Was passiert vor dem Familiengericht (Weiterführende Links)",
-  });
-  await page.waitForSelector("a[data-button='true'][href='/lawsuitResult']", {
+  await page.waitForSelector("a[data-button='true'][href='/familyCourt']", {
     timeout: 3000,
   });
+  console.log("Clicking button...");
   await page.getByRole("link", { name: "Weiter" }).click();
-  await expect(page).toHaveURL(/\/lawsuitResult/);
+  console.log("Button clicked");
+  await page.waitForSelector("h1");
+  await page.waitForFunction(() => {
+    const h1 = document.querySelector("h1");
+    return h1 && h1.innerText === "Vorbereitung der Klage (Ratgeber, Infos)";
+  });
+  await page.waitForURL("http://localhost:3000/familyCourt");
+  await expect(page).toHaveURL("http://localhost:3000/familyCourt");
 });

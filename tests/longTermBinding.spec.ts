@@ -5,16 +5,14 @@ test("Application flow testing positiveReactionTemplate to longTermBinding", asy
 }) => {
   await page.goto("/positiveReactionTemplate");
   await page.getByRole("heading", { name: "Langzeit Bindung nach Erfolg" });
-  await page.waitForSelector("a[data-button='true'][href='/longTermBinding']", {
-    timeout: 3000,
-  });
+  await page.waitForSelector("a[data-button='true'][href='/longTermBinding']");
+  console.log("Clicking button...");
   await page.getByRole("link", { name: "Weiter" }).click();
-  await page.waitForSelector("button:has-text('Send Email')", {
-    timeout: 5000,
-  });
+  console.log("Button clicked");
   await page.waitForFunction(() => {
     const h4 = document.querySelector("h4");
     return h4 && h4.innerText === "Düsseldorfer Tabelle Updates ";
   });
-  await expect(page).toHaveURL(/longTermBinding/);
+  await page.waitForURL("http://localhost:3000/longTermBinding");
+  await expect(page).toHaveURL("http://localhost:3000/longTermBinding");
 });

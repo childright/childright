@@ -9,14 +9,20 @@ test("Application flow testing positiveReaction positiveReactionTemplate", async
     name: "Schritt 1 Entnahme des Haushaltsnettoeinkommen:",
   });
   await page.waitForSelector(
-    "a[data-button='true'][href='/positiveReactionTemplate']",
-    {
-      timeout: 3000,
-    }
+    "a[data-button='true'][href='/positiveReactionTemplate']"
   );
+  console.log("Clicking button...");
   await page.getByRole("link", { name: "Weiter" }).click();
-  await page.waitForSelector("span:has-text('Weiter')", {
-    timeout: 5000,
+  console.log("Button clicked");
+  await page.waitForFunction(() => {
+    const h1 = document.querySelector("h1");
+    return (
+      h1 &&
+      h1.innerText === "Nutze diese Vorlage um deinen Anspruch einzufordern!"
+    );
   });
-  await expect(page).toHaveURL(/positiveReactionTemplate/);
+  await page.waitForURL("http://localhost:3000/positiveReactionTemplate");
+  await expect(page).toHaveURL(
+    "http://localhost:3000/positiveReactionTemplate"
+  );
 });

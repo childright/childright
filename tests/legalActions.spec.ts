@@ -1,26 +1,21 @@
 import { test, expect } from "@playwright/test";
 
-test("Application flow testing legalActions to familyCourt", async ({
+test("Application flow testing legalProcess to legalActions", async ({
   page,
 }) => {
-  await page.goto("/legalActions");
+  await page.goto("http://localhost:3000/legalProcess");
   await page.getByRole("heading", {
-    name: "Geld vorhanden für einen eigenen Anwalt - Unterhalt einklagen",
+    name: "Rechtsweg - Unterhalt einklagen",
   });
-  await page.getByRole("heading", {
-    name: "Option 1: Jugentamt stellt Anwalt",
-  });
-  await page.waitForSelector("a[data-button='true'][href='/familyCourt']", {
+  await page.waitForSelector("a[data-button='true'][href='/legalActions']", {
     timeout: 3000,
   });
   await page.getByRole("link", { name: "Weiter" }).click();
-  await expect(page).toHaveURL(/familyCourt/);
+  await page.waitForSelector("h4");
   await page.waitForFunction(() => {
     const h4 = document.querySelector("h4");
-    return (
-      h4 &&
-      h4.innerText ===
-        "Ratgeber Infos: Was passiert vor dem Familiengericht (Weiterführende Links)"
-    );
+    return h4 && h4.innerText === "Option 1: Jugentamt stellt Anwalt";
   });
+  await page.waitForURL("http://localhost:3000/legalActions");
+  await expect(page).toHaveURL("http://localhost:3000/legalActions");
 });

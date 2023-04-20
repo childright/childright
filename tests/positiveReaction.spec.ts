@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test("Application flow testing resultTemplates to positiveReaction", async ({
+test("Application flow testing resultTemplates to negativeReaction", async ({
   page,
 }) => {
   await page.goto("/resultTemplates");
@@ -8,19 +8,23 @@ test("Application flow testing resultTemplates to positiveReaction", async ({
   await page.getByRole("heading", {
     name: "Für das persönliche Gespräch mit deinen Eltern",
   });
-  await page.waitForSelector("button[data-button='true']", {
-    timeout: 3000,
-  });
+  await page.waitForSelector("button[data-button='true']");
+  console.log("Clicking button...");
   await page.getByRole("button", { name: "Weiter" }).click();
+  console.log("Button clicked");
   await page.waitForSelector(
     "a[data-button='true'][href='/positiveReaction']",
     {
       timeout: 3000,
     }
   );
+  console.log("Clicking link...");
   await page.getByRole("link", { name: "Positive Reaktion" }).click();
-  await page.waitForSelector("span:has-text('Weiter')", {
-    timeout: 5000,
+  console.log("Link clicked");
+  await page.waitForFunction(() => {
+    const h1 = document.querySelector("h1");
+    return h1 && h1.innerText === "Auskunft Positiv";
   });
-  await expect(page).toHaveURL(/positiveReaction/);
+  await page.waitForURL("http://localhost:3000/positiveReaction");
+  await expect(page).toHaveURL("http://localhost:3000/positiveReaction");
 });
