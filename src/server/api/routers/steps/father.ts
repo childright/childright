@@ -30,4 +30,16 @@ export const fatherRouter = createTRPCRouter({
         },
       });
     }),
+  get: protectedProcedure.query(async ({ ctx: { session, prisma } }) => {
+    const data = await prisma.parentData.findFirst({
+      where: {
+        fatherOf: {
+          some: {
+            id: session.user.id,
+          },
+        },
+      },
+    });
+    return data;
+  }),
 });

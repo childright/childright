@@ -24,4 +24,12 @@ export const calculatorRouter = createTRPCRouter({
         },
       });
     }),
+  get: protectedProcedure.query(async ({ ctx: { session, prisma } }) => {
+    const data = await prisma.calculatorStepData.findFirst({
+      where: {
+        userId: session.user.id,
+      },
+    });
+    return data;
+  }),
 });

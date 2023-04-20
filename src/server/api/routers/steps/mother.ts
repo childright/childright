@@ -30,4 +30,16 @@ export const motherRouter = createTRPCRouter({
         },
       });
     }),
+  get: protectedProcedure.query(async ({ ctx: { session, prisma } }) => {
+    const data = await prisma.parentData.findFirst({
+      where: {
+        motherOf: {
+          some: {
+            id: session.user.id,
+          },
+        },
+      },
+    });
+    return data;
+  }),
 });
