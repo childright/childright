@@ -188,17 +188,8 @@ model SiblingData {
 model ResultsData {
     ownAmount Float
 
-    siblingAmounts SiblingAmount[]
-
     userId String @id @unique
     User   User   @relation(fields: [userId], references: [id])
-}
-
-model SiblingAmount {
-    amount Float
-
-    ResultsData       ResultsData @relation(fields: [resultsDataUserId], references: [userId])
-    resultsDataUserId String      @unique
 }
 
 model ForumComment {
