@@ -10,6 +10,7 @@ serverLogs.log
 
 # testing
 /coverage
+/playwright-report
 
 # database
 /prisma/db.sqlite
