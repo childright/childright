@@ -34,11 +34,11 @@ type CreateContextOptions = {
   session: Session | null;
 };
 
-const loggerPublisher = new LoggerPublisher([
-  new ConsoleLogAdapter(),
-  new LogflareLoggerAdapter(),
-  new FileLogAdapter("./serverLogs.log"),
-]);
+const loggerPublisher = new LoggerPublisher(
+  process.env.NODE_ENV === "development"
+    ? [new ConsoleLogAdapter(), new FileLogAdapter("./serverLogs.log")]
+    : [new LogflareLoggerAdapter()]
+);
 
 /**
  * This helper generates the "internals" for a tRPC context. If you need to use

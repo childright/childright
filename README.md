@@ -65,7 +65,7 @@ Rate Limiting:
 * [Upstash](https://upstash.com/)
 
 CI/CD:
-* [GitHub Actions](github.com/features/actions)
+* [GitHub Actions](https://github.com/features/actions)
 
 Email:
 * [Namecheap](https://www.namecheap.com/)
@@ -74,6 +74,9 @@ Linting:
 * [ESLint](https://eslint.org/)
 
 ## Documentation
+
+
+### General
 
 This app is basically a form consisting of multiple steps.
 The forms state management is handled using the Formik library.
@@ -91,6 +94,9 @@ The procedure has an input validation schema, which is used to validate the inpu
 
 React Query on the frontend takes care to also display errors and loading states in the app.
 
+
+### Auth
+
 The authentication is done via NextAuth. For now, we have only implemented GitHub and Discord authentication. In the future, we want to add Google and Apple. 
 
 The OAuth flow works like this:
@@ -101,5 +107,45 @@ The OAuth flow works like this:
 4. The OAuth provider creates a sign in link.
 5. The backend redirects the user to the sign in link.
 6. The user logs in to their account.
-7. The OAuth provider validates the credentials and sends a request to the callback URL on the backend specified in the OAuth app settings.
-8. 
+7. The OAuth provider validates the credentials and sends a request to the callback URL on the backend specified in the OAuth app settings. In the query params, it has a code to associate with the authentication process.
+8. The backend sends the code to the OAuth provider to get the access token.
+9. The OAuth provider sends the access token to the backend.
+10. The backend stores the access token in the database and associates it to the user.
+11. The backend creates a session with a session token and sends it to the frontend where it gets set as cookie.
+12. All requests to the backend are now authenticated. The backend can get the user ID from the session token by querying the database.
+    
+Session tokens are more secure that JWTs, but also more performance heavy, as they need to be queryed from the database on every request.
+
+The database is hosted on Planetscale. It is a managed database service, which is based on MySQL. It has a free tier, which is enough for our needs.
+
+### File Storage
+
+We offer a file upload service that lets the user upload one file. The file is stored in an AWS S3 bucket. Upon request, our backend gets a presigned URL from AWS S3, which is valid for 5 minutes. The frontend then uploads the file to the presigned URL. The file is then stored in the bucket. It is stored with the user ID as the key. This way, we can easily find the file again when the user wants to download it.
+
+The files in the `childright-documents` bucket are not publicly accessible. When a user wants to do download the file, the backend gets it using the User ID and serves it.
+
+### Realtime Communication
+
+Because Serverless functions don't allow for long-running Websocket connections, we use Pusher to handle realtime communication. The users can send direct messages to each other by specifying a user ID.
+
+When a user sends a message, the backend sends a request to Pusher to send the message to the other user. The other user receives a notification and can then fetch the message from the backend.
+
+### Rate Limiting
+
+We use Upstash to handle rate limiting. Upstash is a Redis-as-a-Service provider. We use it to store the number of requests a user has made in a period of time. If the user exceeds the limit, we redirect them to a "/api/blocked" endpoint, which returns a 429 status code.
+
+### Email
+
+We use Namecheap to send emails. We have a custom domain and a custom email address. We use the SMTP server to send emails. We use the nodemailer library to send emails.
+Also we have a github action that sends an email to the developers when the main branch is updated.
+
+### Logging
+We use an Observer / Listener pattern to log events. We have a LoggerPublisher that can hold an array of Loggers. When an event is logged, it is sent to all Loggers. Also we can use an array of transformer functions to modify incoming messages how we like. We have a LogflareLogger that sends the logs to Logflare. Logflare is a logging service that is easy to use and has a free tier. We also have a ConsoleLogger that logs the events to the console. This is useful for development. The FileLogger can be useful if we log very long payloads in debugging.
+
+### Testing
+TODO
+
+### Linting
+We use ESLint for linting with some additional config for typescript
+
+
