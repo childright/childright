@@ -130,6 +130,8 @@ Because Serverless functions don't allow for long-running Websocket connections,
 
 When a user sends a message, the backend sends a request to Pusher to send the message to the other user. The other user receives a notification and can then fetch the message from the backend.
 
+To test the chat, you have to create 2 user accounts in 2 different browsers. Then you can go to "/chat/:userID" to start a conversation
+
 ### Rate Limiting
 
 We use Upstash to handle rate limiting. Upstash is a Redis-as-a-Service provider. We use it to store the number of requests a user has made in a period of time. If the user exceeds the limit, we redirect them to a "/api/blocked" endpoint, which returns a 429 status code.
