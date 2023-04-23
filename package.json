@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "test": "vitest",
+    "test:e2e": "playwright test",
     "typecheck": "vitest typecheck",
     "build": "next build",
     "dev": "next dev",
