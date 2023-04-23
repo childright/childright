@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 test("Application flow testing familyCourt to lawsuitResult", async ({
   page,
 }) => {
-  await page.goto("http://localhost:3000/familyCourt");
+  await page.goto("/familyCourt");
   await page.getByRole("heading", {
     name: "Vorbereitung der Klage (Ratgeber, Infos)",
   });
@@ -14,5 +14,5 @@ test("Application flow testing familyCourt to lawsuitResult", async ({
     timeout: 3000,
   });
   await page.getByRole("link", { name: "Weiter" }).click();
-  await expect(page).toHaveURL("http://localhost:3000/lawsuitResult");
+  await expect(page).toHaveURL(/\/lawsuitResult/);
 });

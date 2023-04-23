@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 test("Application flow testing noReaction to lawyerList", async ({ page }) => {
-  await page.goto("http://localhost:3000/noReaction");
+  await page.goto("noReaction");
   await page.getByRole("heading", { name: "Keine Reaktion" });
   await page.getByRole("heading", { name: "Was kann ich jetzt tun?" });
   await page.waitForSelector("a[data-button='true'][href='/lawyerList']", {
@@ -15,5 +15,5 @@ test("Application flow testing noReaction to lawyerList", async ({ page }) => {
       h3.innerText === "Folgende Dokumente werden für den Termin benötigt:"
     );
   });
-  await expect(page).toHaveURL("http://localhost:3000/lawyerList");
+  await expect(page).toHaveURL(/lawyerList/);
 });

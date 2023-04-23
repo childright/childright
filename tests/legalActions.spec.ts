@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 test("Application flow testing legalActions to familyCourt", async ({
   page,
 }) => {
-  await page.goto("http://localhost:3000/legalActions");
+  await page.goto("/legalActions");
   await page.getByRole("heading", {
     name: "Geld vorhanden für einen eigenen Anwalt - Unterhalt einklagen",
   });
@@ -14,7 +14,7 @@ test("Application flow testing legalActions to familyCourt", async ({
     timeout: 3000,
   });
   await page.getByRole("link", { name: "Weiter" }).click();
-  await expect(page).toHaveURL("http://localhost:3000/familyCourt");
+  await expect(page).toHaveURL(/familyCourt/);
   await page.waitForFunction(() => {
     const h4 = document.querySelector("h4");
     return (

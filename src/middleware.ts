@@ -12,7 +12,12 @@ export default async function middleware(
   request: NextRequest,
   event: NextFetchEvent
 ): Promise<Response | undefined> {
-  if (process.env.NODE_ENV === "development") return NextResponse.next();
+  if (
+    process.env.NODE_ENV === "development" ||
+    (!!process.env.VERCEL_URL &&
+      process.env.VERCEL_URL !== "childright.vercel.app")
+  )
+    return NextResponse.next();
   const ip = request.ip ?? "127.0.0.1";
 
   if (request.nextUrl.pathname === "/api/blocked") return NextResponse.next();

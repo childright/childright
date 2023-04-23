@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 test("Application flow testing legalProcess to legalActions", async ({
   page,
 }) => {
-  await page.goto("http://localhost:3000/legalProcess");
+  await page.goto("/legalProcess");
   await page.getByRole("heading", {
     name: "Rechtsweg - Unterhalt einklagen",
   });
@@ -19,5 +19,5 @@ test("Application flow testing legalProcess to legalActions", async ({
     return h4 && h4.innerText === "Option 1: Jugentamt stellt Anwalt";
   });
 
-  await expect(page).toHaveURL("http://localhost:3000/legalActions");
+  await expect(page).toHaveURL(/legalActions/);
 });

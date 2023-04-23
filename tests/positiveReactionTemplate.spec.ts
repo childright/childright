@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 test("Application flow testing positiveReaction positiveReactionTemplate", async ({
   page,
 }) => {
-  await page.goto("http://localhost:3000/positiveReaction");
+  await page.goto("/positiveReaction");
   await page.getByRole("heading", { name: "Auskunft Positiv" });
   await page.getByRole("heading", {
     name: "Schritt 1 Entnahme des Haushaltsnettoeinkommen:",
@@ -18,7 +18,5 @@ test("Application flow testing positiveReaction positiveReactionTemplate", async
   await page.waitForSelector("span:has-text('Weiter')", {
     timeout: 5000,
   });
-  await expect(page).toHaveURL(
-    "http://localhost:3000/positiveReactionTemplate"
-  );
+  await expect(page).toHaveURL(/positiveReactionTemplate/);
 });

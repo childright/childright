@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 test("Application flow testing resultTemplates to negativeReaction", async ({
   page,
 }) => {
-  await page.goto("http://localhost:3000/resultTemplates");
+  await page.goto("/resultTemplates");
   await page.getByRole("heading", { name: "Vorlage 1:" });
   await page.getByRole("heading", {
     name: "Für das persönliche Gespräch mit deinen Eltern",
@@ -23,5 +23,5 @@ test("Application flow testing resultTemplates to negativeReaction", async ({
     const h1 = document.querySelector("h1");
     return h1 && h1.innerText === "Negative Reaktion";
   });
-  await expect(page).toHaveURL("http://localhost:3000/negativeReaction");
+  await expect(page).toHaveURL(/negativeReaction/);
 });

@@ -1,14 +1,14 @@
 import { test, expect } from "@playwright/test";
 
 test("should navigate to mother page", async ({ page }) => {
-  await page.goto("/http://localhost:3000/mother");
+  await page.goto("/mother");
 
   // Expect a title "to contain" a substring.
   await expect(page).toHaveTitle(/ChildRight/);
 });
 
 test("get started link", async ({ page }) => {
-  await page.goto("http://localhost:3000/mother");
+  await page.goto("/mother");
 
   // Click the get started link.
   await page.getByText;
