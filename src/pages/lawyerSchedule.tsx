@@ -7,8 +7,20 @@ import WizardComment from "../ui/WizardComment";
 import ZuCommunity from "../ui/ZurCommunity";
 import { Button } from "@mantine/core";
 import { NextLink } from "@mantine/next";
+import { useSession } from "next-auth/react";
 
-const lawyerSchedule: NextPage = () => {
+const LawyerSchedule: NextPage = () => {
+  const { data: session, status: sessionStatus } = useSession();
+  const router = useRouter();
+
+  if (sessionStatus === "loading") {
+    return <div>Loading...</div>;
+  }
+
+  if (!session) {
+    router.push("/");
+    return null;
+  }
   return (
     <StepperLayout>
       <>
@@ -42,4 +54,4 @@ const lawyerSchedule: NextPage = () => {
   );
 };
 
-export default lawyerSchedule;
+export default LawyerSchedule;

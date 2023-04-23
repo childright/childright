@@ -15,8 +15,21 @@ import { Button, FileButton, Group, Text } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
 import { NextLink } from "@mantine/next";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 const PositiveReaction: NextPage = () => {
+  const { data: session, status: sessionStatus } = useSession();
+  const router = useRouter();
+
+  if (sessionStatus === "loading") {
+    return <div>Loading...</div>;
+  }
+
+  if (!session) {
+    router.push("/");
+    return null;
+  }
   return (
     <StepperLayout>
       <h1 className="mb-4 text-center">Auskunft Positiv</h1>

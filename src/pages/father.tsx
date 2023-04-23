@@ -13,6 +13,7 @@ import { Button } from "@mantine/core";
 import SelectField from "../ui/SelectField";
 import { withFormikDevtools } from "formik-devtools-extension";
 import { api } from "../utils/api";
+import { useSession } from "next-auth/react";
 
 type FormData = Partial<Omit<ParentData, "id" | "userId">>;
 
@@ -44,7 +45,17 @@ const validationSchema = Yup.object().shape({
 
 const FatherPage: NextPage = () => {
   const saveMutation = api.steps.father.save.useMutation();
+  const { data: session, status: sessionStatus } = useSession();
   const router = useRouter();
+
+  if (sessionStatus === "loading") {
+    return <div>Loading...</div>;
+  }
+
+  if (!session) {
+    router.push("/");
+    return null;
+  }
 
   return (
     <StepperLayout>

@@ -3,6 +3,8 @@ import { NextLink } from "@mantine/next";
 import { type NextPage } from "next";
 
 import StepperLayout from "../ui/StepperLayout";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 const sampleData = {
   yourClaim: 1000,
@@ -17,6 +19,17 @@ const sampleData = {
 const possessive = (name: string) => name + (name.endsWith("s") ? "'" : "s");
 
 const AmountPage: NextPage = () => {
+  const { data: session, status: sessionStatus } = useSession();
+  const router = useRouter();
+
+  if (sessionStatus === "loading") {
+    return <div>Loading...</div>;
+  }
+
+  if (!session) {
+    router.push("/");
+    return null;
+  }
   return (
     <StepperLayout>
       <h1>Deine Ergebnisse sind da!</h1>
