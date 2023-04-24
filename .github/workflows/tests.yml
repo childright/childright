@@ -17,6 +17,16 @@ jobs:
       AWS_REGION: eu-west-1
       AWS_ACCESS_KEY_ID: "not needed"
       AWS_SECRET_ACCESS_KEY: "not needed"
+      PUSHER_APP_ID: 123
+      PUSHER_KEY: 123
+      PUSHER_SECRET: 123
+      PUSHER_CLUSTER: eu
+      UPSTASH_REDIS_REST_URL: aaa
+      UPSTASH_REDIS_REST_TOKEN: aaa
+      LOGFLARE_API_KEY: aaa
+      LOGFLARE_SOURCE_TOKEN: aaaa
+      SKIP_ENV_VALIDATION: 1
+
     name: Tests
     runs-on: ubuntu-22.04
     strategy:

@@ -15,3 +15,4 @@ jobs:
         run: npx playwright test
         env:
           BASE_URL: ${{ github.event.deployment_status.target_url }}
+          SKIP_ENV_VALIDATION: 1
