@@ -8,19 +8,11 @@ import { Button } from "@mantine/core";
 import { NextLink } from "@mantine/next";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import useAuth from "../hooks/useAuth";
 
 const NoReaction: NextPage = () => {
-  const { data: session, status: sessionStatus } = useSession();
-  const router = useRouter();
+  useAuth();
 
-  if (sessionStatus === "loading") {
-    return <div>Loading...</div>;
-  }
-
-  if (!session) {
-    router.push("/");
-    return null;
-  }
   return (
     <StepperLayout>
       <>

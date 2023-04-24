@@ -21,6 +21,7 @@ import SelectField from "../ui/SelectField";
 import { withFormikDevtools } from "formik-devtools-extension";
 import { NextLink } from "@mantine/next";
 import { useSession } from "next-auth/react";
+import useAuth from "../hooks/useAuth";
 
 type FormData = Partial<Omit<ProfileStepData, "user" | "userId">>;
 
@@ -58,17 +59,8 @@ const validationSchema = Yup.object().shape({
 
 const CalculatePage: NextPage = () => {
   const saveMutation = api.steps.profile.save.useMutation();
-  const { data: session, status: sessionStatus } = useSession();
   const router = useRouter();
-
-  if (sessionStatus === "loading") {
-    return <div>Loading...</div>;
-  }
-
-  if (!session) {
-    router.push("/");
-    return null;
-  }
+  useAuth();
 
   return (
     <StepperLayout>

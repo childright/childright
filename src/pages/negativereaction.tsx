@@ -6,19 +6,11 @@ import Map from "../ui/Map";
 import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import useAuth from "../hooks/useAuth";
 
 const NegativeReaction: NextPage = () => {
-  const { data: session, status: sessionStatus } = useSession();
-  const router = useRouter();
+  useAuth();
 
-  if (sessionStatus === "loading") {
-    return <div>Loading...</div>;
-  }
-
-  if (!session) {
-    router.push("/");
-    return null;
-  }
   return (
     <StepperLayout>
       <>

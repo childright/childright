@@ -8,19 +8,11 @@ import ZuCommunity from "../ui/ZurCommunity";
 import { Button } from "@mantine/core";
 import { NextLink } from "@mantine/next";
 import { useSession } from "next-auth/react";
+import useAuth from "../hooks/useAuth";
 
 const LawyerSchedule: NextPage = () => {
-  const { data: session, status: sessionStatus } = useSession();
-  const router = useRouter();
+  useAuth();
 
-  if (sessionStatus === "loading") {
-    return <div>Loading...</div>;
-  }
-
-  if (!session) {
-    router.push("/");
-    return null;
-  }
   return (
     <StepperLayout>
       <>

@@ -17,19 +17,11 @@ import { NextLink } from "@mantine/next";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import useAuth from "../hooks/useAuth";
 
 const PositiveReaction: NextPage = () => {
-  const { data: session, status: sessionStatus } = useSession();
-  const router = useRouter();
+  useAuth();
 
-  if (sessionStatus === "loading") {
-    return <div>Loading...</div>;
-  }
-
-  if (!session) {
-    router.push("/");
-    return null;
-  }
   return (
     <StepperLayout>
       <h1 className="mb-4 text-center">Auskunft Positiv</h1>
