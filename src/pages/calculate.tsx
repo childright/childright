@@ -20,8 +20,6 @@ type FormData = {
   childrenAbove18?: number;
 };
 
-const initialValues: FormData = {};
-
 const validationSchema = Yup.object().shape({
   parentsNetIncome: Yup.number().required(),
   kreditRates: Yup.number().required(),
@@ -35,11 +33,21 @@ const CalculatePage: NextPage = () => {
   const saveMutation = api.steps.calculator.save.useMutation();
   const router = useRouter();
 
+  const getQuery = api.steps.calculator.get.useQuery();
+
+  if (getQuery.isLoading) {
+    return <Text>Loading...</Text>;
+  }
+
+  if (getQuery.isError) {
+    return <Text>Error: {getQuery.error.message}</Text>;
+  }
+
   return (
     <StepperLayout>
       <h1 className="mb-4">Unterhaltsrechner</h1>
       <Formik
-        initialValues={initialValues}
+        initialValues={getQuery.data ?? {}}
         validationSchema={validationSchema}
         validateOnMount
         onSubmit={async (values) => {
@@ -84,7 +92,10 @@ const CalculatePage: NextPage = () => {
               />
 
               <Text>Ergebnis: {calculatorStepResult(formikProps.values)}</Text>
-              <Button type="submit" disabled={!formikProps.isValid}>
+              <Button
+                type="submit"
+                disabled={!!getQuery.data || !formikProps.isValid}
+              >
                 Submit
               </Button>
             </Form>
