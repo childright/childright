@@ -8,9 +8,10 @@ import ZuCommunity from "../ui/ZurCommunity";
 import { Button } from "@mantine/core";
 import { NextLink } from "@mantine/next";
 import { useSession } from "next-auth/react";
-import useAuth from "../hooks/useAuth";
+import useRedirectUnauthenticated from "../hooks/useAuth";
+
 const LawsuitResult: NextPage = () => {
-  useAuth();
+  useRedirectUnauthenticated();
 
   return (
     <StepperLayout>

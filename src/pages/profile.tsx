@@ -21,7 +21,7 @@ import SelectField from "../ui/SelectField";
 import { withFormikDevtools } from "formik-devtools-extension";
 import { NextLink } from "@mantine/next";
 import { useSession } from "next-auth/react";
-import useAuth from "../hooks/useAuth";
+import useRedirectUnauthenticated from "../hooks/useAuth";
 
 type FormData = Partial<Omit<ProfileStepData, "user" | "userId">>;
 
@@ -60,7 +60,7 @@ const validationSchema = Yup.object().shape({
 const CalculatePage: NextPage = () => {
   const saveMutation = api.steps.profile.save.useMutation();
   const router = useRouter();
-  useAuth();
+  useRedirectUnauthenticated();
 
   return (
     <StepperLayout>

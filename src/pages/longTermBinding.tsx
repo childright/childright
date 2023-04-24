@@ -8,7 +8,7 @@ import WizardComment from "../ui/WizardComment";
 import { Button } from "@mantine/core";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import useAuth from "../hooks/useAuth";
+import useRedirectUnauthenticated from "../hooks/useAuth";
 
 const sampleData = [
   {
@@ -21,7 +21,7 @@ const sampleData = [
 
 const LongTermBinding: NextPage = () => {
   const [opened, { open, close }] = useDisclosure(false);
-  useAuth();
+  useRedirectUnauthenticated();
 
   return (
     <>

@@ -17,10 +17,10 @@ import { NextLink } from "@mantine/next";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import useAuth from "../hooks/useAuth";
+import useRedirectUnauthenticated from "../hooks/useAuth";
 
 const PositiveReaction: NextPage = () => {
-  useAuth();
+  useRedirectUnauthenticated();
 
   return (
     <StepperLayout>

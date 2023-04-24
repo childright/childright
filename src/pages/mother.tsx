@@ -14,7 +14,7 @@ import SelectField from "../ui/SelectField";
 import { withFormikDevtools } from "formik-devtools-extension";
 import { api } from "../utils/api";
 import { useSession } from "next-auth/react";
-import useAuth from "../hooks/useAuth";
+import useRedirectUnauthenticated from "../hooks/useAuth";
 
 type FormData = Partial<Omit<ParentData, "id" | "userId">>;
 
@@ -47,7 +47,7 @@ const validationSchema = Yup.object().shape({
 const MotherPage: NextPage = () => {
   const saveMutation = api.steps.mother.save.useMutation();
   const router = useRouter();
-  useAuth();
+  useRedirectUnauthenticated();
 
   return (
     <StepperLayout>

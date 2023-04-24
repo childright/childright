@@ -5,7 +5,7 @@ import { type NextPage } from "next";
 import StepperLayout from "../ui/StepperLayout";
 import MessageTemplateCard from "../components/MessageTemplateCard";
 import { useDisclosure } from "@mantine/hooks";
-import useAuth from "../hooks/useAuth";
+import useRedirectUnauthenticated from "../hooks/useAuth";
 
 const sampleData = [
   {
@@ -39,7 +39,7 @@ const sampleData = [
 
 const TemplatesPage: NextPage = () => {
   const [opened, { open, close }] = useDisclosure(false);
-  useAuth();
+  useRedirectUnauthenticated();
 
   return (
     <>

@@ -6,10 +6,10 @@ import Map from "../ui/Map";
 import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import useAuth from "../hooks/useAuth";
+import useRedirectUnauthenticated from "../hooks/useAuth";
 
 const NegativeReaction: NextPage = () => {
-  useAuth();
+  useRedirectUnauthenticated();
 
   return (
     <StepperLayout>

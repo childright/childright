@@ -15,7 +15,7 @@ import { withFormikDevtools } from "formik-devtools-extension";
 import { api } from "../utils/api";
 import { NextLink } from "@mantine/next";
 import { useSession } from "next-auth/react";
-import useAuth from "../hooks/useAuth";
+import useRedirectUnauthenticated from "../hooks/useAuth";
 
 type FormData = Partial<Omit<SiblingData, "id" | "userId">>;
 
@@ -47,7 +47,7 @@ const SiblingPage: NextPage = () => {
   const saveMutation = api.steps.sibling.save.useMutation();
   const router = useRouter();
 
-  useAuth();
+  useRedirectUnauthenticated();
 
   return (
     <StepperLayout>

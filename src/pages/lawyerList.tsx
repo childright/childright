@@ -6,10 +6,10 @@ import WizardComment from "../ui/WizardComment";
 import { NextLink } from "@mantine/next";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import useAuth from "../hooks/useAuth";
+import useRedirectUnauthenticated from "../hooks/useAuth";
 
 const LawyerList: NextPage = () => {
-  useAuth();
+  useRedirectUnauthenticated();
 
   return (
     <StepperLayout>

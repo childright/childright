@@ -5,7 +5,7 @@ import { type NextPage } from "next";
 import StepperLayout from "../ui/StepperLayout";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import useAuth from "../hooks/useAuth";
+import useRedirectUnauthenticated from "../hooks/useAuth";
 
 const sampleData = {
   yourClaim: 1000,
@@ -20,7 +20,7 @@ const sampleData = {
 const possessive = (name: string) => name + (name.endsWith("s") ? "'" : "s");
 
 const AmountPage: NextPage = () => {
-  useAuth();
+  useRedirectUnauthenticated();
 
   return (
     <StepperLayout>

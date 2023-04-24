@@ -5,12 +5,23 @@ import * as Yup from "yup";
 import { useRouter } from "next/router";
 import WizardComment from "../ui/WizardComment";
 import ZuCommunity from "../ui/ZurCommunity";
-import { Button } from "@mantine/core";
+import { Button, Text } from "@mantine/core";
 import { useSession } from "next-auth/react";
 import useAuth from "../hooks/useAuth";
+import { api } from "../utils/api";
+import useRedirectUnauthenticated from "../hooks/useAuth";
 
 const Dashboard: NextPage = () => {
-  useAuth();
+  useRedirectUnauthenticated();
+  const profileData = api.steps.profile.get.useQuery();
+
+  if (profileData.isLoading) {
+    return <Text>Loading...</Text>;
+  }
+
+  if (profileData.isError) {
+    return <Text>Error: {profileData.error.message}</Text>;
+  }
 
   return (
     <StepperLayout>
@@ -18,6 +29,7 @@ const Dashboard: NextPage = () => {
         <h1 className="mb-4 text-center">Dashboard</h1>
         <div className="grid grid-cols-2 gap-x-5">
           <div>
+            <h3>Willkommen {profileData.data?.username}!</h3>
             <h3>Must include:</h3>
             <ul>
               <li>
