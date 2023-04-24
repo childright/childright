@@ -150,4 +150,6 @@ TODO
 ### Linting
 We use ESLint for linting with some additional config for typescript
 
+### Continuous Delivery
 
+We use GitHub Actions to run unit tests when the main branch is changed or e2e tests when the the Vercel deployment finishes. We also have a GitHub Action that sends an email to the developers when the main branch is updated.
