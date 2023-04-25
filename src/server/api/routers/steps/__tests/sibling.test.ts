@@ -9,6 +9,8 @@ import {
   Degree,
   Income,
 } from "@prisma/client";
+import { s3 } from "../../../../s3";
+import LoggerPublisher from "../../../../../utils/logging/LoggerPublisher";
 
 const prismaMock = mockDeep<PrismaClient>();
 
@@ -26,6 +28,8 @@ test("sibling step validation", async () => {
   const caller = appRouter.createCaller({
     session: mockSession,
     prisma: prismaMock,
+    s3: s3,
+    loggerPublisher: new LoggerPublisher(),
   });
 
   // Act

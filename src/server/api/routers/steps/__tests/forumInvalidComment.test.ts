@@ -3,6 +3,8 @@ import { appRouter } from "../../../root";
 import { Session } from "next-auth";
 import { PrismaClient } from "@prisma/client";
 import { mockDeep, mockReset } from "vitest-mock-extended";
+import LoggerPublisher from "../../../../../utils/logging/LoggerPublisher";
+import { s3 } from "../../../../s3";
 
 const prismaMock = mockDeep<PrismaClient>();
 
@@ -20,6 +22,8 @@ test("forumRouter handles error for invalid comment id when retrieving a comment
   const caller = appRouter.createCaller({
     session: mockSession,
     prisma: prismaMock,
+    s3: s3,
+    loggerPublisher: new LoggerPublisher(),
   });
 
   // Act

@@ -4,6 +4,8 @@ import type { Session } from "next-auth";
 import type { PrismaClient } from "@prisma/client";
 import { mockDeep, mockReset } from "vitest-mock-extended";
 import { LivingSituation, FamilyState, Degree, Income } from "@prisma/client";
+import LoggerPublisher from "../../../../../utils/logging/LoggerPublisher";
+import { s3 } from "../../../../s3";
 
 const prismaMock = mockDeep<PrismaClient>();
 
@@ -21,6 +23,8 @@ test("father step validation", async () => {
   const caller = appRouter.createCaller({
     session: mockSession,
     prisma: prismaMock,
+    s3: s3,
+    loggerPublisher: new LoggerPublisher(),
   });
 
   // Act

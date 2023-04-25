@@ -4,6 +4,8 @@ import { Session } from "next-auth";
 import { mockDeep, mockReset } from "vitest-mock-extended";
 import { PrismaClient } from "@prisma/client";
 import { forumRouter } from "../../forum";
+import LoggerPublisher from "../../../../../utils/logging/LoggerPublisher";
+import { s3 } from "../../../../s3";
 
 const prismaMock = mockDeep<PrismaClient>();
 
@@ -38,6 +40,8 @@ test("forumRouter getRootComments returns expected result", async () => {
   const caller = appRouter.createCaller({
     session: mockSession,
     prisma: prismaMock,
+    s3: s3,
+    loggerPublisher: new LoggerPublisher(),
   });
 
   // Act
