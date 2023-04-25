@@ -39,7 +39,9 @@ Backend:
 Database:
 * [Prisma](https://www.prisma.io/)
 * [MySQL](https://www.mysql.com/)
-[Planetscale](https://planetscale.com/)
+* [Planetscale](https://planetscale.com/)
+
+![ERD](prisma/ERD.svg)
 
 Authentication:
 * [NextAuth.js](https://next-auth.js.org/)
