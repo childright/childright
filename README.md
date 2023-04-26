@@ -6,77 +6,90 @@ This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3
 
 ## How to install
 
-* rename .env.example to .env and add your env variables
-* setup a MySQL database and add the credentials to the .env file
-* Create a GitHub OAuth app and add the client id and secret to the .env file
-* cd into the project directory
-* `npm install`
+- rename .env.example to .env and add your env variables
+- setup a MySQL database and add the credentials to the .env file
+- Create a GitHub OAuth app and add the client id and secret to the .env file
+- cd into the project directory
+- `npm install`
 
 ## How to run
-* `npm run dev`
-* (if you don't have all environment variables):  `SKIP_ENV_VALIDATION=1 npm run dev`
+
+- `npm run dev`, this will start the server and make it accessible through the web browser at the specified URL.
+- (if you don't have all environment variables): `SKIP_ENV_VALIDATION=1 npm run dev`
 
 ## Tech stack
 
 Frontend:
-* [React](https://reactjs.org/)
-* [Next.js](https://nextjs.org/)
-* [TypeScript](https://www.typescriptlang.org/)
-* [Tailwind CSS](https://tailwindcss.com/)
-* [TRPC](https://trpc.io/)
-* [React Query](https://react-query.tanstack.com/)
-* [Mantine](https://mantine.dev/)
-* [Formik](https://formik.org/)
-* [Storybook](https://storybook.js.org/)
+
+- [React](https://reactjs.org/)
+- [Next.js](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [TRPC](https://trpc.io/)
+- [React Query](https://react-query.tanstack.com/)
+- [Mantine](https://mantine.dev/)
+- [Formik](https://formik.org/)
+- [Storybook](https://storybook.js.org/)
 
 Backend:
-* [Next.js](https://nextjs.org/)
-* [TypeScript](https://www.typescriptlang.org/)
-* [Node.js](https://nodejs.org/en/)
-* [TRPC](https://trpc.io/)
-* [Zod](https://github.com/colinhacks/zod)
+
+- [Next.js](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Node.js](https://nodejs.org/en/)
+- [TRPC](https://trpc.io/)
+- [Zod](https://github.com/colinhacks/zod)
 
 Database:
-* [Prisma](https://www.prisma.io/)
-* [MySQL](https://www.mysql.com/)
-* [Planetscale](https://planetscale.com/)
+
+- [Prisma](https://www.prisma.io/)
+- [MySQL](https://www.mysql.com/)
+- [Planetscale](https://planetscale.com/)
 
 ![ERD](prisma/ERD.svg)
 
 Authentication:
-* [NextAuth.js](https://next-auth.js.org/)
+
+- [NextAuth.js](https://next-auth.js.org/)
 
 Testing:
-* [Playwright](https://playwright.dev/)
-* [Vitest](https://vitest.dev/)
+
+- [Playwright](https://playwright.dev/)
+- [Vitest](https://vitest.dev/)
 
 File Storage:
-* [AWS S3](https://aws.amazon.com/s3/)
+
+- [AWS S3](https://aws.amazon.com/s3/)
 
 Realtime Communication:
-* [Pusher](https://pusher.com/)
+
+- [Pusher](https://pusher.com/)
 
 Logging:
-* [Pino](https://getpino.io/)
-* [Logflare](https://logflare.app/)
+
+- [Pino](https://getpino.io/)
+- [Logflare](https://logflare.app/)
 
 Hosting:
-* [Vercel](https://vercel.com/)
+
+- [Vercel](https://vercel.com/)
 
 Rate Limiting:
-* [Upstash](https://upstash.com/)
+
+- [Upstash](https://upstash.com/)
 
 CI/CD:
-* [GitHub Actions](https://github.com/features/actions)
+
+- [GitHub Actions](https://github.com/features/actions)
 
 Email:
-* [Namecheap](https://www.namecheap.com/)
+
+- [Namecheap](https://www.namecheap.com/)
 
 Linting:
-* [ESLint](https://eslint.org/)
+
+- [ESLint](https://eslint.org/)
 
 ## Documentation
-
 
 ### General
 
@@ -96,10 +109,9 @@ The procedure has an input validation schema, which is used to validate the inpu
 
 React Query on the frontend takes care to also display errors and loading states in the app.
 
-
 ### Auth
 
-The authentication is done via NextAuth. For now, we have only implemented GitHub and Discord authentication. In the future, we want to add Google and Apple. 
+The authentication is done via NextAuth. For now, we have only implemented GitHub and Discord authentication. In the future, we want to add Google and Apple.
 
 The OAuth flow works like this:
 
@@ -115,7 +127,7 @@ The OAuth flow works like this:
 10. The backend stores the access token in the database and associates it to the user.
 11. The backend creates a session with a session token and sends it to the frontend where it gets set as cookie.
 12. All requests to the backend are now authenticated. The backend can get the user ID from the session token by querying the database.
-    
+
 Session tokens are more secure that JWTs, but also more performance heavy, as they need to be queryed from the database on every request.
 
 The database is hosted on Planetscale. It is a managed database service, which is based on MySQL. It has a free tier, which is enough for our needs.
@@ -144,14 +156,21 @@ We use Namecheap to send emails. We have a custom domain and a custom email addr
 Also we have a github action that sends an email to the developers when the main branch is updated.
 
 ### Logging
+
 We use an Observer / Listener pattern to log events. We have a LoggerPublisher that can hold an array of Loggers. When an event is logged, it is sent to all Loggers. Also we can use an array of transformer functions to modify incoming messages how we like. We have a LogflareLogger that sends the logs to Logflare. Logflare is a logging service that is easy to use and has a free tier. We also have a ConsoleLogger that logs the events to the console. This is useful for development. The FileLogger can be useful if we log very long payloads in debugging.
 
 ### Testing
-TODO
+
+We use Playwright for e2e tests and Vitest for unit tests. Playwright is a browser automation library that can be used to run tests in different browsers. To run the tests with Playwright, use the "npx playwright test" command. To test a specific file, use the "npx playwright test filename" command. Vitest is a software testing tool optimized for TypeScript. To use vitest, run "npm run vitest".
 
 ### Linting
+
 We use ESLint for linting with some additional config for typescript
 
 ### Continuous Delivery
 
 We use GitHub Actions to run unit tests when the main branch is changed or e2e tests when the the Vercel deployment finishes. We also have a GitHub Action that sends an email to the developers when the main branch is updated.
+
+# Prisma / Database
+
+The Prisma database setup involves defining a prisma schema called "schema.prisma". This schema is then used to generate a Prisma client. The Prisma client is used to interact with the database. It is used in the backend to define the API endpoints. It is also used in the frontend to fetch data from the database.

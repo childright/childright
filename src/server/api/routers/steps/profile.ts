@@ -21,7 +21,7 @@ export const profileRouter = createTRPCRouter({
         familyState: z.nativeEnum(FamilyState),
         degree: z.nativeEnum(Degree),
         ownIncome: z.nativeEnum(Income),
-        ownIncomeAmount: z.number().positive(),
+        ownIncomeAmount: z.number().min(0),
         avatarSeed: z.string(),
         coachAvatarSeed: z.string(),
       })
