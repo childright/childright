@@ -9,6 +9,7 @@ const links = [
   { label: "Dashboard", link: "/dashboard" },
   { label: "About", link: "/about" },
   { label: "Chat", link: "/chat" },
+  { label: "Forum", link: "/forum" },
   { label: "Contact", link: "mailto:ignazio.balisteri@code.berlin" },
 ] as const;
 

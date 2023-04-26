@@ -1,6 +1,21 @@
+import { ForumComment, Prisma } from "@prisma/client";
 import { z } from "zod";
 
 import { createTRPCRouter, protectedProcedure } from "../trpc";
+
+const rootCommentsQuery = Prisma.sql`
+  WITH RECURSIVE comment_tree AS (
+    SELECT *
+    FROM ForumComment
+    WHERE id = 'clgy54pmy0009h3k0pn5zq2go'
+    UNION ALL
+    SELECT c1.*
+    FROM ForumComment AS c1
+            JOIN comment_tree ON c1.id = comment_tree.parentId
+  )
+  SELECT *
+  FROM comment_tree
+`;
 
 export const forumRouter = createTRPCRouter({
   comments: createTRPCRouter({
@@ -46,29 +61,73 @@ export const forumRouter = createTRPCRouter({
         return comment;
       }),
 
-    getRootComments: protectedProcedure.query(async ({ ctx }) => {
-      const comments = await ctx.prisma.forumComment.findMany({
-        where: {
-          parentId: null,
-        },
-        include: {
-          children: true,
-          user: {
-            select: {
-              id: true,
-              profileStep: {
-                select: {
-                  username: true,
-                  avatarSeed: true,
+    getRootComments: protectedProcedure
+      .input(
+        z
+          .object({
+            forUser: z.boolean(),
+          })
+          .optional()
+      )
+      .query(async ({ ctx, input }) => {
+        if (input?.forUser) {
+          const comments = await ctx.prisma.$queryRaw`
+          WITH RECURSIVE comment_tree AS (
+              SELECT *
+              FROM ForumComment
+              WHERE userId = ${ctx.session.user.id}
+              UNION ALL
+              SELECT c1.*
+              FROM ForumComment AS c1
+                      JOIN comment_tree ON c1.id = comment_tree.parentId
+          )
+          SELECT DISTINCT *
+          FROM comment_tree
+          WHERE parentId IS NULL OR parentId = ''
+          `;
+
+          return comments as (ForumComment & { title: string })[];
+        }
+        const comments = await ctx.prisma.forumComment.findMany({
+          where: {
+            parentId: null,
+          },
+          include: {
+            children: true,
+            user: {
+              select: {
+                id: true,
+                profileStep: {
+                  select: {
+                    username: true,
+                    avatarSeed: true,
+                  },
                 },
               },
             },
           },
-        },
-      });
+        });
 
-      return comments;
-    }),
+        return comments;
+      }),
+
+    getRootCommentFor: protectedProcedure
+      .input(z.object({ childId: z.string() }))
+      .query(async ({ input, ctx }) => {
+        ctx.prisma.$queryRaw`
+          WITH RECURSIVE comment_tree AS (
+            SELECT *
+            FROM ForumComment
+            WHERE id = ${input.childId}
+            UNION ALL
+            SELECT c1.*
+            FROM ForumComment AS c1
+                    JOIN comment_tree ON c1.id = comment_tree.parentId
+        )
+        SELECT *
+        FROM comment_tree
+      `;
+      }),
 
     getChildren: protectedProcedure
       .input(z.object({ id: z.string() }))

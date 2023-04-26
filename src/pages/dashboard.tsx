@@ -1,15 +1,10 @@
 import { type NextPage } from "next";
-import { Formik, Form } from "formik";
 import StepperLayout from "../ui/StepperLayout";
-import * as Yup from "yup";
-import { useRouter } from "next/router";
 import WizardComment from "../ui/WizardComment";
-import ZuCommunity from "../ui/ZurCommunity";
-import { Button, Text } from "@mantine/core";
-import { useSession } from "next-auth/react";
-import useAuth from "../hooks/useAuth";
+import { Text } from "@mantine/core";
 import { api } from "../utils/api";
 import useRedirectUnauthenticated from "../hooks/useAuth";
+import Link from "next/link";
 
 const Dashboard: NextPage = () => {
   useRedirectUnauthenticated();
@@ -19,6 +14,9 @@ const Dashboard: NextPage = () => {
   const fatherQuery = api.steps.father.get.useQuery();
   const siblingQuery = api.steps.sibling.get.useQuery();
   const calculatorQuery = api.steps.calculator.get.useQuery();
+  const forumQuery = api.forum.comments.getRootComments.useQuery({
+    forUser: true,
+  });
 
   const queryObjects = [
     profileQuery,
@@ -26,6 +24,7 @@ const Dashboard: NextPage = () => {
     fatherQuery,
     siblingQuery,
     calculatorQuery,
+    forumQuery,
   ];
 
   for (const query of queryObjects) {
@@ -51,7 +50,7 @@ const Dashboard: NextPage = () => {
               {calculatorQuery.data?.claimAmountResult}
             </p>
             <ul>
-              <h4>Profile deiner Famielienmitglieder</h4>
+              <h4>Profile deiner Familienmitglieder</h4>
               <li>
                 <div>{fatherQuery.data?.name}</div>
               </li>
@@ -85,6 +84,15 @@ const Dashboard: NextPage = () => {
             <h4> </h4>
           </div>
         </div>
+
+        <h2>Forum Discussions</h2>
+        <ul>
+          {forumQuery?.data?.map((comment) => (
+            <li key={comment.id}>
+              <Link href={`/forum/${comment.id}`}>{comment.title}</Link>
+            </li>
+          ))}
+        </ul>
         <div className="mt-20 grid grid-cols-2 gap-10">
           <WizardComment text="placeholder" />
         </div>
