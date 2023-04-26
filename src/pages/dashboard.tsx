@@ -13,14 +13,51 @@ import useRedirectUnauthenticated from "../hooks/useAuth";
 
 const Dashboard: NextPage = () => {
   useRedirectUnauthenticated();
+
   const profileData = api.steps.profile.get.useQuery();
+  const motherData = api.steps.mother.get.useQuery();
+  const fatherData = api.steps.father.get.useQuery();
+  const siblingData = api.steps.sibling.get.useQuery();
+  const calculatorData = api.steps.calculator.get.useQuery();
 
   if (profileData.isLoading) {
     return <Text>Loading...</Text>;
   }
 
+  if (motherData.isLoading) {
+    return <Text>Loading...</Text>;
+  }
+
+  if (fatherData.isLoading) {
+    return <Text>Loading...</Text>;
+  }
+
+  if (siblingData.isLoading) {
+    return <Text>Loading...</Text>;
+  }
+
+  if (calculatorData.isLoading) {
+    return <Text>Loading...</Text>;
+  }
+
   if (profileData.isError) {
     return <Text>Error: {profileData.error.message}</Text>;
+  }
+
+  if (motherData.isError) {
+    return <Text>Error: {motherData.error.message}</Text>;
+  }
+
+  if (fatherData.isError) {
+    return <Text>Error: {fatherData.error.message}</Text>;
+  }
+
+  if (siblingData.isError) {
+    return <Text>Error: {siblingData.error.message}</Text>;
+  }
+
+  if (calculatorData.isError) {
+    return <Text>Error: {calculatorData.error.message}</Text>;
   }
 
   return (
@@ -29,11 +66,22 @@ const Dashboard: NextPage = () => {
         <h1 className="mb-4 text-center">Dashboard</h1>
         <div className="grid grid-cols-2 gap-x-5">
           <div>
-            <h3>Willkommen {profileData.data?.username}!</h3>
-            <h3>Must include:</h3>
+            <h2>Willkommen {profileData.data?.username}!</h2>
+            <h3>Acocunt Überblick</h3>
+            <p>
+              Deine zu verfügung stehende Summe:
+              {calculatorData.data?.claimAmountResult}
+            </p>
             <ul>
+              <h4>Profile deiner Famielienmitglieder</h4>
               <li>
-                Profile (eigenes Profil, Mutter, Vater, Geschwisterkinder..)
+                <div>{fatherData.data?.name}</div>
+              </li>
+              <li>
+                <div>{motherData.data?.name}</div>
+              </li>
+              <li>
+                <div>{siblingData.data?.name}</div>
               </li>
               <li>
                 “Progress Bar” -{">"} zeigt in welchem Abschnitt man sich
