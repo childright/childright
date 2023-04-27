@@ -1,6 +1,6 @@
 # ChildRight
 
-For better handling of child support. Digital, social, and courageous. The ChildRight application is designed to empower people to bring about the enforcement of a child support claim independently. The AI-supported app, with interactive knowledge transfer, community function, and suitable text templates, is designed to pick up users where they are and accompany them step by step. Basically a step-by-step wizard.
+For better handling of child support. Digital, social, and courageous. The ChildRight application is designed to empower people to bring about the enforcement of a child support claim independently. The AI-supported app, with interactive knowledge transfer, community function, and suitable text templates, is designed to pick up users where they are and accompany them step by step. Basically a step-by-step wizard. At the beginning, the form estimates child support. Then you create profiles for yourself, your parents and siblings. The further steps provide customized templates for the respective requirements.
 
 This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
 
@@ -174,3 +174,13 @@ We use GitHub Actions to run unit tests when the main branch is changed or e2e t
 # Prisma / Database
 
 The Prisma database setup involves defining a prisma schema called "schema.prisma". This schema is then used to generate a Prisma client. The Prisma client is used to interact with the database. It is used in the backend to define the API endpoints. It is also used in the frontend to fetch data from the database.
+
+## Contributers
+
+Ignazio Balistreri <ignazio.balistreri@code.berlin>
+Mark Witt <mark.witt@code.berlin>
+
+## License & copyright
+
+© Ignazio Balistreri, CODE University of Applied Sciences Software Engineering
+© Mark Witt, CODE University of Applied Sciences Software Engineering
