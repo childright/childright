@@ -13,7 +13,6 @@ import { Button } from "@mantine/core";
 import SelectField from "../ui/SelectField";
 import { withFormikDevtools } from "formik-devtools-extension";
 import { api } from "../utils/api";
-import { useSession } from "next-auth/react";
 import useRedirectUnauthenticated from "../hooks/useAuth";
 
 type FormData = Partial<Omit<ParentData, "id" | "userId">>;

@@ -9,7 +9,6 @@ import { api } from "../utils/api";
 import { useRouter } from "next/router";
 import { Button, Text } from "@mantine/core";
 import { withFormikDevtools } from "formik-devtools-extension";
-import { NextLink } from "@mantine/next";
 
 type FormData = {
   parentsNetIncome?: number;

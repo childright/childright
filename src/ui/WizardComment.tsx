@@ -1,5 +1,3 @@
-import { Button } from "@mantine/core";
-import { useRouter } from "next/router";
 import { FC } from "react";
 
 interface Props {
@@ -15,5 +13,3 @@ const WizardComment: FC<Props> = ({ text }) => {
 };
 
 export default WizardComment;
-
-//temporary content. will be changed.

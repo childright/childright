@@ -12,5 +12,3 @@ export function ZurCommunity() {
 }
 
 export default ZurCommunity;
-
-//temporary content. will be changed.

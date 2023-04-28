@@ -13,8 +13,6 @@ import { Button } from "@mantine/core";
 import SelectField from "../ui/SelectField";
 import { withFormikDevtools } from "formik-devtools-extension";
 import { api } from "../utils/api";
-import { NextLink } from "@mantine/next";
-import { useSession } from "next-auth/react";
 import useRedirectUnauthenticated from "../hooks/useAuth";
 
 type FormData = Partial<Omit<SiblingData, "id" | "userId">>;
@@ -121,7 +119,7 @@ const SiblingPage: NextPage = () => {
                   { value: "other", label: "anderes Einkommen" },
                 ]}
               />
-              <NumberInputField // TODO: Specify Brutto or Netto income?
+              <NumberInputField
                 name="incomeAmount"
                 label="Summe der (monatlichen) Einkünfte des Geschwisterkindes"
               />

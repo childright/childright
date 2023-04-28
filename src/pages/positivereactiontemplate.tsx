@@ -7,8 +7,6 @@ import ZuCommunity from "../ui/ZurCommunity";
 import WizardComment from "../ui/WizardComment";
 import { Button } from "@mantine/core";
 import { NextLink } from "@mantine/next";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/router";
 import useRedirectUnauthenticated from "../hooks/useAuth";
 
 const sampleData = [

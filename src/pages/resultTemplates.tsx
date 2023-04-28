@@ -1,7 +1,6 @@
 import { Button, Modal } from "@mantine/core";
 import { NextLink } from "@mantine/next";
 import { type NextPage } from "next";
-
 import StepperLayout from "../ui/StepperLayout";
 import MessageTemplateCard from "../components/MessageTemplateCard";
 import { useDisclosure } from "@mantine/hooks";

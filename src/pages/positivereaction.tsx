@@ -3,20 +3,17 @@ import StepperLayout from "../ui/StepperLayout";
 import WizardComment from "../ui/WizardComment";
 import ZuCommunity from "../ui/ZurCommunity";
 import {
-  ArrowUpIcon,
   DocumentIcon,
   QuestionMarkCircleIcon,
 } from "@heroicons/react/24/outline";
 
 import { api } from "../utils/api";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button, FileButton, Group, Text } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
 import { NextLink } from "@mantine/next";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/router";
 import useRedirectUnauthenticated from "../hooks/useAuth";
 
 const PositiveReaction: NextPage = () => {
@@ -37,7 +34,6 @@ const PositiveReaction: NextPage = () => {
         </div>
         <div className="w-1/2 flex-auto justify-end">
           <h3>Schritt 2 Kalkulation:</h3>
-          {/* TODO: Add dynamic data from calculate to dislpay Result */}
         </div>
       </div>
       <div className="mt-20 grid grid-cols-2 gap-10">

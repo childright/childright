@@ -1,13 +1,9 @@
 import { type NextPage } from "next";
-import { Formik, Form } from "formik";
 import StepperLayout from "../ui/StepperLayout";
-import * as Yup from "yup";
-import { useRouter } from "next/router";
 import WizardComment from "../ui/WizardComment";
 import ZuCommunity from "../ui/ZurCommunity";
 import { Button } from "@mantine/core";
 import { NextLink } from "@mantine/next";
-import { useSession } from "next-auth/react";
 import useRedirectUnauthenticated from "../hooks/useAuth";
 
 const FamilyCourt: NextPage = () => {

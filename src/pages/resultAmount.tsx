@@ -1,10 +1,7 @@
 import { Button, Text } from "@mantine/core";
 import { NextLink } from "@mantine/next";
 import { type NextPage } from "next";
-
 import StepperLayout from "../ui/StepperLayout";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/router";
 import useRedirectUnauthenticated from "../hooks/useAuth";
 
 const sampleData = {

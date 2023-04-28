@@ -1,7 +1,7 @@
 import { type AppType } from "next/app";
 import type { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
-import { AppShell, Group, Header, MantineProvider } from "@mantine/core";
+import { AppShell, MantineProvider } from "@mantine/core";
 
 import { api } from "../utils/api";
 
@@ -9,7 +9,6 @@ import "../styles/globals.css";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
 import Head from "next/head";
-import AuthButton from "../ui/AuthButton";
 import { NotificationsProvider } from "@mantine/notifications";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ResponsiveHeader } from "../ui/ResponsiveHeader";

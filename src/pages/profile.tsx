@@ -19,8 +19,6 @@ import { Button } from "@mantine/core";
 import { api } from "../utils/api";
 import SelectField from "../ui/SelectField";
 import { withFormikDevtools } from "formik-devtools-extension";
-import { NextLink } from "@mantine/next";
-import { useSession } from "next-auth/react";
 import useRedirectUnauthenticated from "../hooks/useAuth";
 
 type FormData = Partial<Omit<ProfileStepData, "user" | "userId">>;

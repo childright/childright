@@ -4,8 +4,6 @@ import ZuCommunity from "../ui/ZurCommunity";
 import { Button } from "@mantine/core";
 import WizardComment from "../ui/WizardComment";
 import { NextLink } from "@mantine/next";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/router";
 import useRedirectUnauthenticated from "../hooks/useAuth";
 
 const LawyerList: NextPage = () => {
