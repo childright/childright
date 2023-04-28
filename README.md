@@ -165,7 +165,7 @@ We use Playwright for e2e tests and Vitest for unit tests. Playwright is a brows
 
 ### Linting
 
-We use ESLint for linting with some additional config for typescript
+We use ESLint for linting with some additional config for TypeScript. Linting helps us identify and fix common coding errors and style inconsistencies, such as unused variables, undefined variables, or code that does not meet the project's coding standards. By using a linter, we can improve the overall quality of the code, make it more maintainable, and reduce the likelihood of bugs and errors. To get started with ESLint and TypeScript, make sure to have them installed in your development environment.
 
 ### Continuous Delivery
 
