@@ -1,7 +1,5 @@
-import { Button } from "@mantine/core";
-import { NextLink } from "@mantine/next";
 import type { NextPage } from "next";
-import Link from "next/link";
+import ForumPreview from "../../ui/ForumPreview";
 import { api } from "../../utils/api";
 
 const ForumIndexPage: NextPage = () => {
@@ -13,25 +11,7 @@ const ForumIndexPage: NextPage = () => {
 
   if (!getQuery.data) return <p>Not Found</p>;
 
-  return (
-    <>
-      <div className="mb-6 flex items-center justify-between">
-        <h2 className="text-lg font-bold text-gray-900 dark:text-white lg:text-2xl">
-          Discussion ({getQuery.data.length})
-        </h2>
-      </div>
-      <Button component={NextLink} href="/forum/new" legacyBehavior>
-        Add Post
-      </Button>
-      <ul>
-        {getQuery.data.map((comment) => (
-          <li key={comment.id}>
-            <Link href={`/forum/${comment.id}`}>{comment.title}</Link>
-          </li>
-        ))}
-      </ul>
-    </>
-  );
+  return <ForumPreview forumComments={getQuery.data} />;
 };
 
 export default ForumIndexPage;

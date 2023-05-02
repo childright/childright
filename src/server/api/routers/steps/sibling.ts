@@ -32,7 +32,7 @@ export const siblingRouter = createTRPCRouter({
       });
     }),
   get: protectedProcedure.query(async ({ ctx: { session, prisma } }) => {
-    const data = await prisma.siblingData.findFirst({
+    const data = await prisma.siblingData.findMany({
       where: {
         userId: session.user.id,
       },

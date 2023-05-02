@@ -1,21 +1,7 @@
-import { ForumComment, Prisma } from "@prisma/client";
+import type { ForumComment } from "@prisma/client";
 import { z } from "zod";
 
 import { createTRPCRouter, protectedProcedure } from "../trpc";
-
-const rootCommentsQuery = Prisma.sql`
-  WITH RECURSIVE comment_tree AS (
-    SELECT *
-    FROM ForumComment
-    WHERE id = 'clgy54pmy0009h3k0pn5zq2go'
-    UNION ALL
-    SELECT c1.*
-    FROM ForumComment AS c1
-            JOIN comment_tree ON c1.id = comment_tree.parentId
-  )
-  SELECT *
-  FROM comment_tree
-`;
 
 export const forumRouter = createTRPCRouter({
   comments: createTRPCRouter({
