@@ -57,6 +57,9 @@ export const forumRouter = createTRPCRouter({
       )
       .query(async ({ ctx, input }) => {
         if (input?.forUser) {
+          if (process.env.NODE_ENV === "production") {
+            return [];
+          }
           const comments = await ctx.prisma.$queryRaw`
           WITH RECURSIVE comment_tree AS (
               SELECT *
