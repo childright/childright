@@ -4,7 +4,7 @@ export default defineConfig({
   test: {
     setupFiles: "dotenv/config",
     coverage: {
-      provider: "c8",
+      provider: "istanbul",
     },
   },
 });

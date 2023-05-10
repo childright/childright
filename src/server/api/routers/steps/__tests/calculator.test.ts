@@ -5,6 +5,15 @@ import type { PrismaClient } from "@prisma/client";
 import { mockDeep, mockReset } from "vitest-mock-extended";
 import LoggerPublisher from "../../../../../utils/logging/LoggerPublisher";
 import { s3 } from "../../../../s3";
+
+/*
+ * Unit Test.
+ * The test is veryfing the behavior of the "save" method within the "calculator" step.
+ * Resilient to change by testing behavior instead of implementation.
+ * Mocked dependencies to isolate the unit of code under test.
+ * Cover more various functionalities and edge cases for better sufficiency.
+ */
+
 const prismaMock = mockDeep<PrismaClient>();
 
 beforeEach(() => {

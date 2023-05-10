@@ -44,7 +44,7 @@ test("Profile step validation", async () => {
     familyState: FamilyState.divorced,
     degree: Degree.realschule,
     ownIncome: Income.other,
-    ownIncomeAmount: 0,
+    ownIncomeAmount: -1,
     avatarSeed: "Test Avatar Seed",
     coachAvatarSeed: "Test Avatar Seed",
   });
