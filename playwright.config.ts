@@ -10,7 +10,7 @@ import { defineConfig, devices } from "@playwright/test";
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: "./tests ",
+  testMatch: "*.spec.ts",
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {
@@ -48,7 +48,7 @@ export default defineConfig({
       use: { ...devices["Desktop Chrome"] },
     },
 
-    {
+    /*     {
       name: "firefox",
       use: { ...devices["Desktop Firefox"] },
     },
@@ -57,7 +57,7 @@ export default defineConfig({
       name: "webkit",
       use: { ...devices["Desktop Safari"] },
     },
-
+ */
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',

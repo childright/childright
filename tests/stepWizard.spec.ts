@@ -35,5 +35,5 @@ test("Testing result template page", async ({ page }) => {
   });
   await page.getByRole("button", { name: "Weiter" }).click();
   await page.getByRole("link", { name: "Negative Reaktion" }).click();
-  await expect(page).toHaveURL(/negativereaction/);
+  await expect(page).toHaveURL(/.*negativereaction/);
 });
