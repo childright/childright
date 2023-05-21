@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 test("Application flow testing lawsuitResult to dashboard", async ({
   page,
 }) => {
-  await page.goto("http://localhost:3000/lawsuitResult");
+  await page.goto("/lawsuitResult");
   await page.getByRole("heading", {
     name: "Ergebnisse der Klage (Ratgeber, Infos)",
   });
@@ -18,6 +18,6 @@ test("Application flow testing lawsuitResult to dashboard", async ({
     const h1 = document.querySelector("h1");
     return h1 && h1.innerText === "Dashboard";
   });
-  await page.waitForURL("http://localhost:3000/dashboard");
-  await expect(page).toHaveURL("http://localhost:3000/dashboard");
+  await page.waitForURL(/.*dashboard.*/gm);
+  await expect(page).toHaveURL(/.*dashboard.*/gm);
 });

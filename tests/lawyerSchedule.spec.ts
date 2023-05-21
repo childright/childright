@@ -13,7 +13,7 @@ import { test, expect } from "@playwright/test";
 test("Application flow testing lawyerList to lawyerSchedule", async ({
   page,
 }) => {
-  await page.goto("http://localhost:3000/lawyerList");
+  await page.goto("/lawyerList");
   await page.getByRole("heading", { name: "Jugendamt - Anwalt Checkliste" });
   await page.getByRole("heading", {
     name: "Folgende Dokumente werden für den Termin benötigt:",
@@ -28,6 +28,6 @@ test("Application flow testing lawyerList to lawyerSchedule", async ({
     const h1 = document.querySelector("h1");
     return h1 && h1.innerText === "Jugendamt - Anwalt Termin";
   });
-  await page.waitForURL("http://localhost:3000/lawyerSchedule");
-  await expect(page).toHaveURL("http://localhost:3000/lawyerSchedule");
+  await page.waitForURL(/.*lawyerSchedule.*/gm);
+  await expect(page).toHaveURL(/.*lawyerSchedule.*/gm);
 });

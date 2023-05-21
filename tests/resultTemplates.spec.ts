@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 test("Application flow testing resultAmount to resultTemplates", async ({
   page,
 }) => {
-  await page.goto("http://localhost:3000/resultAmount");
+  await page.goto("/resultAmount");
   await page.getByRole("heading", { name: "Deine Ergebnisse sind da!" });
   await page.waitForSelector("a[data-button='true'][href='/resultTemplates']", {
     timeout: 3000,
@@ -15,6 +15,6 @@ test("Application flow testing resultAmount to resultTemplates", async ({
     const h1 = document.querySelector("h1");
     return h1 && h1.innerText === "Deine Ergebnisse sind da!";
   });
-  await page.waitForURL("http://localhost:3000/resultTemplates");
-  await expect(page).toHaveURL("http://localhost:3000/resultTemplates");
+  await page.waitForURL(/.*resultTemplates.*/gm);
+  await expect(page).toHaveURL(/.*resultTemplates.*/gm);
 });
