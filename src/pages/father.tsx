@@ -1,5 +1,5 @@
 import { type NextPage } from "next";
-import { Formik, Form } from "formik";
+import { Form } from "formik";
 
 import StepperLayout from "../ui/StepperLayout";
 import * as Yup from "yup";

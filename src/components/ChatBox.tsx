@@ -2,6 +2,7 @@ import { Button, TextInput } from "@mantine/core";
 import React, { useState } from "react";
 
 type Props = {
+  // eslint-disable-next-line no-unused-vars
   onSubmit: (message: string) => void;
 };
 

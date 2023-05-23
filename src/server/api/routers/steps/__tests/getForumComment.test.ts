@@ -1,7 +1,7 @@
-import { Session } from "next-auth";
+import type { Session } from "next-auth";
 import { expect, test, beforeEach } from "vitest";
 import { appRouter } from "../../../root";
-import { PrismaClient } from "@prisma/client";
+import type { PrismaClient } from "@prisma/client";
 import { mockDeep, mockReset } from "vitest-mock-extended";
 import { s3 } from "../../../../s3";
 import LoggerPublisher from "../../../../../utils/logging/LoggerPublisher";
@@ -46,7 +46,7 @@ test("forumRouter gets comment and returns valid result", async () => {
     loggerPublisher: new LoggerPublisher(),
   });
 
-  prismaMock.forumComment.findUnique.mockResolvedValueOnce(mockForumComment);
+  prismaMock.forumComment.findUnique.mockResolvedValueOnce;
 
   // Act
   const result = await caller.forum.comments.get({ id: "test-comment-id" });

@@ -1,7 +1,7 @@
 import { expect, test, beforeEach } from "vitest";
 import { appRouter } from "../../../root";
-import { Session } from "next-auth";
-import { PrismaClient } from "@prisma/client";
+import type { Session } from "next-auth";
+import type { PrismaClient } from "@prisma/client";
 import { mockDeep, mockReset } from "vitest-mock-extended";
 import LoggerPublisher from "../../../../../utils/logging/LoggerPublisher";
 import { s3 } from "../../../../s3";

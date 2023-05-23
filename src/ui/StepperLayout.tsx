@@ -1,13 +1,8 @@
 import { Progress } from "@mantine/core";
 import { useRouter } from "next/router";
-import type { ReactNode} from "react";
-import { useEffect } from "react";
+import type { ReactNode } from "react";
 import React from "react";
-import useRiveStateInput from "../hooks/useRiveStateInput";
-import {
-  AbsoluteAnimatedCharacter,
-  AnimatedCharacterElement,
-} from "./animations/AnimatedCharacter";
+import { AnimatedCharacterElement } from "./animations/AnimatedCharacter";
 
 type Props = {
   children: ReactNode;

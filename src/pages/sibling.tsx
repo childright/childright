@@ -1,5 +1,5 @@
 import { type NextPage } from "next";
-import { Formik, Form } from "formik";
+import { Form } from "formik";
 
 import StepperLayout from "../ui/StepperLayout";
 import * as Yup from "yup";
@@ -14,7 +14,6 @@ import SelectField from "../ui/SelectField";
 import { withFormikDevtools } from "formik-devtools-extension";
 import { api } from "../utils/api";
 import useRedirectUnauthenticated from "../hooks/useAuth";
-import { NextLink } from "@mantine/next";
 import AnimatedFormik from "../utils/AnimatedFormik";
 
 type FormData = Partial<Omit<SiblingData, "id" | "userId">>;

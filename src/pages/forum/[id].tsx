@@ -142,6 +142,7 @@ const CommentChildrenList = ({ id }: { id: string }) => {
 
 type AddCommentProps = {
   parentId: string;
+  // eslint-disable-next-line no-unused-vars
   onClose: (success: boolean) => void;
 };
 

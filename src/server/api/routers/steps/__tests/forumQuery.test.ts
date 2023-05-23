@@ -1,9 +1,8 @@
-import { ForumComment, PrismaClient } from "@prisma/client";
-import { mockDeep, mockReset } from "vitest-mock-extended";
+import type { ForumComment, PrismaClient } from "@prisma/client";
+import { mockDeep } from "vitest-mock-extended";
 import { expect, test, beforeEach } from "vitest";
 import { appRouter } from "../../../root";
-import { Query, QueryClient } from "@tanstack/react-query";
-import { Session } from "next-auth";
+import type { Session } from "next-auth";
 
 const prismaMock = mockDeep<PrismaClient>();
 
@@ -35,8 +34,8 @@ test("queryComment retrieves comment and related data from database", async () =
   const caller = appRouter.createCaller({
     session: mockSession,
     prisma: prismaMock,
-    s3: null as any,
-    loggerPublisher: null as any,
+    s3: null as never,
+    loggerPublisher: null as never,
   });
 
   const result = await caller.forum.comments.get({ id: "test-comment-id" });

@@ -4,14 +4,7 @@ import { createContext } from "react";
 
 const RiveContext = createContext<{
   rive: Rive | null;
-  RiveComponent:
-    | ((
-        props: DetailedHTMLProps<
-          CanvasHTMLAttributes<HTMLCanvasElement>,
-          HTMLCanvasElement
-        >
-      ) => JSX.Element)
-    | null;
+  RiveComponent: (() => JSX.Element) | null;
   canvas: HTMLCanvasElement | null;
 }>({ rive: null, RiveComponent: null, canvas: null });
 

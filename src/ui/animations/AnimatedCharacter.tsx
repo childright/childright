@@ -1,21 +1,14 @@
-import {
-  CanvasHTMLAttributes,
-  createRef,
-  DetailedHTMLProps,
-  FC,
-  useRef,
-} from "react";
+import type { CanvasHTMLAttributes, DetailedHTMLProps, FC } from "react";
+import { useRef } from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
-import { useStateMachineInput } from "@rive-app/react-canvas";
 import RiveContext from "../../utils/AnimationContext";
-import { DEFAULT_STATE_MACHINE } from "../../utils/constants";
 import useRiveStateInput from "../../hooks/useRiveStateInput";
 
 const AnimatedCharacter: FC<
   DetailedHTMLProps<CanvasHTMLAttributes<HTMLCanvasElement>, HTMLCanvasElement>
 > = ({ className }) => {
-  const { rive, RiveComponent, canvas } = useContext(RiveContext);
+  const { RiveComponent, canvas } = useContext(RiveContext);
 
   const validationSuccessInput = useRiveStateInput("validation success");
 

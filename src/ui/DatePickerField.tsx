@@ -5,8 +5,6 @@ import { useField } from "formik";
 import "dayjs/locale/de";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import dayjs from "dayjs";
-import { useContext } from "react";
-import RiveContext from "../utils/AnimationContext";
 import useRiveStateInput from "../hooks/useRiveStateInput";
 dayjs.extend(customParseFormat);
 

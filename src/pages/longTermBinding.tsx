@@ -1,7 +1,6 @@
 import { type NextPage } from "next";
 import StepperLayout from "../ui/StepperLayout";
 import MessageTemplateCard from "../components/MessageTemplateCard";
-import { useDisclosure } from "@mantine/hooks";
 import { QuestionMarkCircleIcon } from "@heroicons/react/24/outline";
 import ZuCommunity from "../ui/ZurCommunity";
 import WizardComment from "../ui/WizardComment";
@@ -18,7 +17,6 @@ const sampleData = [
 ];
 
 const LongTermBinding: NextPage = () => {
-  const [opened, { open, close }] = useDisclosure(false);
   useRedirectUnauthenticated();
 
   return (

@@ -1,6 +1,4 @@
-import type { LogEvent } from "./types";
-
 abstract class Logger {
-  abstract log(event: LogEvent): void;
+  abstract log(): void;
 }
 export default Logger;
